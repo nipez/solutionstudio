@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solution Studio — Principal-led advisory and build practice of Nick Perez</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solution Studio — Advisory and build practice of Nick Perez</title>
 <meta name="description" content="Solution Studio is the independent advisory and build practice of Nick Perez. Revenue strategy, AI applications, custom software, and fractional leadership — connected into systems that grow businesses.">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JN6BXF06C4"></script>
 <script>
@@ -29,6 +29,7 @@
   --teal:#137F8B;
   --teal-bright:#2FB3BF;
   --teal-dim:rgba(19,127,139,.08);
+  --amber:#B45309;
   --header-h:84px;
   --r:4px;
 }
@@ -43,7 +44,6 @@ a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 img{display:block;max-width:100%}
 .wrap{width:min(1240px,calc(100% - 3rem));margin-inline:auto}
-@media (max-width:480px){.wrap{width:calc(100% - 2.25rem)}}
 
 /* ============ HEADER ============ */
 .hdr{
@@ -92,7 +92,7 @@ img{display:block;max-width:100%}
 .hero{
   position:relative;background:var(--ink);overflow:hidden;
   padding-top:calc(var(--header-h) + 56px);
-  min-height:min(94vh,880px);display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:min(92vh,860px);display:flex;flex-direction:column;justify-content:flex-end;
 }
 .hero__media{position:absolute;inset:0;background-size:cover;background-position:center}
 .hero__media::after{
@@ -103,21 +103,17 @@ img{display:block;max-width:100%}
   position:relative;z-index:2;width:min(1240px,calc(100% - 3rem));margin-inline:auto;
   padding-bottom:clamp(3.25rem,7vh,5rem);
 }
-.hero__kicker{
-  font-size:.85rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.68);opacity:0;animation:up .7s ease forwards .1s;
-}
 .hero__title{
-  margin-top:1.25rem;font-weight:800;font-size:clamp(2.8rem,6.6vw,5.5rem);
+  font-weight:800;font-size:clamp(2.8rem,6.6vw,5.5rem);
   line-height:1;letter-spacing:-.045em;color:#fff;max-width:14ch;text-wrap:balance;
-  opacity:0;animation:up .7s ease forwards .22s;
+  opacity:0;animation:up .7s ease forwards .12s;
 }
 .hero__sub{
   margin-top:1.6rem;max-width:620px;font-size:clamp(1.15rem,1.8vw,1.35rem);line-height:1.55;
   color:rgba(255,255,255,.88);text-wrap:pretty;
-  opacity:0;animation:up .7s ease forwards .36s;
+  opacity:0;animation:up .7s ease forwards .28s;
 }
-.hero__actions{margin-top:2.25rem;display:flex;flex-wrap:wrap;gap:.85rem;opacity:0;animation:up .7s ease forwards .5s}
+.hero__actions{margin-top:2.25rem;display:flex;flex-wrap:wrap;gap:.85rem;opacity:0;animation:up .7s ease forwards .44s}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
   min-height:3.35rem;padding:.95rem 1.7rem;border-radius:var(--r);
@@ -132,7 +128,7 @@ img{display:block;max-width:100%}
 .btn-line{background:transparent;color:var(--ink);border:1px solid var(--ink)}
 .btn-line:hover{background:var(--ink);color:#fff}
 
-/* ============ CREDIBILITY STRIP ============ */
+/* ============ CRED STRIP ============ */
 .cred{background:var(--ink);border-top:1px solid var(--line-dark)}
 .cred__grid{
   width:min(1240px,calc(100% - 3rem));margin-inline:auto;
@@ -142,14 +138,14 @@ img{display:block;max-width:100%}
 .cred__item{border-left:1px solid var(--line-dark);padding-left:1.6rem}
 .cred__item:first-child{border-left:0;padding-left:0}
 .cred__item b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.02em;color:#fff}
-.cred__item span{display:block;margin-top:.4rem;font-size:.98rem;line-height:1.5;color:rgba(255,255,255,.6)}
+.cred__item span{display:block;margin-top:.4rem;font-size:.98rem;line-height:1.5;color:rgba(255,255,255,.62)}
 
 /* ============ SECTION SCAFFOLD ============ */
 .sec{padding:clamp(76px,9vw,120px) 0}
 .sec--paper{background:var(--paper)}
 .sec--dark{background:var(--ink)}
 .sec--dark p{color:rgba(255,255,255,.72)}
-.kick{font-size:.8rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:1.1rem}
+.kick{font-size:.82rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:1.1rem}
 .sec--dark .kick{color:var(--teal-bright)}
 .h2{font-weight:800;font-size:clamp(2.15rem,4.6vw,3.6rem);letter-spacing:-.04em;line-height:1.04;text-wrap:balance}
 .sec--dark .h2{color:#fff}
@@ -157,227 +153,284 @@ img{display:block;max-width:100%}
 .sec--dark .lead{color:rgba(255,255,255,.7)}
 .head{margin-bottom:clamp(44px,5vw,64px)}
 
-/* ============ POSITIONING / SYSTEMS MAP ============ */
-.pos{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2.5rem,5vw,4.5rem);align-items:center}
+/* ============ ONE OPERATOR MAP ============ */
+.pos{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,4vw,3.5rem);align-items:center}
 .pos__body p{margin-top:1.15rem;font-size:1.12rem;line-height:1.65;max-width:620px;text-wrap:pretty}
 .pos__body p strong{color:var(--ink);font-weight:600}
-.sysmap{position:relative;width:100%;max-width:640px;aspect-ratio:1.18/1;margin-inline:auto}
+.sysmap{position:relative;width:100%;max-width:700px;aspect-ratio:1.22/1;margin-inline:auto}
 .sysmap svg{position:absolute;inset:0;width:100%;height:100%}
-.sysmap svg line{stroke:var(--gray);stroke-width:1.4}
-.sysmap svg line.hot{stroke:var(--teal);stroke-opacity:.5;stroke-dasharray:3 5;animation:dash 16s linear infinite}
+.sysmap svg line{stroke:rgba(19,127,139,.4);stroke-width:2}
+.sysmap svg line.hot{stroke-dasharray:4 6;animation:dash 16s linear infinite}
 .sys-center{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
-  background:var(--ink);color:#fff;padding:1.1rem 1.5rem;border-radius:var(--r);text-align:center;
+  background:var(--ink);color:#fff;padding:1.2rem 1.7rem;border-radius:var(--r);text-align:center;
 }
-.sys-center b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.06em}
-.sys-center span{display:block;margin-top:.15rem;font-size:.78rem;color:rgba(255,255,255,.55)}
+.sys-center b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.12rem;letter-spacing:.06em}
+.sys-center span{display:block;margin-top:.2rem;font-size:.85rem;color:rgba(255,255,255,.55)}
 .sys-node{
   position:absolute;transform:translate(-50%,-50%);z-index:1;
-  background:#fff;border:1px solid var(--line);border-radius:var(--r);
-  padding:.6rem .85rem;min-width:9.5rem;text-align:left;
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r);
+  padding:.75rem 1rem;min-width:10rem;text-align:left;
   transition:border-color .2s,box-shadow .2s;
 }
-.sys-node:hover{border-color:var(--teal);box-shadow:0 6px 18px rgba(16,17,20,.08)}
-.sys-node b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:-.01em;color:var(--ink)}
-.sys-node span{display:block;margin-top:.15rem;font-size:.78rem;line-height:1.4;color:var(--muted)}
+.sys-node:hover,.sys-node:focus-within{border-color:var(--teal);box-shadow:0 8px 24px rgba(16,17,20,.1);z-index:3}
+.sys-node b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.01em;color:var(--ink)}
+.sys-node span{display:none;margin-top:.3rem;font-size:.85rem;line-height:1.45;color:var(--muted)}
+.sys-node:hover span,.sys-node:focus-within span{display:block}
+.sysmap-list{display:none;grid-template-columns:1fr;gap:.6rem}
+.sysmap-list .sys-node{position:static;transform:none;min-width:0;cursor:pointer;width:100%;text-align:left;font-family:inherit;padding:.9rem 1.05rem}
+.sysmap-list .sys-node b{font-size:1.05rem}
+.sysmap-list .sys-node span{font-size:.95rem}
+.sysmap-list .sys-node.open span{display:block}
+.sysmap-list .sys-node::after{content:'+';float:right;color:var(--teal);font-weight:600;font-size:1.1rem;line-height:1.2}
+.sysmap-list .sys-node.open::after{content:'−'}
+.sysmap-list .sys-center{position:static;transform:none;margin-bottom:.4rem}
 
 /* ============ CAPABILITIES ============ */
 .cap{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
-.cap-panel{border:1px solid var(--line);background:#fff;border-radius:var(--r);overflow:hidden;transition:border-color .25s}
+.cap-panel{border:1px solid var(--line);background:#fff;border-radius:var(--r);overflow:hidden;transition:border-color .25s;display:flex;flex-direction:column}
 .cap-panel:hover{border-color:var(--ink)}
-.cap-vis{height:280px;background:var(--paper);border-bottom:1px solid var(--line);padding:1.2rem;overflow:hidden;position:relative}
-.cap-body{padding:1.6rem 1.7rem 1.7rem}
+.cap-body{padding:1.6rem 1.7rem 1.35rem}
 .cap-body h3{font-weight:700;font-size:1.5rem;letter-spacing:-.03em}
-.cap-body p{margin-top:.65rem;font-size:1.02rem;line-height:1.6;text-wrap:pretty}
+.cap-body .out{margin-top:.5rem;font-size:1.05rem;line-height:1.55;color:var(--body-c);text-wrap:pretty}
+.cap-body .del{margin-top:.65rem;font-size:.92rem;line-height:1.6;color:var(--muted)}
+.cap-vis{margin-top:auto;background:var(--paper);border-top:1px solid var(--line);padding:1.2rem;overflow:hidden;position:relative;min-height:250px}
 
-/* rev architecture */
-.rev{display:flex;flex-direction:column;gap:.65rem;height:100%}
-.rev__chain{display:grid;grid-template-columns:repeat(8,1fr);gap:.3rem}
-.rev__chain span{font-size:.72rem;font-weight:600;text-align:center;padding:.5rem .1rem;background:#fff;border:1px solid var(--line);color:var(--muted)}
-.rev__chain span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.rev__lower{display:grid;grid-template-columns:1.15fr 1fr;gap:.65rem;flex:1;min-height:0}
-.rev__journey{background:#fff;border:1px solid var(--line);padding:.85rem;display:flex;flex-direction:column;justify-content:center;gap:.65rem}
-.rev__journey small{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.rev__stages{display:flex;align-items:center;gap:.4rem}
-.rev__stages i{height:.7rem;flex:1;background:var(--gray)}
-.rev__stages i.on{background:var(--teal)}
-.rev__stages b{font-size:.76rem;color:var(--muted);font-weight:600;min-width:3.2rem}
-.rev__fc{background:#fff;border:1px solid var(--line);padding:.85rem;display:flex;flex-direction:column}
-.rev__fc small{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.rev__fc svg{flex:1;width:100%;margin-top:.4rem}
-.rev__fc path{fill:none;stroke-width:2.2}
-.rev__fc .base{stroke:var(--gray);stroke-dasharray:3 3}
-.rev__fc .line1{stroke:var(--ink)}
+/* cap 1: revenue architecture */
+.rga{display:flex;flex-direction:column;gap:.7rem}
+.rga__chain{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
+.rga__step{position:relative;background:#fff;border:1px solid var(--line);padding:.5rem .3rem .45rem;text-align:center}
+.rga__step b{display:block;font-size:.78rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.rga__step span{display:block;font-size:.7rem;color:var(--teal);font-weight:600;margin-top:.1rem}
+.rga__step::after{content:'→';position:absolute;right:-.62rem;top:50%;transform:translateY(-50%);color:var(--faint);font-size:.8rem;z-index:1}
+.rga__step:nth-child(4n)::after{display:none}
+.rga__metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:.45rem}
+.rga__m{background:var(--ink);color:#fff;padding:.5rem .55rem;text-align:center}
+.rga__m b{display:block;font-family:'Inter Tight',sans-serif;font-size:.92rem;font-weight:700;letter-spacing:-.01em}
+.rga__m span{display:block;font-size:.66rem;color:rgba(255,255,255,.55);margin-top:.1rem;letter-spacing:.04em;text-transform:uppercase}
 
-/* workflow canvas */
-.wf{position:relative;height:100%;border:1px solid var(--line);background:
-  linear-gradient(var(--gray) 1px,transparent 1px),linear-gradient(90deg,var(--gray) 1px,transparent 1px);
-  background-size:24px 24px;background-color:#fff}
-.wf svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.wf svg path{fill:none;stroke:var(--faint);stroke-width:1.3;stroke-dasharray:4 4;animation:dash 18s linear infinite}
-.wf__node{
-  position:absolute;background:#fff;border:1px solid var(--line);padding:.5rem .7rem;border-radius:3px;
-  font-size:.78rem;font-weight:600;color:var(--ink);white-space:nowrap;box-shadow:0 1px 0 rgba(16,17,20,.04);
+/* cap 2: AI workflow (connected + sequenced) */
+.aif{display:flex;flex-direction:column;align-items:center;gap:0}
+.aif__row{display:flex;gap:.5rem;align-items:stretch;justify-content:center;width:100%}
+.aif__node{
+  background:#fff;border:1.5px solid var(--line);padding:.5rem .75rem;text-align:center;flex:1;max-width:200px;
+  font-size:.8rem;font-weight:600;color:var(--ink);border-radius:3px;transition:border-color .3s,background .3s,color .3s;
 }
-.wf__node em{display:block;font-style:normal;font-weight:500;font-size:.68rem;color:var(--muted)}
-.wf__node--ai{background:var(--ink);color:#fff;border-color:var(--ink)}
-.wf__node--ai em{color:rgba(255,255,255,.62)}
-.wf__node--gate{border-color:var(--teal);color:var(--teal)}
+.aif__node em{display:block;font-style:normal;font-weight:500;font-size:.7rem;color:var(--muted)}
+.aif__node--ai{background:var(--ink);color:#fff;border-color:var(--ink)}
+.aif__node--ai em{color:rgba(255,255,255,.6)}
+.aif__node--gate{border-color:var(--teal);color:var(--teal)}
+.aif__down{height:1.15rem;width:2px;background:var(--faint);position:relative;margin:.1rem 0}
+.aif__down::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);border:4px solid transparent;border-top-color:var(--faint)}
+.play .aif__node{animation:aifpulse 9s ease-in-out infinite}
+.play .aif__row:nth-child(1) .aif__node{animation-delay:0s}
+.play .aif__row:nth-child(3) .aif__node{animation-delay:1.1s}
+.play .aif__row:nth-child(5) .aif__node{animation-delay:2.2s}
+.play .aif__row:nth-child(7) .aif__node{animation-delay:3.3s}
+.play .aif__row:nth-child(9) .aif__node{animation-delay:4.4s}
+@keyframes aifpulse{0%,100%{box-shadow:none}6%,14%{box-shadow:0 0 0 3px rgba(47,179,191,.35);border-color:var(--teal)}22%{box-shadow:none}}
 
-/* layered product */
-.layers{position:relative;height:100%}
-.scr{position:absolute;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.scr__bar{height:16px;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.25rem;padding:0 .4rem}
-.scr__bar i{width:.32rem;height:.32rem;border-radius:50%;background:var(--gray)}
-.scr--desk{left:0;top:4%;width:60%;height:64%}
-.scr--phone{right:2%;top:10%;width:23%;height:74%;border-radius:8px}
-.scr--phone .scr__bar{height:11px}
-.scr__grid{padding:.55rem;display:grid;grid-template-columns:1fr 2.1fr;gap:.4rem;height:calc(100% - 16px)}
-.scr__side{background:var(--paper)}
-.scr__rows{display:flex;flex-direction:column;gap:.34rem;padding:.05rem}
-.scr__rows i{display:block;height:.55rem;background:var(--gray)}
-.scr__rows i:nth-child(2){width:72%}
-.scr__rows i:nth-child(3){width:52%}
-.scr__rows b{display:block;height:2rem;background:var(--teal-dim);border:1px solid rgba(19,127,139,.22)}
-.scr--stackrow{left:8%;bottom:0;width:60%;display:flex;gap:.35rem;background:transparent;border:0;overflow:visible}
-.scr--stackrow span{
-  flex:1;text-align:center;font-family:ui-monospace,monospace;font-size:.7rem;font-weight:600;
-  padding:.5rem .2rem;background:var(--ink);color:#9BE8EE;border-radius:3px;
-}
+/* cap 3: product ecosystem */
+.eco2{position:relative;display:flex;flex-direction:column;gap:.7rem}
+.eco2__devices{display:grid;grid-template-columns:1.4fr .6fr 1fr;gap:.6rem;align-items:end}
+.dev2{background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.dev2 header{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--paper);border-bottom:1px solid var(--line);padding:.32rem .5rem}
+.dev2__body{padding:.5rem;display:flex;flex-direction:column;gap:.3rem;min-height:74px}
+.dev2__body i{display:block;height:.5rem;background:var(--gray)}
+.dev2__body i.w2{width:70%}
+.dev2__body b{display:block;height:1.5rem;background:var(--teal-dim);border:1px solid rgba(19,127,139,.25)}
+.dev2--phone{border-radius:9px}
+.eco2__links{display:grid;grid-template-columns:1.4fr .6fr 1fr;gap:.6rem;height:.9rem}
+.eco2__links i{position:relative}
+.eco2__links i::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--faint)}
+.eco2__base{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
+.eco2__cell{background:var(--ink);color:#9BE8EE;font-family:ui-monospace,monospace;font-size:.72rem;font-weight:600;text-align:center;padding:.5rem .3rem;border-radius:3px}
 
-/* exec operating model */
-.eom{display:grid;grid-template-columns:1.25fr 1fr;gap:.65rem;height:100%}
-.eom__left{display:flex;flex-direction:column;gap:.65rem}
-.eom__road{background:#fff;border:1px solid var(--line);padding:.75rem .85rem}
-.eom__road small{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.eom__q{display:grid;grid-template-columns:repeat(4,1fr);gap:.32rem;margin-top:.45rem}
-.eom__q span{font-size:.72rem;font-weight:600;text-align:center;padding:.42rem 0;background:var(--paper);border:1px solid var(--line);color:var(--muted)}
-.eom__q span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.eom__score{background:#fff;border:1px solid var(--line);padding:.75rem .85rem;flex:1}
-.eom__score small{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.eom__rows{margin-top:.5rem;display:flex;flex-direction:column;gap:.5rem}
-.eom__rows div{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;font-weight:600;color:var(--ink)}
-.eom__rows i{font-style:normal;font-size:.76rem;font-weight:600;color:var(--teal)}
-.eom__rows i.warn{color:#B45309}
-.eom__right{display:flex;flex-direction:column;gap:.65rem}
-.eom__cell{background:#fff;border:1px solid var(--line);padding:.7rem .8rem;flex:1}
-.eom__cell small{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.eom__cell b{display:block;margin-top:.22rem;font-size:.88rem;font-weight:600;color:var(--ink)}
+/* cap 4: executive operating system */
+.eos{display:flex;flex-direction:column;gap:.55rem;background:#fff;border:1px solid var(--line);padding:.85rem .95rem}
+.eos__hdr{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--ink);padding-bottom:.45rem}
+.eos__hdr b{font-family:'Inter Tight',sans-serif;font-size:.95rem;font-weight:700;color:var(--ink)}
+.eos__hdr span{font-size:.74rem;color:var(--muted);font-weight:600}
+.eos__row{display:flex;justify-content:space-between;align-items:center;gap:.7rem;font-size:.82rem;border-bottom:1px solid var(--line);padding:.42rem 0}
+.eos__row:last-child{border-bottom:0}
+.eos__row b{color:var(--ink);font-weight:600;flex:1}
+.eos__row .who{font-size:.74rem;color:var(--muted);min-width:4.2rem}
+.eos__bar{width:5.2rem;height:.5rem;background:var(--gray);position:relative;flex-shrink:0}
+.eos__bar i{position:absolute;inset:0;right:auto;background:var(--teal)}
+.eos__st{font-size:.7rem;font-weight:600;padding:.14rem .45rem;border-radius:999px;flex-shrink:0}
+.eos__st.on{background:var(--teal-dim);color:var(--teal)}
+.eos__st.warn{background:rgba(180,83,9,.1);color:var(--amber)}
 
 /* ============ SELECTED WORK ============ */
-.feat{display:flex;flex-direction:column;gap:1.5rem}
-.feat-row{
-  display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:auto 1fr;
-  grid-template-areas:"vis intro" "vis detail";
-  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;transition:border-color .25s;
-}
-.feat-row:nth-child(even){
-  grid-template-columns:.8fr 1.2fr;
-  grid-template-areas:"intro vis" "detail vis";
-}
-.feat-row:hover{border-color:var(--ink)}
-.feat-row__vis{grid-area:vis;background:var(--paper);border-right:1px solid var(--line);padding:1.4rem;min-height:420px;position:relative;overflow:hidden}
-.feat-row:nth-child(even) .feat-row__vis{border-right:0;border-left:1px solid var(--line)}
-.feat-intro{grid-area:intro;padding:clamp(1.6rem,3vw,2.4rem) clamp(1.6rem,3vw,2.4rem) 0}
-.feat-detail{grid-area:detail;padding:0 clamp(1.6rem,3vw,2.4rem) clamp(1.6rem,3vw,2.4rem);display:flex;flex-direction:column;justify-content:flex-end}
+.feat{display:flex;flex-direction:column;gap:clamp(2.5rem,5vw,4rem)}
+.feat-item{display:grid;grid-template-columns:1fr;gap:1.25rem}
+.feat-item__head{max-width:720px}
+.feat-item__head h3{font-weight:700;font-size:clamp(1.6rem,2.6vw,2.1rem);letter-spacing:-.03em;margin-top:.75rem}
+.feat-item__head .prob{margin-top:.5rem;font-size:1.1rem;line-height:1.55;color:var(--body-c);text-wrap:pretty}
 .feat-tag{
   display:inline-block;width:fit-content;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--teal);border:1px solid rgba(19,127,139,.35);padding:.32rem .7rem;border-radius:999px;margin-bottom:1rem;
+  color:var(--teal);border:1px solid rgba(19,127,139,.35);padding:.32rem .7rem;border-radius:999px;
 }
-.feat-row__body h3{font-weight:700;font-size:clamp(1.55rem,2.4vw,2rem);letter-spacing:-.03em}
-.feat-prob{margin-top:.6rem;font-size:1.08rem;line-height:1.55;color:var(--body-c);max-width:34rem;text-wrap:pretty}
-.feat-blocks{margin-top:1.25rem;display:grid;gap:1rem}
+.feat-item__vis{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.feat-item__info{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding-top:.25rem;
+}
 .feat-block dt{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
-.feat-block dd{margin:.25rem 0 0;font-size:.98rem;line-height:1.55;color:var(--body-c)}
+.feat-block dd{margin:.3rem 0 0;font-size:.98rem;line-height:1.55;color:var(--body-c)}
 .feat-block dd b{color:var(--ink);font-weight:600}
 .feat-meta{
-  margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--line);
-  display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.88rem;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.9rem;color:var(--muted);
+  border-top:1px solid var(--line);padding-top:.9rem;margin-top:.25rem;
 }
 .feat-meta span b{color:var(--ink);font-weight:600}
 
-/* CRM workspace */
-.crm{display:grid;grid-template-columns:.85fr 1.4fr;gap:.6rem;height:100%}
-.crm__col{background:#fff;border:1px solid var(--line);padding:.7rem;display:flex;flex-direction:column;gap:.45rem;min-height:0}
-.crm__col small{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.crm__acct{display:flex;align-items:center;gap:.5rem;padding:.45rem .5rem;border:1px solid var(--line);font-size:.8rem;font-weight:600;color:var(--ink)}
-.crm__acct i{width:.5rem;height:.5rem;border-radius:50%;background:var(--gray);flex-shrink:0}
-.crm__acct.warn i{background:#D97706}
-.crm__acct.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.crm__acct.on i{background:var(--teal-bright)}
-.crm__stage{display:grid;grid-template-columns:repeat(5,1fr);gap:.28rem;margin-top:.2rem}
-.crm__stage span{height:.55rem;background:var(--gray)}
-.crm__stage span.on{background:var(--teal)}
-.crm__sum{border:1px solid var(--line);background:var(--paper);padding:.6rem .65rem;font-size:.8rem;line-height:1.5;color:var(--muted)}
-.crm__sum b{color:var(--ink)}
-.crm__next{border-left:3px solid var(--teal);background:var(--teal-dim);padding:.55rem .65rem;font-size:.8rem;font-weight:600;color:var(--ink)}
-.crm__risk{margin-top:auto;font-size:.78rem;font-weight:600;color:#B45309}
-.crm__quote{border:1px solid var(--line);padding:.55rem .65rem;font-size:.8rem;font-weight:600;color:var(--ink);background:#fff;display:flex;justify-content:space-between;align-items:center}
-.crm__quote em{font-style:normal;font-weight:500;color:var(--muted);font-size:.74rem}
+/* mockup shell + tabs */
+.mtabs{display:flex;gap:.4rem;flex-wrap:wrap;padding:.7rem .8rem;border-bottom:1px solid var(--line);background:var(--paper)}
+.mtabs button{
+  font-size:.85rem;font-weight:600;padding:.45rem .85rem;border-radius:999px;color:var(--muted);
+  border:1px solid transparent;min-height:2.2rem;
+}
+.mtabs button:hover{color:var(--ink)}
+.mtabs button.on{background:var(--ink);color:#fff}
+.mtabs .hint{margin-left:auto;font-size:.78rem;color:var(--faint);align-self:center;font-weight:500}
 
-/* Voice console */
-.vc{display:grid;grid-template-columns:1.35fr .85fr;gap:.6rem;height:100%}
-.vc__main{display:flex;flex-direction:column;gap:.6rem;min-height:0}
-.vc__head{background:var(--ink);color:#fff;padding:.7rem .85rem;display:flex;align-items:center;justify-content:space-between}
-.vc__head b{font-size:.88rem;font-weight:600}
-.vc__head span{font-size:.76rem;color:var(--teal-bright);display:inline-flex;align-items:center;gap:.4rem}
-.vc__head span::before{content:'';width:.5rem;height:.5rem;border-radius:50%;background:var(--teal-bright);animation:blink 1.6s ease infinite}
-.vc__wave{display:flex;align-items:center;gap:.2rem;height:2rem}
-.vc__wave i{flex:1;background:var(--ink);opacity:.5;animation:wave 1.3s ease-in-out infinite}
-.vc__wave i:nth-child(2n){animation-delay:.14s}
-.vc__wave i:nth-child(3n){animation-delay:.28s;opacity:.3}
-.vc__tx{background:#fff;border:1px solid var(--line);padding:.75rem .85rem;font-size:.82rem;line-height:1.6;color:var(--muted);flex:1}
-.vc__tx b{color:var(--ink)}
-.vc__side{display:flex;flex-direction:column;gap:.6rem}
-.vc__check{background:#fff;border:1px solid var(--line);padding:.65rem .75rem;flex:1}
-.vc__check small{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.vc__items{margin-top:.5rem;display:flex;flex-direction:column;gap:.42rem}
-.vc__items i{font-style:normal;font-size:.8rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.5rem}
-.vc__items i::before{content:'';width:.85rem;height:.85rem;border:1px solid var(--line);border-radius:2px;flex-shrink:0}
-.vc__items i.done::before{background:var(--teal);border-color:var(--teal)}
-.vc__handoff{border:1px dashed var(--faint);padding:.55rem .65rem;font-size:.78rem;font-weight:600;color:var(--muted);text-align:center}
-.vc__stats{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-.vc__stat{background:#fff;border:1px solid var(--line);padding:.55rem .65rem}
-.vc__stat b{display:block;font-size:1rem;font-weight:700;color:var(--ink);letter-spacing:-.01em}
-.vc__stat span{font-size:.72rem;color:var(--muted);font-weight:600}
+/* ---- CRM mockup ---- */
+.crmx{display:grid;grid-template-columns:170px 1fr}
+.crmx__nav{background:var(--ink);padding:.9rem .5rem;display:flex;flex-direction:column;gap:.15rem}
+.crmx__nav i{font-style:normal;font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);padding:.42rem .65rem;border-radius:3px}
+.crmx__nav i.on{background:rgba(255,255,255,.1);color:#fff;font-weight:600}
+.crmx__main{padding:1.1rem 1.2rem 1.25rem;display:flex;flex-direction:column;gap:.85rem}
+.crmx__title{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1rem}
+.crmx__title h4{font-size:1.15rem;font-weight:700;letter-spacing:-.02em}
+.crmx__title .stage{font-size:.76rem;font-weight:600;background:var(--teal-dim);color:var(--teal);padding:.2rem .6rem;border-radius:999px}
+.crmx__kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.crmx__kpi{border:1px solid var(--line);padding:.5rem .6rem;background:var(--paper)}
+.crmx__kpi small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.crmx__kpi b{display:block;font-size:.98rem;font-weight:700;color:var(--ink);margin-top:.1rem}
+.crmx[data-view="insights"] .crmx__acct{display:none}
+.crmx[data-view="account"] .crmx__ai{display:none}
+.crmx__acct{display:grid;grid-template-columns:1.25fr 1fr;gap:.7rem}
+.crmx__tl small,.crmx__stk small,.crmx__ai small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.crmx__tl div{position:relative;padding:.32rem 0 .32rem 1.1rem;font-size:.85rem;color:var(--body-c)}
+.crmx__tl div::before{content:'';position:absolute;left:.25rem;top:.72rem;width:.4rem;height:.4rem;border-radius:50%;background:var(--teal)}
+.crmx__tl div b{color:var(--ink);font-weight:600}
+.crmx__stk .chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:600;border:1px solid var(--line);padding:.3rem .6rem;border-radius:999px;margin:0 .3rem .35rem 0;color:var(--ink)}
+.crmx__stk .chip.miss{border-color:rgba(180,83,9,.4);color:var(--amber)}
+.crmx__hist{margin-top:.6rem;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.5rem}
+.crmx__ai{border:1.5px solid rgba(19,127,139,.35);background:var(--teal-dim);padding:.85rem .95rem;display:flex;flex-direction:column;gap:.6rem}
+.crmx__ai .insight{font-size:.92rem;line-height:1.55;color:var(--ink)}
+.crmx__ai .row{display:flex;flex-wrap:wrap;gap:.4rem}
+.crmx__ai .fact{background:#fff;border:1px solid var(--line);font-size:.78rem;font-weight:600;color:var(--ink);padding:.3rem .55rem}
+.crmx__ai .fact em{font-style:normal;color:var(--amber)}
+.crmx__ai .fact.good em{color:var(--teal)}
+.crmx__cta{align-self:flex-start;background:var(--ink);color:#fff;font-size:.85rem;font-weight:600;padding:.55rem 1rem;border-radius:3px}
 
-/* Exec command center */
-.ecc{background:var(--ink);height:100%;padding:.75rem;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:min-content;gap:.55rem;border-radius:var(--r)}
-.ecc__kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:.65rem .75rem}
-.ecc__kpi small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.48)}
-.ecc__kpi b{display:block;font-family:'Inter Tight',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;margin-top:.15rem;letter-spacing:-.01em}
-.ecc__kpi span{font-size:.72rem;color:var(--teal-bright);font-weight:600}
-.ecc__wide{grid-column:1/-1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:.65rem .75rem}
-.ecc__wide small{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.48)}
-.ecc__list{margin-top:.45rem;display:flex;flex-direction:column;gap:.38rem}
-.ecc__list i{font-style:normal;font-size:.8rem;font-weight:500;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:.5rem}
-.ecc__list i::before{content:'';width:.45rem;height:.45rem;background:var(--teal-bright);flex-shrink:0}
-.ecc__list i.warn::before{background:#F59E0B}
-.ecc__fc{grid-column:1/-1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:.65rem .75rem}
-.ecc__fc svg{width:100%;height:44px;margin-top:.35rem}
-.ecc__fc path{fill:none;stroke-width:2}
-.ecc__fc .base{stroke:rgba(255,255,255,.2);stroke-dasharray:3 3}
-.ecc__fc .line1{stroke:var(--teal-bright)}
+/* ---- Voice mockup ---- */
+.vcx{display:flex;flex-direction:column;min-height:460px}
+.vcx__top{background:var(--ink);color:#fff;padding:.7rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:center;font-size:.82rem}
+.vcx__top b{font-weight:600}
+.vcx__top .live{color:var(--teal-bright);display:inline-flex;align-items:center;gap:.4rem}
+.vcx__top .live::before{content:'';width:.5rem;height:.5rem;border-radius:50%;background:var(--teal-bright);animation:blink 1.6s ease infinite}
+.vcx__top .handoff{margin-left:auto;border:1px solid rgba(255,255,255,.4);padding:.3rem .7rem;border-radius:3px;font-size:.78rem;font-weight:600}
+.vcx__grid{display:grid;grid-template-columns:.75fr 1.5fr .95fr;gap:0;flex:1}
+.vcx__col{padding:.95rem 1rem;border-right:1px solid var(--line)}
+.vcx__col:last-child{border-right:0}
+.vcx__col small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.vcx__prof div{font-size:.85rem;padding:.28rem 0;color:var(--body-c);border-bottom:1px solid var(--line)}
+.vcx__prof div b{color:var(--ink);font-weight:600}
+.vcx__tx{display:flex;flex-direction:column;gap:.55rem}
+.vcx__msg{font-size:.9rem;line-height:1.5;max-width:94%}
+.vcx__msg b{display:block;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.vcx__msg.agent{align-self:flex-end;text-align:right}
+.vcx__msg .flag{display:inline-block;font-size:.72rem;font-weight:600;background:var(--teal-dim);color:var(--teal);padding:.1rem .45rem;border-radius:999px;margin-left:.3rem}
+.vcx__asst{display:flex;flex-direction:column;gap:.55rem}
+.vcx__card{border:1px solid var(--line);padding:.55rem .65rem;font-size:.82rem;background:var(--paper)}
+.vcx__card b{display:block;font-size:.74rem;font-weight:600;color:var(--ink)}
+.vcx__card span{color:var(--muted);font-size:.78rem}
+.vcx__card.hot{border-color:rgba(19,127,139,.4);background:var(--teal-dim)}
+.vcx__sum{border-top:1px solid var(--line);background:var(--paper);padding:.7rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;font-size:.84rem;font-weight:600;color:var(--muted)}
+.vcx__sum i{font-style:normal;display:inline-flex;align-items:center;gap:.4rem;transition:color .3s}
+.vcx__sum i::before{content:'';width:.8rem;height:.8rem;border:1.5px solid var(--line);border-radius:50%;flex-shrink:0;transition:background .3s,border-color .3s}
+.vcx__sum i.done{color:var(--ink)}
+.vcx__sum i.done::before{background:var(--teal);border-color:var(--teal)}
+.vcx[data-step="answer"] .vcx__tx,.vcx[data-step="qualify"] .vcx__qual,.vcx[data-step="schedule"] .vcx__sched,.vcx[data-step="sync"] .vcx__syncc{outline:2px solid var(--teal);outline-offset:2px;border-radius:2px}
 
-/* Quote agent */
-.qa{display:grid;grid-template-columns:1fr 1.05fr;gap:.6rem;height:100%}
-.qa__chat{background:#fff;border:1px solid var(--line);padding:.7rem;display:flex;flex-direction:column;gap:.5rem}
-.qa__msg{max-width:94%;padding:.55rem .7rem;font-size:.8rem;line-height:1.5;border-radius:3px}
-.qa__msg.user{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
-.qa__msg.ai{background:var(--ink);color:#fff;align-self:flex-end}
-.qa__msg.ai em{font-style:normal;color:var(--teal-bright)}
-.qa__doc{background:#fff;border:1px solid var(--line);padding:.85rem .95rem;display:flex;flex-direction:column;gap:.5rem}
-.qa__doc small{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.qa__doc h5{font-family:'Inter Tight',sans-serif;font-size:.98rem;font-weight:700;color:var(--ink)}
-.qa__line{display:flex;justify-content:space-between;font-size:.8rem;color:var(--body-c);border-bottom:1px solid var(--line);padding-bottom:.38rem}
-.qa__line b{color:var(--ink)}
-.qa__total{display:flex;justify-content:space-between;font-size:.88rem;font-weight:700;color:var(--ink)}
-.qa__approve{margin-top:auto;display:flex;gap:.45rem}
-.qa__approve span{flex:1;text-align:center;font-size:.76rem;font-weight:600;padding:.55rem .3rem;border:1px solid var(--line);color:var(--muted)}
-.qa__approve span.on{background:var(--teal);border-color:var(--teal);color:#fff}
+/* ---- Exec dashboard mockup ---- */
+.edx{background:#0C0D10;min-height:480px;padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+.edx__kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem}
+.edx__kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:.6rem .65rem}
+.edx__kpi small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.48)}
+.edx__kpi b{display:block;font-family:'Inter Tight',sans-serif;font-size:1.15rem;font-weight:700;color:#fff;margin-top:.12rem;letter-spacing:-.01em}
+.edx__kpi span{display:block;font-size:.72rem;font-weight:600;margin-top:.1rem;color:var(--teal-bright)}
+.edx__kpi span.down{color:#F59E0B}
+.edx__grid{display:grid;grid-template-columns:1.35fr 1fr;gap:.6rem;flex:1}
+.edx__panel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:.7rem .8rem}
+.edx__panel small{display:block;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:.45rem}
+.edx__panel .fc{width:100%;height:110px}
+.edx__panel .fc path{fill:none;stroke-width:2}
+.edx__panel .fc .band{fill:rgba(47,179,191,.12);stroke:none}
+.edx__panel .fc .actual{stroke:var(--teal-bright)}
+.edx__panel .fc .target{stroke:rgba(255,255,255,.35);stroke-dasharray:4 4}
+.edx__legend{display:flex;gap:1.2rem;font-size:.72rem;color:rgba(255,255,255,.6);margin-top:.3rem}
+.edx__legend i{font-style:normal;display:inline-flex;align-items:center;gap:.35rem}
+.edx__legend i::before{content:'';width:.85rem;height:2px;background:var(--teal-bright)}
+.edx__legend i.t::before{background:rgba(255,255,255,.35)}
+.edx__rows{display:flex;flex-direction:column;gap:.42rem}
+.edx__row{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.84rem;color:rgba(255,255,255,.85)}
+.edx__row .bar{flex:1;height:.5rem;background:rgba(255,255,255,.1);position:relative;max-width:9rem}
+.edx__row .bar i{position:absolute;inset:0;right:auto;background:var(--teal-bright)}
+.edx__row b{color:#fff;font-weight:600}
+.edx__row .warn{color:#F59E0B;font-size:.76rem;font-weight:600}
+.edx__health{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
+.edx__hcell{text-align:center;padding:.5rem .3rem;border:1px solid rgba(255,255,255,.1)}
+.edx__hcell b{display:block;font-family:'Inter Tight',sans-serif;font-size:1.1rem;font-weight:700;color:#fff}
+.edx__hcell span{display:block;font-size:.68rem;color:rgba(255,255,255,.5);margin-top:.1rem}
+.edx__hcell.risk b{color:#F59E0B}
+.edx__hcell.crit b{color:#F87171}
+.edx__hcell.exp b{color:var(--teal-bright)}
+.edx__alerts i{font-style:normal;display:flex;gap:.5rem;align-items:flex-start;font-size:.82rem;color:rgba(255,255,255,.82);padding:.28rem 0}
+.edx__alerts i::before{content:'';width:.45rem;height:.45rem;background:#F59E0B;margin-top:.42rem;flex-shrink:0}
+.edx__alerts i.ok::before{background:var(--teal-bright)}
+.edx__dec{font-size:.84rem;color:rgba(255,255,255,.85);line-height:1.5}
+.edx__dec b{color:#fff;font-weight:600}
+.edx__dec .meta{display:block;font-size:.74rem;color:rgba(255,255,255,.5);margin-top:.25rem}
+.edx [data-panel]{display:none}
+.edx[data-view="overview"] [data-panel~="overview"],
+.edx[data-view="revenue"] [data-panel~="revenue"],
+.edx[data-view="customers"] [data-panel~="customers"],
+.edx[data-view="priorities"] [data-panel~="priorities"]{display:block}
+
+/* ---- Quote agent mockup ---- */
+.qax{display:grid;grid-template-columns:.8fr 1.15fr 1.05fr;min-height:460px}
+.qax__col{padding:.95rem 1rem;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:.55rem}
+.qax__col:last-child{border-right:0}
+.qax__col>small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.qax__ctx div{font-size:.84rem;padding:.3rem 0;border-bottom:1px solid var(--line);color:var(--body-c)}
+.qax__ctx div b{color:var(--ink);font-weight:600}
+.qax__chat{display:flex;flex-direction:column;gap:.55rem}
+.qax__msg{font-size:.88rem;line-height:1.5;padding:.6rem .7rem;border-radius:3px;max-width:96%}
+.qax__msg.user{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
+.qax__msg.ai{background:var(--ink);color:#fff;align-self:flex-end}
+.qax__msg.ai em{font-style:normal;color:var(--teal-bright)}
+.qax__rec{border:1px solid var(--line);background:var(--paper);padding:.55rem .65rem;font-size:.82rem;color:var(--body-c)}
+.qax__rec b{display:block;font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+.qax__doc{border:1px solid var(--line);background:#fff;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.42rem}
+.qax__doc h5{font-family:'Inter Tight',sans-serif;font-size:.98rem;font-weight:700;color:var(--ink)}
+.qax__doc .sub{font-size:.74rem;color:var(--muted)}
+.qax__line{display:flex;justify-content:space-between;gap:.6rem;font-size:.82rem;color:var(--body-c);border-bottom:1px solid var(--line);padding-bottom:.32rem}
+.qax__line b{color:var(--ink);font-weight:600;white-space:nowrap}
+.qax__tot{display:flex;justify-content:space-between;font-size:.92rem;font-weight:700;color:var(--ink)}
+.qax__tot span:last-child{font-family:'Inter Tight',sans-serif}
+.qax__margin{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)}
+.qax__appr{border:1px solid rgba(180,83,9,.35);background:rgba(180,83,9,.07);color:var(--amber);font-size:.8rem;font-weight:600;padding:.5rem .6rem}
+.qax__actions{display:flex;gap:.4rem;flex-wrap:wrap}
+.qax__actions span{flex:1;text-align:center;font-size:.78rem;font-weight:600;padding:.5rem .3rem;border:1px solid var(--line);color:var(--muted);min-width:7rem}
+.qax__actions span.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.qax__foot{font-size:.76rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.45rem}
+.qax[data-step="request"] .qax__req,.qax[data-step="recommendation"] .qax__recwrap,.qax[data-step="quote"] .qax__doc,.qax[data-step="approval"] .qax__appr{outline:2px solid var(--teal);outline-offset:2px;border-radius:2px}
 
 /* secondary gallery */
-.gal-grid{margin-top:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.gal-grid{margin-top:clamp(2rem,4vw,3rem);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
 .gal{
   border:1px solid var(--line);background:#fff;border-radius:var(--r);padding:1.35rem 1.4rem;
   display:flex;gap:1.1rem;align-items:flex-start;transition:border-color .2s;
@@ -390,17 +443,26 @@ img{display:block;max-width:100%}
 .gal p{margin-top:.35rem;font-size:.95rem;line-height:1.55;color:var(--muted)}
 
 /* ============ PROCESS ============ */
-.proc{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem;counter-reset:stage}
+.proc{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem}
 .proc::before{
   content:'';position:absolute;top:1.6rem;left:3rem;right:3rem;height:2px;
   background:linear-gradient(90deg,var(--teal-bright) 0%,rgba(47,179,191,.15) 100%);
+  transform:scaleX(0);transform-origin:left;transition:transform 1.6s ease;
 }
-.proc__step{position:relative}
+.proc.play::before{transform:scaleX(1)}
+.proc__step{position:relative;opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.proc.play .proc__step{opacity:1;transform:none}
+.proc.play .proc__step:nth-child(1){transition-delay:.15s}
+.proc.play .proc__step:nth-child(2){transition-delay:.45s}
+.proc.play .proc__step:nth-child(3){transition-delay:.75s}
+.proc.play .proc__step:nth-child(4){transition-delay:1.05s}
+.proc.play .proc__step:nth-child(5){transition-delay:1.35s}
 .proc__num{
   position:relative;z-index:1;width:3.2rem;height:3.2rem;border-radius:50%;
   background:var(--ink);border:2px solid var(--teal-bright);color:var(--teal-bright);
   display:grid;place-items:center;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.05rem;
 }
+.proc__step:last-child .proc__num{background:var(--teal-bright);color:var(--ink)}
 .proc__step h3{margin-top:1.25rem;font-weight:700;font-size:1.35rem;letter-spacing:-.02em;color:#fff}
 .proc__step p{margin-top:.55rem;font-size:1rem;line-height:1.6;color:rgba(255,255,255,.68);text-wrap:pretty}
 .proc-closer{
@@ -411,39 +473,20 @@ img{display:block;max-width:100%}
 .proc-closer em{font-style:normal;color:var(--teal-bright)}
 
 /* ============ WAYS TO ENGAGE ============ */
-.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
-.way{border:1px solid var(--line);background:#fff;border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s}
+.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;align-items:stretch}
+.way{border:1px solid var(--line);background:#fff;border-radius:var(--r);display:flex;flex-direction:column;padding:1.7rem 1.7rem 1.8rem;transition:border-color .25s}
 .way:hover{border-color:var(--ink)}
-.way--dark{background:var(--ink);border-color:var(--ink)}
-.way__vis{height:150px;border-bottom:1px solid var(--line);background:var(--paper);padding:1rem;display:flex;align-items:center;justify-content:center}
-.way--dark .way__vis{background:rgba(255,255,255,.05);border-bottom-color:var(--line-dark)}
-.way__body{padding:1.5rem 1.6rem 1.7rem;display:flex;flex-direction:column;flex:1}
+.way--featured{background:var(--ink);border-color:var(--ink)}
 .way small.k{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
-.way--dark small.k{color:var(--teal-bright)}
+.way--featured small.k{color:var(--teal-bright)}
 .way h3{margin-top:.55rem;font-weight:700;font-size:1.5rem;letter-spacing:-.03em}
-.way--dark h3{color:#fff}
+.way--featured h3{color:#fff}
 .way__rows{margin-top:1.15rem;display:grid;gap:.9rem;font-size:.98rem;line-height:1.55}
 .way__rows dt{font-weight:600;color:var(--faint);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
 .way__rows dd{margin:.2rem 0 0;color:var(--body-c)}
-.way--dark .way__rows dd{color:rgba(255,255,255,.75)}
-.way .btn{margin-top:1.6rem;width:100%;font-size:.98rem}
-/* advisory visual: decision matrix */
-.adv-map{width:100%;max-width:220px;aspect-ratio:2/1;position:relative;border-left:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint)}
-.adv-map i{position:absolute;width:.7rem;height:.7rem;border-radius:50%;background:var(--gray)}
-.adv-map i.on{background:var(--teal);width:.95rem;height:.95rem}
-.adv-map small{position:absolute;font-size:.64rem;font-weight:600;color:var(--muted);letter-spacing:.06em}
-/* build visual: progression */
-.build-flow{display:flex;align-items:center;gap:.5rem;width:100%;max-width:260px}
-.build-flow span{
-  flex:1;text-align:center;font-size:.74rem;font-weight:600;padding:.55rem .2rem;
-  border:1px solid var(--line-dark);color:rgba(255,255,255,.55);border-radius:3px;
-}
-.build-flow span.on{background:var(--teal);border-color:var(--teal);color:#fff}
-.build-flow b{color:rgba(255,255,255,.4);font-weight:400}
-/* fractional visual: cadence */
-.cad{width:100%;max-width:240px;display:flex;flex-direction:column;gap:.4rem}
-.cad div{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);padding:.42rem .6rem}
-.cad div i{font-style:normal;font-size:.68rem;color:var(--teal);font-weight:600}
+.way--featured .way__rows dd{color:rgba(255,255,255,.78)}
+.way .btn{margin-top:auto;width:100%;font-size:.98rem}
+.way .way__rows{margin-bottom:1.6rem}
 
 /* ============ ABOUT ============ */
 .abt{display:grid;grid-template-columns:minmax(240px,.62fr) 1.38fr;gap:clamp(2.5rem,5vw,4.5rem);align-items:start}
@@ -452,7 +495,7 @@ img{display:block;max-width:100%}
   padding:2.1rem 1.9rem;text-align:center;position:sticky;top:calc(var(--header-h) + 24px);
 }
 .abt__portrait{
-  width:150px;height:150px;border-radius:50%;background-size:cover;background-position:center 22%;
+  width:140px;height:140px;border-radius:50%;background-size:cover;background-position:center 22%;
   margin-inline:auto;border:3px solid #fff;outline:2px solid var(--teal);outline-offset:2px;
 }
 .abt__card h3{margin-top:1.3rem;font-weight:700;font-size:1.35rem;letter-spacing:-.02em}
@@ -479,67 +522,59 @@ img{display:block;max-width:100%}
 .cta-note{margin-top:2.25rem;padding-top:1.3rem;border-top:1px solid var(--line-dark);font-size:1rem;color:rgba(255,255,255,.58);max-width:620px}
 
 /* ============ FOOTER ============ */
-footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5rem 0 2rem;color:rgba(255,255,255,.42);font-size:.92rem}
-.footer__inner{width:min(1240px,calc(100% - 3rem));margin-inline:auto;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.footer__inner a{color:rgba(255,255,255,.6)}
-.footer__inner a:hover{color:#fff}
+footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:2.25rem 0 2.5rem;color:rgba(255,255,255,.45);font-size:.95rem}
+.footer__inner{
+  width:min(1240px,calc(100% - 3rem));margin-inline:auto;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;
+}
+.footer__id b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.05rem;color:#fff}
+.footer__id span{display:block;margin-top:.2rem;font-size:.88rem;color:rgba(255,255,255,.5)}
+.footer__links{display:flex;gap:1.6rem;flex-wrap:wrap;font-size:.92rem}
+.footer__links a{color:rgba(255,255,255,.65);min-height:44px;display:inline-flex;align-items:center}
+.footer__links a:hover{color:#fff}
+.footer__legal{width:100%;margin-top:.5rem;font-size:.85rem;color:rgba(255,255,255,.35)}
 
 /* ============ MOTION ============ */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.on{opacity:1;transform:none}
 @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes dash{to{stroke-dashoffset:-140}}
-@keyframes wave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .proc::before{transform:scaleX(1)}
+  .proc__step{opacity:1;transform:none}
 }
+
+/* focus visibility */
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outline-offset:3px;border-radius:2px}
+.sec--dark a:focus-visible,.sec--dark button:focus-visible,.hdr a:focus-visible,.hdr button:focus-visible{outline-color:#fff}
 
 /* ============ RESPONSIVE ============ */
-/* Large desktop ≥1440: default styles already apply */
-
-/* Desktop 1024–1439 */
-@media (max-width:1439px){
-  .sysmap{max-width:600px}
-}
-
-/* Tablet 768–1023 */
 @media (max-width:1023px){
   .pos{grid-template-columns:1fr;gap:2.5rem}
-  .sysmap{max-width:640px}
-  .feat-row,.feat-row:nth-child(even){
-    grid-template-columns:1fr;grid-template-rows:auto auto auto;
-    grid-template-areas:"intro" "vis" "detail";
-  }
-  .feat-row__vis,.feat-row:nth-child(even) .feat-row__vis{
-    border-right:0;border-left:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    min-height:360px;
-  }
-  .feat-intro{padding:1.75rem 1.75rem 1.5rem}
-  .feat-detail{padding:1.5rem 1.75rem 1.75rem;justify-content:flex-start}
-  .feat-blocks{margin-top:0}
+  .feat-item__info{grid-template-columns:1fr;gap:1.1rem}
   .ways{grid-template-columns:1fr;gap:1.5rem}
-  .way .btn{width:100%}
   .abt{grid-template-columns:1fr;gap:2.5rem}
   .abt__card{position:static;max-width:440px}
   .secondary__inner{grid-template-columns:1fr;gap:2.25rem}
   .cred__grid{grid-template-columns:1fr 1fr;gap:1.5rem 2rem;padding:1.9rem 0 2.1rem}
   .cred__item{border-left:0;padding-left:0}
   .cap{grid-template-columns:1fr 1fr;gap:1.1rem}
-  .cap-vis{height:250px}
+  .edx__kpis{grid-template-columns:repeat(3,1fr)}
+  .edx__grid{grid-template-columns:1fr}
   .proc{gap:1rem}
-  .proc__step p{font-size:.94rem}
 }
-
-/* Below 900: capabilities single column */
 @media (max-width:899px){
   .cap{grid-template-columns:1fr}
-  .cap-panel{display:flex;flex-direction:column}
-  .cap-body{order:0;padding:1.5rem 1.5rem 1.1rem}
-  .cap-vis{order:1;height:270px;border-bottom:0;border-top:1px solid var(--line)}
+  .crmx{grid-template-columns:1fr}
+  .crmx__nav{flex-direction:row;flex-wrap:wrap;padding:.5rem}
+  .crmx__nav i{font-size:.78rem;padding:.35rem .55rem}
+  .vcx__grid{grid-template-columns:1fr}
+  .vcx__col{border-right:0;border-bottom:1px solid var(--line)}
+  .qax{grid-template-columns:1fr}
+  .qax__col{border-right:0;border-bottom:1px solid var(--line)}
 }
-
-/* Mobile nav below 768 */
 @media (max-width:767px){
   :root{--header-h:64px}
   .hdr__nav{display:none}
@@ -553,27 +588,26 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
   .head{margin-bottom:36px}
   .h2{font-size:clamp(2.1rem,8.5vw,2.75rem)}
   .lead{font-size:1.06rem}
-  /* process becomes vertical stepper */
   .proc{grid-template-columns:1fr;gap:0}
-  .proc::before{top:0;bottom:0;left:1.6rem;right:auto;width:2px;height:auto;background:linear-gradient(180deg,var(--teal-bright),rgba(47,179,191,.15))}
+  .proc::before{top:0;bottom:0;left:1.6rem;right:auto;width:2px;height:auto;transform:scaleY(0);transform-origin:top;background:linear-gradient(180deg,var(--teal-bright),rgba(47,179,191,.15))}
+  .proc.play::before{transform:scaleY(1)}
   .proc__step{display:grid;grid-template-columns:auto 1fr;gap:.2rem 1.4rem;padding-bottom:1.75rem}
   .proc__step:last-child{padding-bottom:0}
   .proc__step h3{margin-top:.55rem;grid-column:2;font-size:1.3rem}
   .proc__step p{grid-column:2;font-size:1rem}
   .proc__num{grid-row:1/3}
   .proc-closer{font-size:1.45rem}
-  /* systems map: interactive list */
   .sysmap{display:none}
   .sysmap-list{display:grid}
+  .crmx__kpis{grid-template-columns:1fr 1fr}
+  .crmx__acct{grid-template-columns:1fr}
+  .edx__kpis{grid-template-columns:1fr 1fr}
+  .mtabs .hint{display:none}
 }
-
-/* Tablet keeps horizontal process but roomier */
 @media (min-width:768px) and (max-width:1023px){
   .proc{grid-template-columns:repeat(5,1fr)}
   .proc::before{left:2.5rem;right:2.5rem}
 }
-
-/* Small mobile below 600 */
 @media (max-width:599px){
   body{font-size:16.5px}
   .wrap{width:calc(100% - 3rem)}
@@ -584,58 +618,31 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
   .cred__item:last-child{border-bottom:0}
   .cred__item b{font-size:1.12rem}
   .cred__item span{font-size:.95rem}
-  .rev__chain{grid-template-columns:repeat(4,1fr)}
-  .rev__lower{grid-template-columns:1fr}
-  .rev__fc{min-height:90px}
-  .crm{grid-template-columns:1fr}
-  .vc,.qa{grid-template-columns:1fr}
-  .vc__side{flex-direction:row;flex-wrap:wrap}
-  .vc__check{flex:1 1 100%}
-  .vc__handoff,.vc__stats{flex:1 1 45%}
-  .feat-row__vis{min-height:0;padding:1.1rem}
-  .ecc{grid-template-columns:1fr 1fr}
-  .ecc__kpi:nth-child(3){display:none}
+  .rga__chain{grid-template-columns:repeat(2,1fr)}
+  .rga__step:nth-child(4n)::after{display:block}
+  .rga__step:nth-child(2n)::after{display:none}
+  .rga__metrics{grid-template-columns:repeat(2,1fr)}
+  .eco2__devices,.eco2__links{grid-template-columns:1fr 1fr}
+  .eco2__devices .dev2:nth-child(3),.eco2__links i:nth-child(3){display:none}
+  .eco2__base{grid-template-columns:repeat(2,1fr)}
   .feat-meta{flex-direction:column;gap:.45rem}
   .abt__portrait{width:120px;height:120px}
   .abt__proofs{grid-template-columns:1fr;gap:1.2rem}
   .abt__cta .btn{width:100%}
-  .way__body{padding:1.6rem 1.5rem 1.7rem}
   .secondary p.list{line-height:2}
   #contact .btn{width:100%}
   #contact .hero__actions{flex-direction:column;align-items:stretch}
-  .footer__inner{flex-direction:column;gap:.5rem}
-  .cap-vis{height:auto;min-height:250px}
-  .wf{min-height:250px}
-  .layers{min-height:240px}
-  .eom{min-height:0}
-  .wf__node{white-space:normal;max-width:44%}
-  .eom{grid-template-columns:1fr}
-  .eom__right{flex-direction:row;flex-wrap:wrap}
-  .eom__cell{flex:1 1 45%}
+  .footer__inner{flex-direction:column;gap:1rem}
+  .edx__kpis{grid-template-columns:1fr 1fr}
+  .vcx__top{gap:.3rem .9rem;font-size:.78rem}
+  .vcx__top .handoff{margin-left:0}
+  .qax__actions span{min-width:5.5rem}
+  .aif__node{max-width:none}
 }
-
-/* Very small screens */
 @media (max-width:379px){
   .wrap{width:calc(100% - 2.5rem)}
   .hero__title{font-size:2.55rem}
-  .rev__chain span{font-size:.66rem}
-  .cap-vis{height:230px}
 }
-
-/* Focus visibility */
-a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outline-offset:3px;border-radius:2px}
-.sec--dark a:focus-visible,.sec--dark button:focus-visible,.hdr a:focus-visible,.hdr button:focus-visible{outline-color:#fff}
-
-/* Mobile systems-map list */
-.sysmap-list{display:none;grid-template-columns:1fr;gap:.6rem}
-.sysmap-list .sys-node{position:static;transform:none;min-width:0;cursor:pointer;width:100%;text-align:left;font-family:inherit;padding:.85rem 1rem}
-.sysmap-list .sys-node b{font-size:1.02rem}
-.sysmap-list .sys-node span{font-size:.92rem}
-.sysmap-list .sys-center{position:static;transform:none;margin-bottom:.4rem}
-.sysmap-list .sys-node span{display:none;margin-top:.3rem}
-.sysmap-list .sys-node.open span{display:block}
-.sysmap-list .sys-node::after{content:'+';float:right;color:var(--teal);font-weight:600;font-size:1.05rem;line-height:1.2}
-.sysmap-list .sys-node.open::after{content:'−'}
 </style>
 </head>
 <body>
@@ -667,7 +674,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     <li><a href="#build">What I build</a></li>
     <li><a href="#work">Selected work</a></li>
     <li><a href="#how">How I work</a></li>
-    <li><a href="#engage">Ways to work together</a></li>
     <li><a href="#about">About</a></li>
   </ul>
   <a class="btn btn-white mnav__cta" href="#contact">Discuss a project</a>
@@ -676,7 +682,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
 <section class="hero">
   <div class="hero__media" id="heroImg" role="img" aria-label="Aerial view of Lake Michigan shoreline"></div>
   <div class="hero__content">
-    <p class="hero__kicker">Solution Studio · Principal-led by Nick Perez</p>
     <h1 class="hero__title">Build the systems that grow businesses.</h1>
     <p class="hero__sub">I work directly with founders and leadership teams to connect revenue, sales, product, AI, and software into systems that create measurable growth.</p>
     <div class="hero__actions">
@@ -689,8 +694,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
 <div class="cred">
   <div class="cred__grid">
     <div class="cred__item"><b>20+ Years</b><span>Building revenue and growth systems</span></div>
-    <div class="cred__item"><b>Principal-Led</b><span>Direct access from strategy through execution</span></div>
     <div class="cred__item"><b>Cross-Functional</b><span>Sales, marketing, product, AI, and software</span></div>
+    <div class="cred__item"><b>Strategy Through Execution</b><span>From the initial decision through implementation</span></div>
     <div class="cred__item"><b>Startup to Enterprise</b><span>Experience across company stages</span></div>
   </div>
 </div>
@@ -700,39 +705,38 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     <div class="pos__body reveal">
       <div class="kick">Positioning</div>
       <h2 class="h2">One operator. Connected expertise.</h2>
-      <p>Most business problems do not fit neatly inside one department. Growth may require better positioning, a stronger sales process, a new product experience, an internal application, or an AI-enabled workflow.</p>
+      <p>Most business problems do not fit neatly inside one department. Growth may require better positioning, a stronger sales process, a new product experience, or an AI-enabled workflow.</p>
       <p>I work directly with founders and leadership teams to <strong>identify the real constraint, design the right system, and help build it</strong>.</p>
-      <p>Every engagement is led directly by Nick.</p>
     </div>
     <div class="reveal">
-      <div class="sysmap" aria-label="Systems map: seven disciplines connected to business growth">
+      <div class="sysmap" aria-label="Systems map: seven disciplines connected to business growth. Hover any discipline for detail.">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <line class="hot" x1="50" y1="50" x2="50" y2="8"/>
-          <line class="hot" x1="50" y1="50" x2="88" y2="24"/>
-          <line class="hot" x1="50" y1="50" x2="93" y2="62"/>
-          <line class="hot" x1="50" y1="50" x2="72" y2="92"/>
-          <line class="hot" x1="50" y1="50" x2="28" y2="92"/>
-          <line class="hot" x1="50" y1="50" x2="7" y2="62"/>
-          <line class="hot" x1="50" y1="50" x2="12" y2="24"/>
+          <line class="hot" x1="50" y1="50" x2="50" y2="9"/>
+          <line class="hot" x1="50" y1="50" x2="85" y2="25"/>
+          <line class="hot" x1="50" y1="50" x2="88" y2="63"/>
+          <line class="hot" x1="50" y1="50" x2="71" y2="91"/>
+          <line class="hot" x1="50" y1="50" x2="29" y2="91"/>
+          <line class="hot" x1="50" y1="50" x2="12" y2="63"/>
+          <line class="hot" x1="50" y1="50" x2="15" y2="25"/>
         </svg>
-        <div class="sys-node" style="left:50%;top:8%"><b>Revenue</b><span>Economics · pricing · pipeline · retention</span></div>
-        <div class="sys-node" style="left:86%;top:24%"><b>Enterprise Sales</b><span>Positioning · enablement · conversion</span></div>
-        <div class="sys-node" style="left:88%;top:62%"><b>Marketing</b><span>Demand · acquisition · lifecycle · brand</span></div>
-        <div class="sys-node" style="left:72%;top:92%"><b>Product</b><span>Experience · adoption · roadmap</span></div>
-        <div class="sys-node" style="left:28%;top:92%"><b>AI</b><span>Automation · agents · intelligence</span></div>
-        <div class="sys-node" style="left:12%;top:62%"><b>Software</b><span>Applications · portals · integrations</span></div>
-        <div class="sys-node" style="left:14%;top:24%"><b>Operations</b><span>Workflow · reporting · accountability</span></div>
+        <div class="sys-node" style="left:50%;top:9%" tabindex="0"><b>Revenue</b><span>Economics, pricing, pipeline, retention, and expansion</span></div>
+        <div class="sys-node" style="left:85%;top:25%" tabindex="0"><b>Enterprise Sales</b><span>Positioning, enablement, partnerships, and deal execution</span></div>
+        <div class="sys-node" style="left:88%;top:63%" tabindex="0"><b>Marketing</b><span>Demand, acquisition, lifecycle, and customer insight</span></div>
+        <div class="sys-node" style="left:71%;top:91%" tabindex="0"><b>Product</b><span>Experience, adoption, roadmap, and expansion</span></div>
+        <div class="sys-node" style="left:29%;top:91%" tabindex="0"><b>AI</b><span>Agents, automation, knowledge, and decision support</span></div>
+        <div class="sys-node" style="left:12%;top:63%" tabindex="0"><b>Software</b><span>Applications, portals, integrations, and operating systems</span></div>
+        <div class="sys-node" style="left:15%;top:25%" tabindex="0"><b>Operations</b><span>Workflow, accountability, reporting, and execution</span></div>
         <div class="sys-center"><b>BUSINESS GROWTH</b><span>one connected system</span></div>
       </div>
       <div class="sysmap-list">
         <div class="sys-center"><b>BUSINESS GROWTH</b><span>one connected system</span></div>
-        <button type="button" class="sys-node"><b>Revenue</b><span>Economics, pricing, pipeline, and retention.</span></button>
-        <button type="button" class="sys-node"><b>Enterprise Sales</b><span>Positioning, enablement, partnerships, and conversion.</span></button>
-        <button type="button" class="sys-node"><b>Marketing</b><span>Demand, acquisition, lifecycle, and brand.</span></button>
-        <button type="button" class="sys-node"><b>Product</b><span>Experience, adoption, expansion, and roadmap.</span></button>
-        <button type="button" class="sys-node"><b>AI</b><span>Automation, agents, knowledge, and intelligence.</span></button>
-        <button type="button" class="sys-node"><b>Software</b><span>Applications, portals, integrations, and systems.</span></button>
-        <button type="button" class="sys-node"><b>Operations</b><span>Workflow, reporting, execution, and accountability.</span></button>
+        <button type="button" class="sys-node"><b>Revenue</b><span>Economics, pricing, pipeline, retention, and expansion.</span></button>
+        <button type="button" class="sys-node"><b>Enterprise Sales</b><span>Positioning, enablement, partnerships, and deal execution.</span></button>
+        <button type="button" class="sys-node"><b>Marketing</b><span>Demand, acquisition, lifecycle, and customer insight.</span></button>
+        <button type="button" class="sys-node"><b>Product</b><span>Experience, adoption, roadmap, and expansion.</span></button>
+        <button type="button" class="sys-node"><b>AI</b><span>Agents, automation, knowledge, and decision support.</span></button>
+        <button type="button" class="sys-node"><b>Software</b><span>Applications, portals, integrations, and operating systems.</span></button>
+        <button type="button" class="sys-node"><b>Operations</b><span>Workflow, accountability, reporting, and execution.</span></button>
       </div>
     </div>
   </div>
@@ -748,110 +752,99 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     <div class="cap">
 
       <div class="cap-panel reveal">
-        <div class="cap-vis" aria-hidden="true">
-          <div class="rev">
-            <div class="rev__chain">
-              <span>Market</span><span>Positioning</span><span class="on">Demand</span><span class="on">Pipeline</span>
-              <span class="on">Sales</span><span>Conversion</span><span>Retention</span><span>Expansion</span>
-            </div>
-            <div class="rev__lower">
-              <div class="rev__journey">
-                <small>Customer journey</small>
-                <div class="rev__stages"><b>Aware</b><i class="on"></i><i class="on"></i><i></i><i></i><b>Close</b></div>
-                <div class="rev__stages"><b>Land</b><i class="on"></i><i></i><i></i><i></i><b>Expand</b></div>
-              </div>
-              <div class="rev__fc">
-                <small>Forecast</small>
-                <svg viewBox="0 0 100 44" preserveAspectRatio="none">
-                  <path class="base" d="M0,36 L100,31"/>
-                  <path class="line1" d="M0,39 C25,35 45,27 65,18 S90,7 100,4"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="cap-body">
           <h3>Revenue Growth</h3>
-          <p>Go-to-market strategy, demand generation, enterprise sales enablement, product marketing, customer acquisition, partnerships, and revenue operations.</p>
+          <p class="out">A connected commercial engine — from market to expansion — measured at every stage.</p>
+          <p class="del">GTM strategy · demand generation · enterprise sales enablement · revenue operations · partnerships</p>
+        </div>
+        <div class="cap-vis" aria-hidden="true">
+          <div class="rga">
+            <div class="rga__chain">
+              <div class="rga__step"><b>Market</b><span>$2.1B TAM</span></div>
+              <div class="rga__step"><b>Positioning</b><span>defined</span></div>
+              <div class="rga__step"><b>Demand</b><span>412 MQL/mo</span></div>
+              <div class="rga__step"><b>Pipeline</b><span>$8.4M</span></div>
+              <div class="rga__step"><b>Sales</b><span>38-day cycle</span></div>
+              <div class="rga__step"><b>Conversion</b><span>24% win</span></div>
+              <div class="rga__step"><b>Retention</b><span>94%</span></div>
+              <div class="rga__step"><b>Expansion</b><span>108% NRR</span></div>
+            </div>
+            <div class="rga__metrics">
+              <div class="rga__m"><b>$8.4M</b><span>Pipeline</span></div>
+              <div class="rga__m"><b>$1.9K</b><span>CAC</span></div>
+              <div class="rga__m"><b>24%</b><span>Win rate</span></div>
+              <div class="rga__m"><b>38d</b><span>Velocity</span></div>
+              <div class="rga__m"><b>$4.9M</b><span>Forecast</span></div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="cap-panel reveal">
-        <div class="cap-vis" aria-hidden="true">
-          <div class="wf">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d="M18,20 C32,20 30,38 42,40"/>
-              <path d="M54,42 C66,42 62,22 74,20"/>
-              <path d="M54,48 C64,56 68,64 78,66"/>
-              <path d="M42,48 C30,56 28,68 18,70"/>
-              <path d="M54,74 C62,80 64,84 72,86"/>
-            </svg>
-            <div class="wf__node" style="left:4%;top:10%">Request<em>customer · employee</em></div>
-            <div class="wf__node wf__node--ai" style="left:34%;top:36%">AI reasoning<em>decision logic</em></div>
-            <div class="wf__node" style="left:64%;top:8%">Knowledge<em>docs · CRM · history</em></div>
-            <div class="wf__node wf__node--gate" style="left:6%;top:62%">Human approval<em>checkpoint</em></div>
-            <div class="wf__node" style="left:62%;top:58%">Action<em>CRM update</em></div>
-            <div class="wf__node" style="left:40%;top:82%">Reporting<em>weekly summary</em></div>
-          </div>
-        </div>
         <div class="cap-body">
           <h3>AI Applications</h3>
-          <p>Custom AI software, agents, internal tools, executive dashboards, CRM automation, knowledge systems, and workflow automation.</p>
+          <p class="out">Intelligent workflows that act — with retrieval, reasoning, and human approval built in.</p>
+          <p class="del">AI agents · internal tools · CRM automation · knowledge systems · workflow automation</p>
+        </div>
+        <div class="cap-vis" aria-hidden="true">
+          <div class="aif" id="aifPlay">
+            <div class="aif__row"><div class="aif__node">Request<em>customer or employee</em></div></div>
+            <div class="aif__down"></div>
+            <div class="aif__row">
+              <div class="aif__node">Data retrieval<em>CRM · systems</em></div>
+              <div class="aif__node">Knowledge source<em>docs · history</em></div>
+            </div>
+            <div class="aif__down"></div>
+            <div class="aif__row"><div class="aif__node aif__node--ai">AI reasoning + business rules<em>structured recommendation</em></div></div>
+            <div class="aif__down"></div>
+            <div class="aif__row"><div class="aif__node aif__node--gate">Human approval<em>checkpoint</em></div></div>
+            <div class="aif__down"></div>
+            <div class="aif__row">
+              <div class="aif__node">Action + CRM update<em>executed</em></div>
+              <div class="aif__node">Executive reporting<em>weekly</em></div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="cap-panel reveal">
-        <div class="cap-vis" aria-hidden="true">
-          <div class="layers">
-            <div class="scr scr--desk">
-              <div class="scr__bar"><i></i><i></i><i></i></div>
-              <div class="scr__grid">
-                <div class="scr__side"></div>
-                <div class="scr__rows"><i></i><i></i><i></i><b></b></div>
-              </div>
-            </div>
-            <div class="scr scr--phone">
-              <div class="scr__bar"></div>
-              <div class="scr__rows" style="padding:.4rem"><i></i><i></i><b></b><i></i></div>
-            </div>
-            <div class="scr scr--stackrow"><span>API</span><span>LOGIC</span><span>DB</span><span>REPORTS</span></div>
-          </div>
-        </div>
         <div class="cap-body">
           <h3>Custom Software</h3>
-          <p>Web applications, internal portals, business operating systems, API integrations, rapid MVPs, and custom workflow platforms.</p>
+          <p class="out">Connected product ecosystems — customer-facing, internal, and everything between.</p>
+          <p class="del">Web applications · portals · operations consoles · API integrations · rapid MVPs</p>
+        </div>
+        <div class="cap-vis" aria-hidden="true">
+          <div class="eco2">
+            <div class="eco2__devices">
+              <div class="dev2"><header>Customer portal</header><div class="dev2__body"><i></i><i class="w2"></i><b></b></div></div>
+              <div class="dev2 dev2--phone"><header>Mobile app</header><div class="dev2__body"><i></i><b></b><i class="w2"></i></div></div>
+              <div class="dev2"><header>Ops console</header><div class="dev2__body"><i></i><i class="w2"></i><b></b></div></div>
+            </div>
+            <div class="eco2__links"><i></i><i></i><i></i></div>
+            <div class="eco2__base">
+              <div class="eco2__cell">API</div>
+              <div class="eco2__cell">DATABASE</div>
+              <div class="eco2__cell">INTEGRATIONS</div>
+              <div class="eco2__cell">ANALYTICS</div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="cap-panel reveal">
-        <div class="cap-vis" aria-hidden="true">
-          <div class="eom">
-            <div class="eom__left">
-              <div class="eom__road">
-                <small>Quarterly roadmap</small>
-                <div class="eom__q"><span class="on">Q1 · GTM</span><span class="on">Q2 · AI ops</span><span>Q3 · Portal</span><span>Q4 · Scale</span></div>
-              </div>
-              <div class="eom__score">
-                <small>Revenue scorecard · weekly</small>
-                <div class="eom__rows">
-                  <div>Pipeline coverage <i>3.1x · on plan</i></div>
-                  <div>Win rate <i>+4 pts</i></div>
-                  <div>Cycle time <i class="warn">watch</i></div>
-                  <div>Net retention <i>108%</i></div>
-                </div>
-              </div>
-            </div>
-            <div class="eom__right">
-              <div class="eom__cell"><small>Priorities</small><b>3 active · 1 blocked</b></div>
-              <div class="eom__cell"><small>Decision log</small><b>14 this quarter</b></div>
-              <div class="eom__cell"><small>Cadence</small><b>Weekly exec · monthly board</b></div>
-              <div class="eom__cell"><small>Owners</small><b>Every priority assigned</b></div>
-            </div>
-          </div>
-        </div>
         <div class="cap-body">
           <h3>Fractional Leadership</h3>
-          <p>Fractional CMO, Head of Growth, GTM leadership, revenue operations, product marketing, sales enablement, and AI strategy.</p>
+          <p class="out">Executive direction with accountability — priorities, owners, cadence, and results.</p>
+          <p class="del">Fractional CMO · Head of Growth · GTM leadership · sales enablement · AI strategy</p>
+        </div>
+        <div class="cap-vis" aria-hidden="true">
+          <div class="eos">
+            <div class="eos__hdr"><b>Executive Operating Model</b><span>Q2 · weekly cadence</span></div>
+            <div class="eos__row"><b>Launch partner channel</b><span class="who">Nick + VP Sales</span><span class="eos__bar"><i style="width:70%"></i></span><span class="eos__st on">On track</span></div>
+            <div class="eos__row"><b>Retire legacy billing</b><span class="who">CFO</span><span class="eos__bar"><i style="width:45%"></i></span><span class="eos__st warn">Blocked</span></div>
+            <div class="eos__row"><b>AI intake workflow</b><span class="who">Ops lead</span><span class="eos__bar"><i style="width:85%"></i></span><span class="eos__st on">Shipping</span></div>
+            <div class="eos__row"><b>Decision log</b><span class="who">14 recorded</span><span class="eos__bar"><i style="width:100%"></i></span><span class="eos__st on">Current</span></div>
+          </div>
         </div>
       </div>
 
@@ -868,178 +861,305 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     </div>
     <div class="feat">
 
-      <article class="feat-row reveal">
-        <div class="feat-intro">
+      <!-- ============ AI-ENABLED CRM ============ -->
+      <article class="feat-item reveal">
+        <div class="feat-item__head">
           <span class="feat-tag">Client system</span>
           <h3>AI-Enabled CRM</h3>
-          <p class="feat-prob">Sales data lived in five tools with no single view of pipeline risk.</p>
+          <p class="prob">Sales data lived in five tools with no single view of pipeline risk.</p>
         </div>
-        <div class="feat-row__vis" aria-hidden="true">
-          <div class="crm">
-            <div class="crm__col">
-              <small>Accounts</small>
-              <div class="crm__acct on"><i></i>Meridian Health</div>
-              <div class="crm__acct warn"><i></i>Northline Mfg.</div>
-              <div class="crm__acct"><i></i>Harbor Freight Co.</div>
-              <div class="crm__acct"><i></i>Vantage SaaS</div>
-            </div>
-            <div class="crm__col">
-              <small>Meridian Health · $140K · Stage 3 of 5</small>
-              <div class="crm__stage"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
-              <div class="crm__sum"><b>AI call summary:</b> champion confirmed budget; security review is the open blocker. Legal intro scheduled for Tuesday.</div>
-              <div class="crm__next">Next action: send SOC 2 packet, book technical review</div>
-              <div class="crm__quote">Quote drafted <em>2 options · pending approval</em></div>
-              <div class="crm__risk">Risk: 12 days idle — follow up this week</div>
-            </div>
+        <div class="feat-item__vis">
+          <div class="mtabs" data-tabs="crmxView" role="tablist" aria-label="CRM views">
+            <button type="button" data-view="account" class="on">Account view</button>
+            <button type="button" data-view="insights">AI insights</button>
+            <span class="hint">Toggle the workspace</span>
           </div>
-        </div>
-        <div class="feat-detail">
-          <dl class="feat-blocks">
-            <div class="feat-block"><dt>Challenge</dt><dd>Reps and leadership worked from different numbers, and risk surfaced too late to act.</dd></div>
-            <div class="feat-block"><dt>What was built</dt><dd>A sales workspace with account intelligence, AI call summaries, suggested next actions, and quote status.</dd></div>
-            <div class="feat-block"><dt>Business value</dt><dd><b>Forecast reviews moved from monthly guesswork to weekly signal.</b></dd></div>
-          </dl>
-          <div class="feat-meta">
-            <span><b>Role:</b> strategy, system design, build direction</span>
-            <span><b>Stack:</b> Next.js · OpenAI · Supabase</span>
-            <span><b>Status:</b> in production</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="feat-row reveal">
-        <div class="feat-intro">
-          <span class="feat-tag">Product concept</span>
-          <h3>AI Voice Call Center</h3>
-          <p class="feat-prob">Phone-heavy businesses miss revenue after hours and during peak load.</p>
-        </div>
-        <div class="feat-row__vis" aria-hidden="true">
-          <div class="vc">
-            <div class="vc__main">
-              <div class="vc__head"><b>Inbound — service request</b><span>02:41 live</span></div>
-              <div class="vc__wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="vc__tx">
-                <b>Caller:</b> “We need someone out this week — Thursday if possible.”<br>
-                <b>Agent:</b> “Thursday 10am is open. I have your service history from last fall — same unit?”<br>
-                <b>Caller:</b> “Same one. Is it going to cost more this time?”<br>
-                <b>Agent:</b> “Your plan covers the visit. Parts get flagged for approval first.”
+          <div class="crmx" id="crmxView" data-view="account">
+            <div class="crmx__nav" aria-hidden="true">
+              <i>Dashboard</i><i class="on">Accounts</i><i>Opportunities</i><i>Contacts</i><i>Quotes</i><i>Activities</i><i>AI Assistant</i><i>Reports</i>
+            </div>
+            <div class="crmx__main">
+              <div class="crmx__title">
+                <h4>Northland Property Management</h4>
+                <span class="stage">Proposal</span>
               </div>
-            </div>
-            <div class="vc__side">
-              <div class="vc__check">
-                <small>Call outcomes</small>
-                <div class="vc__items">
-                  <i class="done">Lead qualified</i>
-                  <i class="done">Booked · Thu 10am</i>
-                  <i class="done">Objection handled</i>
-                  <i>CRM sync · running</i>
+              <div class="crmx__kpis">
+                <div class="crmx__kpi"><small>Opportunity</small><b>Multi-location service</b></div>
+                <div class="crmx__kpi"><small>Est. value</small><b>$185,000</b></div>
+                <div class="crmx__kpi"><small>Probability</small><b>65%</b></div>
+                <div class="crmx__kpi"><small>Expected close</small><b>Sep 18</b></div>
+              </div>
+              <div class="crmx__acct">
+                <div class="crmx__tl">
+                  <small>Recent activity</small>
+                  <div><b>Proposal viewed 3×</b> — last opened Tue 9:14 AM</div>
+                  <div><b>Call summary (AI):</b> ops director confirmed scope for all 12 buildings</div>
+                  <div><b>Email sent:</b> three-year cost comparison requested</div>
+                  <div><b>Next:</b> follow-up call scheduled Thu 2:00 PM</div>
+                </div>
+                <div class="crmx__stk">
+                  <small>Stakeholders</small>
+                  <span class="chip">COO ✓ engaged</span>
+                  <span class="chip">Ops Director ✓ engaged</span>
+                  <span class="chip miss">CFO — not engaged</span>
+                  <div class="crmx__hist">Service history: 2 contracts since 2023 · on-time renewals · $96K lifetime</div>
                 </div>
               </div>
-              <div class="vc__handoff">Escalate to human — one tap</div>
-              <div class="vc__stats">
-                <div class="vc__stat"><b>$0.42</b><span>Cost per call</span></div>
-                <div class="vc__stat"><b>87%</b><span>Contained</span></div>
+              <div class="crmx__ai">
+                <small>AI insight</small>
+                <p class="insight">"The proposal has been viewed three times, but the finance stakeholder has not engaged. Add the CFO to the next follow-up and include the three-year cost comparison."</p>
+                <div class="row">
+                  <span class="fact">Deal risk: <em>medium-high</em></span>
+                  <span class="fact">Missing: <em>CFO</em></span>
+                  <span class="fact good">Cross-sell: <em>snow contract Q4</em></span>
+                  <span class="fact good">Close probability with CFO: <em>78%</em></span>
+                </div>
+                <span class="crmx__cta">Prepare follow-up</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="feat-detail">
-          <dl class="feat-blocks">
-            <div class="feat-block"><dt>Challenge</dt><dd>Every missed call is a missed job, and staffing for peaks is expensive.</dd></div>
-            <div class="feat-block"><dt>What was built</dt><dd>A voice agent with live transcription, qualification, scheduling, objection handling, and human transfer.</dd></div>
-            <div class="feat-block"><dt>Business value</dt><dd><b>24/7 answer rate without adding headcount.</b></dd></div>
-          </dl>
-          <div class="feat-meta">
-            <span><b>Role:</b> concept, product design, prototype</span>
-            <span><b>Stack:</b> OpenAI · Twilio · n8n</span>
-            <span><b>Status:</b> concept development</span>
-          </div>
+        <div class="feat-item__info">
+          <div class="feat-block"><dt>Challenge</dt><dd>Reps and leadership worked from different numbers, and risk surfaced too late to act.</dd></div>
+          <div class="feat-block"><dt>What was built</dt><dd>A sales workspace with account intelligence, AI call summaries, and recommended next actions.</dd></div>
+          <div class="feat-block"><dt>Business value</dt><dd><b>Forecast reviews moved from monthly guesswork to weekly signal.</b></dd></div>
+        </div>
+        <div class="feat-meta">
+          <span><b>Role:</b> strategy, system design, build direction</span>
+          <span><b>Stack:</b> Next.js · OpenAI · Supabase</span>
+          <span><b>Status:</b> in production</span>
         </div>
       </article>
 
-      <article class="feat-row reveal">
-        <div class="feat-intro">
+      <!-- ============ AI VOICE CALL CENTER ============ -->
+      <article class="feat-item reveal">
+        <div class="feat-item__head">
+          <span class="feat-tag">Product concept</span>
+          <h3>AI Voice Call Center</h3>
+          <p class="prob">Phone-heavy businesses miss revenue after hours and during peak load.</p>
+        </div>
+        <div class="feat-item__vis">
+          <div class="mtabs" data-tabs="vcxView" role="tablist" aria-label="Voice call steps">
+            <button type="button" data-view="answer" class="on">1 · Answer</button>
+            <button type="button" data-view="qualify">2 · Qualify</button>
+            <button type="button" data-view="schedule">3 · Schedule</button>
+            <button type="button" data-view="sync">4 · Sync</button>
+            <span class="hint">Step through the call</span>
+          </div>
+          <div class="vcx" id="vcxView" data-step="answer">
+            <div class="vcx__top">
+              <span class="live">Live · 02:41</span>
+              <b>Sarah Mitchell</b>
+              <span>(616) 555-0184</span>
+              <span>AI confidence: 96%</span>
+              <span class="handoff">Transfer to human</span>
+            </div>
+            <div class="vcx__grid">
+              <div class="vcx__col vcx__prof">
+                <small>Caller profile</small>
+                <div><b>Existing customer</b> since 2023</div>
+                <div>Grand Rapids, MI</div>
+                <div>Source: Google Ads</div>
+                <div>2 prior service visits</div>
+                <div>Interest: <b>furnace repair</b></div>
+              </div>
+              <div class="vcx__col">
+                <small>Live transcript</small>
+                <div class="vcx__tx">
+                  <div class="vcx__msg"><b>Caller</b>"Our furnace is short-cycling again — we need someone out this week." <span class="flag">intent: repair</span><span class="flag">urgency: high</span></div>
+                  <div class="vcx__msg agent"><b>Agent</b>"I see the unit from your visit last fall. Thursday 10 AM is open — does that work?"</div>
+                  <div class="vcx__msg"><b>Caller</b>"Thursday works. Is this going to cost more than last time?" <span class="flag">objection: price</span></div>
+                  <div class="vcx__msg agent"><b>Agent</b>"Your service plan covers the diagnostic. Any parts get flagged for your approval first."</div>
+                </div>
+              </div>
+              <div class="vcx__col vcx__asst">
+                <small>AI call assistant</small>
+                <div class="vcx__card vcx__qual"><b>Lead qualification</b><span>Existing customer · covered plan · high urgency → score 82</span></div>
+                <div class="vcx__card hot vcx__sched"><b>Appointment</b><span>Thu 10:00 AM — confirmed · tech: M. Alvarez</span></div>
+                <div class="vcx__card"><b>Objection handling</b><span>Plan coverage explained · parts approval flow stated</span></div>
+                <div class="vcx__card vcx__syncc"><b>CRM fields updating</b><span>Ticket #4118 · unit history linked · follow-up task set</span></div>
+              </div>
+            </div>
+            <div class="vcx__sum">
+              <i class="done">Appointment scheduled</i>
+              <i class="done">Lead score 82</i>
+              <i>Est. job value $1,450</i>
+              <i>CRM sync</i>
+            </div>
+          </div>
+        </div>
+        <div class="feat-item__info">
+          <div class="feat-block"><dt>Challenge</dt><dd>Every missed call is a missed job, and staffing for peaks is expensive.</dd></div>
+          <div class="feat-block"><dt>What was built</dt><dd>A voice agent that answers, qualifies, schedules, handles objections, and updates the business systems.</dd></div>
+          <div class="feat-block"><dt>Business value</dt><dd><b>24/7 answer rate without adding headcount.</b></dd></div>
+        </div>
+        <div class="feat-meta">
+          <span><b>Role:</b> concept, product design, prototype</span>
+          <span><b>Stack:</b> OpenAI · Twilio · n8n</span>
+          <span><b>Status:</b> concept development</span>
+        </div>
+      </article>
+
+      <!-- ============ EXECUTIVE OPERATING DASHBOARD ============ -->
+      <article class="feat-item reveal">
+        <div class="feat-item__head">
           <span class="feat-tag">Client system</span>
           <h3>Executive Operating Dashboard</h3>
-          <p class="feat-prob">Leadership ran the business on stale spreadsheets assembled by hand.</p>
+          <p class="prob">Leadership ran the business on stale spreadsheets assembled by hand.</p>
         </div>
-        <div class="feat-row__vis" aria-hidden="true">
-          <div class="ecc">
-            <div class="ecc__kpi"><small>Revenue</small><b>$4.2M</b><span>+8% QoQ</span></div>
-            <div class="ecc__kpi"><small>Margin</small><b>38%</b><span>+2 pts</span></div>
-            <div class="ecc__kpi"><small>Health</small><b>91</b><span>stable</span></div>
-            <div class="ecc__fc">
-              <small>Forecast vs plan</small>
-              <svg viewBox="0 0 100 36" preserveAspectRatio="none">
-                <path class="base" d="M0,26 L100,22"/>
-                <path class="line1" d="M0,30 C25,26 45,20 65,13 S90,6 100,4"/>
-              </svg>
+        <div class="feat-item__vis">
+          <div class="mtabs" data-tabs="edxView" role="tablist" aria-label="Dashboard views">
+            <button type="button" data-view="overview" class="on">Overview</button>
+            <button type="button" data-view="revenue">Revenue</button>
+            <button type="button" data-view="customers">Customers</button>
+            <button type="button" data-view="priorities">Priorities</button>
+            <span class="hint">The screen a CEO opens every morning</span>
+          </div>
+          <div class="edx" id="edxView" data-view="overview">
+            <div class="edx__kpis">
+              <div class="edx__kpi"><small>Revenue · MTD</small><b>$1.42M</b><span>+6% vs target</span></div>
+              <div class="edx__kpi"><small>Gross margin</small><b>41.2%</b><span class="down">−4.2 pts vs target</span></div>
+              <div class="edx__kpi"><small>Active pipeline</small><b>$8.4M</b><span>3.1× coverage</span></div>
+              <div class="edx__kpi"><small>Forecast · Q</small><b>$4.9M</b><span>92% confidence</span></div>
+              <div class="edx__kpi"><small>Retention</small><b>94%</b><span>flat vs prior</span></div>
+              <div class="edx__kpi"><small>Operating cash</small><b>7.2 mo</b><span>runway</span></div>
             </div>
-            <div class="ecc__wide">
-              <small>Operating alerts</small>
-              <div class="ecc__list">
-                <i>Enterprise pipeline coverage 3.1x — on plan</i>
-                <i class="warn">Support backlog above threshold — Midwest</i>
+            <div class="edx__grid">
+              <div class="edx__panel" data-panel="overview revenue">
+                <small>Revenue · actual vs forecast vs target</small>
+                <svg class="fc" viewBox="0 0 100 40" preserveAspectRatio="none">
+                  <path class="band" d="M55,22 C70,16 85,10 100,7 L100,15 C85,18 70,24 55,28 Z"/>
+                  <path class="target" d="M0,26 L100,20"/>
+                  <path class="actual" d="M0,32 C18,29 38,25 55,22 C70,17 85,10 100,7"/>
+                </svg>
+                <div class="edx__legend"><i>Actual + forecast</i><i class="t">Target</i></div>
               </div>
-            </div>
-            <div class="ecc__wide">
-              <small>Priorities · decision log</small>
-              <div class="ecc__list">
-                <i>Q2: launch partner channel — owner assigned</i>
-                <i>Q2: retire legacy billing — decided Apr 3</i>
+              <div class="edx__panel" data-panel="overview revenue">
+                <small>Pipeline by stage · weighted $5.1M</small>
+                <div class="edx__rows">
+                  <div class="edx__row"><span>Discovery</span><span class="bar"><i style="width:90%"></i></span><b>$2.6M</b></div>
+                  <div class="edx__row"><span>Proposal</span><span class="bar"><i style="width:70%"></i></span><b>$2.1M</b></div>
+                  <div class="edx__row"><span>Negotiation</span><span class="bar"><i style="width:45%"></i></span><b>$1.4M</b></div>
+                  <div class="edx__row"><span>At risk</span><span class="bar"><i style="width:22%;background:#F59E0B"></i></span><span class="warn">3 stalled deals</span></div>
+                </div>
+              </div>
+              <div class="edx__panel" data-panel="customers">
+                <small>Customer health</small>
+                <div class="edx__health">
+                  <div class="edx__hcell"><b>72</b><span>Healthy</span></div>
+                  <div class="edx__hcell risk"><b>11</b><span>At risk</span></div>
+                  <div class="edx__hcell crit"><b>3</b><span>Critical</span></div>
+                  <div class="edx__hcell exp"><b>9</b><span>Expansion</span></div>
+                </div>
+              </div>
+              <div class="edx__panel" data-panel="customers">
+                <small>Churn signal</small>
+                <div class="edx__alerts">
+                  <i>Churn increased in the standard product tier</i>
+                  <i class="ok">Enterprise tier stable · 2 expansion conversations open</i>
+                </div>
+              </div>
+              <div class="edx__panel" data-panel="overview priorities">
+                <small>Strategic priorities</small>
+                <div class="edx__rows">
+                  <div class="edx__row"><span>Launch partner channel</span><span class="bar"><i style="width:70%"></i></span><b>VP Sales · Sep 30</b></div>
+                  <div class="edx__row"><span>Retire legacy billing</span><span class="bar"><i style="width:45%"></i></span><span class="warn">Blocked · CFO</span></div>
+                  <div class="edx__row"><span>AI intake workflow</span><span class="bar"><i style="width:85%"></i></span><b>Ops · Aug 15</b></div>
+                </div>
+              </div>
+              <div class="edx__panel" data-panel="overview priorities">
+                <small>Operating alerts</small>
+                <div class="edx__alerts">
+                  <i>Gross margin is 4.2 points below target</i>
+                  <i>Three enterprise deals have stalled in negotiation</i>
+                  <i>Inventory may constrain September revenue</i>
+                </div>
+              </div>
+              <div class="edx__panel" data-panel="priorities">
+                <small>Decision log</small>
+                <p class="edx__dec"><b>"Shift 15% of paid media budget from Meta to high-intent Google campaigns."</b>
+                <span class="meta">Owner: Nick + CMO · Decided Jul 22 · Metric: blended CAC · Review Aug 19</span></p>
               </div>
             </div>
           </div>
         </div>
-        <div class="feat-detail">
-          <dl class="feat-blocks">
-            <div class="feat-block"><dt>Challenge</dt><dd>Numbers arrived weeks late, and decisions slipped with them.</dd></div>
-            <div class="feat-block"><dt>What was built</dt><dd>A command center for revenue, margin, pipeline, customer health, priorities, alerts, and decisions.</dd></div>
-            <div class="feat-block"><dt>Business value</dt><dd><b>Weekly decisions made on current numbers instead of last month's.</b></dd></div>
-          </dl>
-          <div class="feat-meta">
-            <span><b>Role:</b> operating model design, system build</span>
-            <span><b>Stack:</b> React · TypeScript · n8n</span>
-            <span><b>Status:</b> in production</span>
-          </div>
+        <div class="feat-item__info">
+          <div class="feat-block"><dt>Challenge</dt><dd>Numbers arrived weeks late, and decisions slipped with them.</dd></div>
+          <div class="feat-block"><dt>What was built</dt><dd>A command center for revenue, margin, pipeline, customer health, priorities, alerts, and decisions.</dd></div>
+          <div class="feat-block"><dt>Business value</dt><dd><b>Weekly decisions made on current numbers instead of last month's.</b></dd></div>
+        </div>
+        <div class="feat-meta">
+          <span><b>Role:</b> operating model design, system build</span>
+          <span><b>Stack:</b> React · TypeScript · n8n</span>
+          <span><b>Status:</b> in production</span>
         </div>
       </article>
 
-      <article class="feat-row reveal">
-        <div class="feat-intro">
+      <!-- ============ SALES AND QUOTE AGENT ============ -->
+      <article class="feat-item reveal">
+        <div class="feat-item__head">
           <span class="feat-tag">Working prototype</span>
           <h3>Sales and Quote Agent</h3>
-          <p class="feat-prob">Reps spent hours on account research and quote assembly before every call.</p>
+          <p class="prob">Reps spent hours on account research and quote assembly before every call.</p>
         </div>
-        <div class="feat-row__vis" aria-hidden="true">
-          <div class="qa">
-            <div class="qa__chat">
-              <div class="qa__msg user">Northline asked for a renewal quote with the multi-year option. Where are we exposed?</div>
-              <div class="qa__msg ai">Usage is down 14% in one division and your champion changed roles in March. <em>I've drafted a two-option quote and a follow-up email — review before send?</em></div>
-              <div class="qa__msg user">Yes — route it for approval.</div>
+        <div class="feat-item__vis">
+          <div class="mtabs" data-tabs="qaxView" role="tablist" aria-label="Quote workflow steps">
+            <button type="button" data-view="request" class="on">1 · Request</button>
+            <button type="button" data-view="recommendation">2 · Recommendation</button>
+            <button type="button" data-view="quote">3 · Quote</button>
+            <button type="button" data-view="approval">4 · Approval</button>
+            <span class="hint">Step through the workflow</span>
+          </div>
+          <div class="qax" id="qaxView" data-step="request">
+            <div class="qax__col qax__ctx">
+              <small>Account context</small>
+              <div><b>Cascade Legal Group</b></div>
+              <div>Legal services · 4 locations</div>
+              <div>Current fleet: 22 devices</div>
+              <div>Pricing tier: <b>Gold</b></div>
+              <div>Contract ends: December</div>
+              <div>Last purchase: 6 devices, 2024</div>
+              <div>Recent note: CFO asked about consolidating vendors</div>
             </div>
-            <div class="qa__doc">
-              <small>Generated quote · Q-2041</small>
-              <h5>Northline Manufacturing — Renewal</h5>
-              <div class="qa__line"><span>Platform license · 3yr</span><b>$96,000</b></div>
-              <div class="qa__line"><span>Implementation & training</span><b>$18,500</b></div>
-              <div class="qa__line"><span>Multi-year discount</span><b>−$11,400</b></div>
-              <div class="qa__total"><span>Total</span><span>$103,100</span></div>
-              <div class="qa__approve"><span class="on">Approve</span><span>Edit terms</span><span>Send follow-up</span></div>
+            <div class="qax__col qax__chat">
+              <small>AI conversation</small>
+              <div class="qax__msg user qax__req">"We need pricing for replacing 18 printers across four locations and a monthly toner program."</div>
+              <div class="qax__msg ai">"I found the current fleet, prior service history, and approved Gold pricing tier. <em>One question: keep the three color units at HQ, or standardize the full fleet?</em>"</div>
+              <div class="qax__msg user">"Standardize everything."</div>
+              <div class="qax__recwrap">
+                <div class="qax__rec"><b>AI recommendation</b>18× MX-540 units · 36-month service plan · toner program at $86/device/mo · staged install over two weekends · standard warranty · delivery by location</div>
+              </div>
+            </div>
+            <div class="qax__col">
+              <small>Quote · Q-2047 · v3</small>
+              <div class="qax__doc">
+                <h5>Cascade Legal Group — Fleet Replacement</h5>
+                <p class="sub">36-month term · 4 locations</p>
+                <div class="qax__line"><span>18× MX-540 printer</span><b>$20,700</b></div>
+                <div class="qax__line"><span>Install + network setup</span><b>$3,200</b></div>
+                <div class="qax__line"><span>3-yr service plan</span><b>$9,900</b></div>
+                <div class="qax__line"><span>Toner program · monthly recurring</span><b>$1,548/mo</b></div>
+                <div class="qax__line"><span>Multi-site discount</span><b>−$2,400</b></div>
+                <div class="qax__tot"><span>Total contract value</span><span>$87,128</span></div>
+                <div class="qax__margin"><span>Gross margin 34%</span><span>Expected close: Aug 29</span></div>
+              </div>
+              <div class="qax__appr">Discount exceeds standard threshold — sales manager approval required.</div>
+              <div class="qax__actions">
+                <span>Adjust pricing</span><span class="on">Request approval</span><span>Generate proposal</span>
+              </div>
+              <div class="qax__foot">Follow-up email drafted ✓ · CRM opportunity updated ✓ · version history: v1, v2, v3</div>
             </div>
           </div>
         </div>
-        <div class="feat-detail">
-          <dl class="feat-blocks">
-            <div class="feat-block"><dt>Challenge</dt><dd>Research, pricing logic, and follow-up lived in different tools and different heads.</dd></div>
-            <div class="feat-block"><dt>What was built</dt><dd>A conversational workspace that researches accounts, applies pricing logic, generates quotes, and drafts follow-up.</dd></div>
-            <div class="feat-block"><dt>Business value</dt><dd><b>Prep time per opportunity expected to drop from hours to minutes.</b></dd></div>
-          </dl>
-          <div class="feat-meta">
-            <span><b>Role:</b> product design, pricing logic, prototype</span>
-            <span><b>Stack:</b> Claude · Railway · CRM APIs</span>
-            <span><b>Status:</b> functional prototype</span>
-          </div>
+        <div class="feat-item__info">
+          <div class="feat-block"><dt>Challenge</dt><dd>Research, pricing logic, and follow-up lived in different tools and different heads.</dd></div>
+          <div class="feat-block"><dt>What was built</dt><dd>A conversational workspace that researches accounts, applies pricing logic, generates quotes, and routes approvals.</dd></div>
+          <div class="feat-block"><dt>Business value</dt><dd><b>Prep time per opportunity expected to drop from hours to minutes.</b></dd></div>
+        </div>
+        <div class="feat-meta">
+          <span><b>Role:</b> product design, pricing logic, prototype</span>
+          <span><b>Stack:</b> Claude · Railway · CRM APIs</span>
+          <span><b>Status:</b> functional prototype</span>
         </div>
       </article>
 
@@ -1076,7 +1196,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
       <div class="kick">How I work</div>
       <h2 class="h2">From business problem to working system.</h2>
     </div>
-    <div class="proc reveal">
+    <div class="proc" id="procPlay">
       <div class="proc__step">
         <div class="proc__num">01</div>
         <h3>Understand</h3>
@@ -1117,65 +1237,36 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     <div class="ways">
 
       <div class="way reveal">
-        <div class="way__vis" aria-hidden="true">
-          <div class="adv-map">
-            <small style="left:.3rem;top:.15rem">Impact</small>
-            <small style="right:.3rem;bottom:.2rem">Effort</small>
-            <i style="left:18%;top:60%"></i>
-            <i style="left:38%;top:38%"></i>
-            <i class="on" style="left:22%;top:14%"></i>
-            <i style="left:66%;top:30%"></i>
-            <i style="left:78%;top:64%"></i>
-          </div>
-        </div>
-        <div class="way__body">
-          <small class="k">Advisory</small>
-          <h3>Strategic Advisory</h3>
-          <dl class="way__rows">
-            <div><dt>Best for</dt><dd>Founders and executive teams seeking clarity and direction.</dd></div>
-            <div><dt>Typical work</dt><dd>GTM strategy, growth planning, AI strategy, positioning, pricing, and opportunity prioritization.</dd></div>
-            <div><dt>Outcome</dt><dd>A clear decision, roadmap, and execution plan.</dd></div>
-          </dl>
-          <a class="btn btn-line" href="mailto:hello@solutionstud.io?subject=Advisory%20need">Discuss an advisory need</a>
-        </div>
+        <small class="k">Advisory</small>
+        <h3>Strategic Advisory</h3>
+        <dl class="way__rows">
+          <div><dt>Best for</dt><dd>Founders and executive teams that need clarity, prioritization, or a clear direction.</dd></div>
+          <div><dt>Typical work</dt><dd>GTM strategy, growth planning, AI strategy, positioning, pricing, and revenue analysis.</dd></div>
+          <div><dt>Outcome</dt><dd>A clear decision, roadmap, and execution plan.</dd></div>
+        </dl>
+        <a class="btn btn-line" href="mailto:hello@solutionstud.io?subject=Advisory%20need">Discuss an advisory need</a>
       </div>
 
-      <div class="way way--dark reveal">
-        <div class="way__vis" aria-hidden="true">
-          <div class="build-flow">
-            <span class="on">Concept</span><b>→</b><span class="on">Design</span><b>→</b><span class="on">Build</span><b>→</b><span>Ship</span>
-          </div>
-        </div>
-        <div class="way__body">
-          <small class="k">Build</small>
-          <h3>Build Engagement</h3>
-          <dl class="way__rows">
-            <div><dt>Best for</dt><dd>Companies that need a working system, application, prototype, or automation.</dd></div>
-            <div><dt>Typical work</dt><dd>AI tools, dashboards, CRM systems, portals, MVPs, workflow automation, and integrations.</dd></div>
-            <div><dt>Outcome</dt><dd>A usable product or system, not a presentation.</dd></div>
-          </dl>
-          <a class="btn btn-white" href="mailto:hello@solutionstud.io?subject=Build%20engagement">Discuss a build</a>
-        </div>
+      <div class="way way--featured reveal">
+        <small class="k">Build</small>
+        <h3>Build Engagement</h3>
+        <dl class="way__rows">
+          <div><dt>Best for</dt><dd>Organizations that need a working application, system, prototype, or automation.</dd></div>
+          <div><dt>Typical work</dt><dd>AI applications, custom software, CRM systems, portals, dashboards, workflow automation, and MVP development.</dd></div>
+          <div><dt>Outcome</dt><dd>A working product or system, not a presentation.</dd></div>
+        </dl>
+        <a class="btn btn-white" href="mailto:hello@solutionstud.io?subject=Build%20engagement">Discuss a build</a>
       </div>
 
       <div class="way reveal">
-        <div class="way__vis" aria-hidden="true">
-          <div class="cad">
-            <div>Weekly exec review <i>priorities · metrics</i></div>
-            <div>Monthly operating review <i>scorecard</i></div>
-            <div>Quarterly planning <i>roadmap · board</i></div>
-          </div>
-        </div>
-        <div class="way__body">
-          <small class="k">Embedded</small>
-          <h3>Fractional Leadership</h3>
-          <dl class="way__rows">
-            <div><dt>Best for</dt><dd>Companies needing senior leadership without immediately hiring a full-time executive.</dd></div>
-            <div><dt>Typical work</dt><dd>Head of Growth, fractional CMO, GTM leadership, product marketing, sales enablement, and AI leadership.</dd></div>
-            <div><dt>Outcome</dt><dd>Executive direction combined with hands-on implementation.</dd></div>
-          </dl>
-          <a class="btn btn-line" href="mailto:hello@solutionstud.io?subject=Fractional%20leadership">Discuss fractional leadership</a>
-        </div>
+        <small class="k">Embedded</small>
+        <h3>Fractional Leadership</h3>
+        <dl class="way__rows">
+          <div><dt>Best for</dt><dd>Companies that need experienced leadership without immediately making a full-time executive hire.</dd></div>
+          <div><dt>Typical work</dt><dd>Head of Growth, fractional CMO, GTM leadership, product marketing, sales enablement, revenue operations, and AI strategy.</dd></div>
+          <div><dt>Outcome</dt><dd>Executive direction combined with hands-on implementation.</dd></div>
+        </dl>
+        <a class="btn btn-line" href="mailto:hello@solutionstud.io?subject=Fractional%20leadership">Discuss fractional leadership</a>
       </div>
 
     </div>
@@ -1192,10 +1283,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     <div>
       <div class="kick reveal">About</div>
       <h2 class="h2 reveal">Built by an operator.</h2>
-      <p class="abt__intro reveal" style="margin-top:1.15rem">Solution Studio is my independent advisory and product practice.</p>
+      <p class="abt__intro reveal" style="margin-top:1.15rem">Solution Studio is my independent advisory and build practice.</p>
       <div class="abt__copy reveal">
-        <p>For more than 20 years, I have helped organizations grow revenue, launch products, modernize operations, and turn complex ideas into practical execution. My experience spans startups, privately held companies, healthcare organizations, technology businesses, and Fortune 500 brands.</p>
-        <p>I work across disciplines that are often separated: enterprise sales, marketing, product, AI, software, and operations. That allows me to identify the real constraint and help build the system required to solve it. <strong>Every engagement is led directly by me.</strong></p>
+        <p>For more than 20 years, I have helped organizations grow revenue, launch products, modernize operations, and turn complex ideas into practical execution — across startups, privately held companies, healthcare organizations, technology businesses, and Fortune 500 brands.</p>
+        <p>My work connects disciplines that are usually separated: enterprise sales, marketing, product, AI, software, and operations. That lets me identify the real constraint and help build the system required to solve it. <strong>Every engagement is led directly by me.</strong></p>
       </div>
       <div class="abt__proofs reveal">
         <div class="abt__proof"><b>20+ Years</b><span>Building revenue and technology systems</span></div>
@@ -1237,9 +1328,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
 
 <footer>
   <div class="footer__inner">
-    <small>&copy; 2012–2026 Solution Studio · Nick Perez</small>
-    <div><a href="/ai/">AI</a> · <a href="/nonprofitai/">Nonprofits</a> · <a href="mailto:hello@solutionstud.io">Email</a></div>
-    <span>Aerial photography by Nick Perez</span>
+    <div class="footer__id">
+      <b>Solution Studio</b>
+      <span>Nick Perez · Revenue, AI, software, and growth systems.</span>
+    </div>
+    <div class="footer__links">
+      <a href="https://www.linkedin.com/in/nickperez" rel="me noopener" target="_blank">LinkedIn</a>
+      <a href="mailto:hello@solutionstud.io">Email Nick</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <div class="footer__legal">&copy; 2026 Solution Studio</div>
   </div>
 </footer>
 
@@ -1286,21 +1384,41 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     }
   });
 
+  // Mockup tab / step controls
+  document.querySelectorAll('[data-tabs]').forEach((group) => {
+    const target = document.getElementById(group.dataset.tabs);
+    group.querySelectorAll('button[data-view]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (target.hasAttribute('data-step')) target.setAttribute('data-step', btn.dataset.view);
+        else target.setAttribute('data-view', btn.dataset.view);
+        group.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === btn));
+        // voice summary progression
+        if (target.id === 'vcxView') {
+          const order = ['answer', 'qualify', 'schedule', 'sync'];
+          const idx = order.indexOf(btn.dataset.view);
+          const items = target.querySelectorAll('.vcx__sum i');
+          items.forEach((it, i) => it.classList.toggle('done', i <= idx));
+        }
+      });
+    });
+  });
+
   // Mobile systems-map expanders
   document.querySelectorAll('.sysmap-list .sys-node').forEach((node) => {
     node.addEventListener('click', () => node.classList.toggle('open'));
   });
 
-  // Reveal on scroll
+  // Scroll-triggered reveals + process/workflow play
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('on');
+      if (entry.target.id === 'procPlay' || entry.target.id === 'aifPlay') entry.target.classList.add('play');
       io.unobserve(entry.target);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-  document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 4) * 0.05}s`;
+  }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal, #procPlay, #aifPlay').forEach((el, i) => {
+    if (el.classList.contains('reveal')) el.style.transitionDelay = `${(i % 4) * 0.05}s`;
     io.observe(el);
   });
 </script>
