@@ -37,11 +37,66 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* SITE NAV */
+  .site-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding: 1.1rem clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .site-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .site-nav__brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .site-nav__links {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    list-style: none;
+  }
+
+  .site-nav__links a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .site-nav__links a:hover { color: var(--white); }
+
+  .site-nav__links .nav-cta {
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: var(--white);
+  }
+
+  .site-nav__links .nav-cta:hover {
+    background: var(--white);
+    color: var(--charcoal);
+  }
+
   /* HERO */
   .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    height: min(68vh, 640px);
+    min-height: 420px;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -65,8 +120,30 @@
   .hero__content {
     position: relative;
     z-index: 2;
-    padding: 0 clamp(2rem, 6vw, 6rem) clamp(3rem, 8vh, 6rem);
+    padding: 0 clamp(2rem, 6vw, 6rem) clamp(2rem, 5vh, 3.5rem);
     max-width: 900px;
+  }
+
+  .hero__cta {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--ocean);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 60px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.85s;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .hero__cta:hover {
+    background: var(--ocean-deep);
+    transform: translateY(-2px);
   }
 
   .hero__logo {
@@ -128,8 +205,14 @@
 
   /* SERVICES */
   .services {
-    padding: clamp(5rem, 10vh, 8rem) clamp(2rem, 6vw, 6rem);
+    padding: clamp(3.5rem, 7vh, 5.5rem) clamp(2rem, 6vw, 6rem);
     background: var(--sand);
+  }
+
+  .service-card--link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
 
   .services__label {
@@ -363,14 +446,29 @@
 
   @media (max-width: 768px) {
     .about { grid-template-columns: 1fr; }
-    .about__image { min-height: 50vh; }
+    .about__image { min-height: 42vh; }
     .about__stats { gap: 2rem; }
     .hero__scroll { display: none; }
     .services__grid { grid-template-columns: 1fr; }
+    .site-nav__links a:not(.nav-cta) { display: none; }
+    .hero { height: min(58vh, 520px); min-height: 360px; }
   }
 </style>
 </head>
 <body>
+
+  <nav class="site-nav" aria-label="Primary">
+    <div class="site-nav__inner">
+      <a href="/" class="site-nav__brand">Solution Studio</a>
+      <ul class="site-nav__links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="/ai/">AI for business</a></li>
+        <li><a href="/nonprofitai/">AI for nonprofits</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <section class="hero">
     <div class="hero__image" id="heroImg"></div>
@@ -378,6 +476,7 @@
       <img src="" alt="" class="hero__logo" id="logoImg">
       <h1 class="hero__title">Solution Studio</h1>
       <p class="hero__subtitle">Growth marketing consulting, custom development, and fractional CMO services for companies ready to scale.</p>
+      <a href="#contact" class="hero__cta">Get in touch <span aria-hidden="true">→</span></a>
     </div>
     <div class="hero__scroll">
       <span>Scroll</span>
@@ -403,11 +502,11 @@
         <h3 class="service-card__title">Fractional CMO Services</h3>
         <p class="service-card__desc">Senior marketing leadership embedded in your team. Strategic direction, agency management, and execution oversight — without the full-time overhead.</p>
       </div>
-      <div class="service-card reveal">
+      <a href="/ai/" class="service-card service-card--link reveal">
         <div class="service-card__number">04</div>
         <h3 class="service-card__title">AI Consulting for SMBs</h3>
         <p class="service-card__desc">AI is here — don't get left behind. Practical guidance to help small and medium-sized businesses adopt AI tools, automate workflows, and stay competitive.</p>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -428,10 +527,6 @@
         <div>
           <div class="stat__number">MI</div>
           <div class="stat__label">Michigan Based</div>
-        </div>
-        <div>
-          <div class="stat__number">∞</div>
-          <div class="stat__label">Remote Ready</div>
         </div>
       </div>
     </div>
