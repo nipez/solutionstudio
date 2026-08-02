@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solution Studio — Growth Marketing Consulting</title>
+<title>Solution Studio — Build what's next.</title>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JN6BXF06C4"></script>
 <script>
@@ -95,8 +95,8 @@
   /* HERO */
   .hero {
     position: relative;
-    height: min(68vh, 640px);
-    min-height: 420px;
+    height: min(74vh, 720px);
+    min-height: 480px;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -150,29 +150,41 @@
     width: 56px;
     height: 56px;
     border-radius: 10px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.3s;
   }
 
-  .hero__title {
+  .hero__brand {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
     font-weight: 400;
     color: var(--white);
     line-height: 1.05;
     letter-spacing: -0.02em;
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.5s;
+    animation: fadeUp 0.8s ease forwards 0.45s;
+  }
+
+  .hero__title {
+    margin-top: 0.85rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.55s;
   }
 
   .hero__subtitle {
-    margin-top: 1.25rem;
-    font-size: clamp(1.125rem, 2.2vw, 1.35rem);
+    margin-top: 1.1rem;
+    font-size: clamp(1.05rem, 1.9vw, 1.2rem);
     font-weight: 400;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.6;
-    max-width: 520px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.65;
+    max-width: 640px;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.7s;
   }
@@ -451,7 +463,7 @@
     .hero__scroll { display: none; }
     .services__grid { grid-template-columns: 1fr; }
     .site-nav__links a:not(.nav-cta) { display: none; }
-    .hero { height: min(58vh, 520px); min-height: 360px; }
+    .hero { height: min(70vh, 640px); min-height: 420px; }
   }
 </style>
 </head>
@@ -465,7 +477,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="/ai/">AI for business</a></li>
         <li><a href="/nonprofitai/">AI for nonprofits</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Let's build</a></li>
       </ul>
     </div>
   </nav>
@@ -473,10 +485,11 @@
   <section class="hero">
     <div class="hero__image" id="heroImg"></div>
     <div class="hero__content">
-      <img src="" alt="" class="hero__logo" id="logoImg">
-      <h1 class="hero__title">Solution Studio</h1>
-      <p class="hero__subtitle">Growth marketing consulting, custom development, and fractional CMO services for companies ready to scale.</p>
-      <a href="#contact" class="hero__cta">Get in touch <span aria-hidden="true">→</span></a>
+      <img src="" alt="Solution Studio" class="hero__logo" id="logoImg">
+      <p class="hero__brand">Solution Studio</p>
+      <h1 class="hero__title">Build what's next.</h1>
+      <p class="hero__subtitle">We help companies grow faster by combining revenue strategy, AI, custom software, and go-to-market execution. From fractional executive leadership to AI-native applications and automation, we build the systems that help businesses scale.</p>
+      <a href="#contact" class="hero__cta">Let's build together <span aria-hidden="true">→</span></a>
     </div>
     <div class="hero__scroll">
       <span>Scroll</span>
@@ -485,28 +498,28 @@
   </section>
 
   <section class="services" id="services">
-    <div class="services__label reveal">What We Do</div>
+    <div class="services__label reveal">How We Build</div>
     <div class="services__grid">
       <div class="service-card reveal">
         <div class="service-card__number">01</div>
-        <h3 class="service-card__title">Growth Marketing Consulting</h3>
-        <p class="service-card__desc">Data-driven strategies that identify your highest-leverage channels and turn marketing spend into measurable, compounding growth.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-card__number">02</div>
-        <h3 class="service-card__title">Custom Web &amp; Mobile Development</h3>
-        <p class="service-card__desc">Purpose-built digital products — from landing pages to full-stack applications — designed to convert visitors into customers.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-card__number">03</div>
-        <h3 class="service-card__title">Fractional CMO Services</h3>
-        <p class="service-card__desc">Senior marketing leadership embedded in your team. Strategic direction, agency management, and execution oversight — without the full-time overhead.</p>
+        <h3 class="service-card__title">Revenue Strategy &amp; Go-to-Market</h3>
+        <p class="service-card__desc">Clarify the path to growth — positioning, channels, and GTM execution that turn marketing and sales effort into compounding revenue.</p>
       </div>
       <a href="/ai/" class="service-card service-card--link reveal">
-        <div class="service-card__number">04</div>
-        <h3 class="service-card__title">AI Consulting for SMBs</h3>
-        <p class="service-card__desc">AI is here — don't get left behind. Practical guidance to help small and medium-sized businesses adopt AI tools, automate workflows, and stay competitive.</p>
+        <div class="service-card__number">02</div>
+        <h3 class="service-card__title">AI Systems &amp; Automation</h3>
+        <p class="service-card__desc">Practical AI that removes busywork and speeds decisions — workflows, agents, and automations built for how your team actually operates.</p>
       </a>
+      <div class="service-card reveal">
+        <div class="service-card__number">03</div>
+        <h3 class="service-card__title">Custom Software</h3>
+        <p class="service-card__desc">AI-native applications and purpose-built products — from customer-facing experiences to internal tools that become how the business runs.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card__number">04</div>
+        <h3 class="service-card__title">Fractional Executive Leadership</h3>
+        <p class="service-card__desc">Senior leadership embedded with your team — CMO, growth, and AI direction without the full-time overhead, focused on what scales next.</p>
+      </div>
     </div>
   </section>
 
@@ -514,10 +527,10 @@
     <div class="about__image" id="aboutImg"></div>
     <div class="about__content">
       <div class="about__label reveal">About</div>
-      <h2 class="about__heading reveal">Growth expertise from every angle.</h2>
+      <h2 class="about__heading reveal">Strategy, systems, and shipping — together.</h2>
       <div class="about__text reveal">
-        <p>As a growth consultant, I advise companies worldwide — leveraging experience working in-house, at agencies, and as an independent advisor.</p>
-        <p>I work directly with clients, often in an acting CMO or Head of Growth capacity, as well as alongside various agencies to orchestrate their growth marketing needs.</p>
+        <p>Solution Studio helps companies grow faster by connecting revenue strategy with the AI, software, and go-to-market systems that make growth durable.</p>
+        <p>We work as fractional executive partners — advising, building, and executing alongside your team so what you decide next is what you can actually ship.</p>
       </div>
       <div class="about__stats reveal">
         <div>
@@ -533,8 +546,8 @@
   </section>
 
   <section class="contact" id="contact">
-    <h2 class="contact__heading reveal">Let's build something<br>worth measuring.</h2>
-    <p class="contact__subtext reveal">Ready to talk growth? Reach out.</p>
+    <h2 class="contact__heading reveal">Let's build together.</h2>
+    <p class="contact__subtext reveal">Ready to build what's next? Reach out and we'll map the systems that help you scale.</p>
     <a href="mailto:hello@solutionstud.io" class="contact__link reveal">
       hello@solutionstud.io
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
