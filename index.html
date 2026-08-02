@@ -33,7 +33,7 @@
   --r:4px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 body{
   font-family:'Inter',system-ui,sans-serif;font-size:18px;line-height:1.6;
   color:var(--body-c);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;
@@ -267,23 +267,27 @@ img{display:block;max-width:100%}
 /* ============ SELECTED WORK ============ */
 .feat{display:flex;flex-direction:column;gap:1.5rem}
 .feat-row{
-  display:grid;grid-template-columns:1.2fr .8fr;border:1px solid var(--line);
-  border-radius:var(--r);overflow:hidden;background:#fff;transition:border-color .25s;
+  display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:auto 1fr;
+  grid-template-areas:"vis intro" "vis detail";
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;transition:border-color .25s;
 }
-.feat-row:nth-child(even){grid-template-columns:.8fr 1.2fr}
-.feat-row:nth-child(even) .feat-row__vis{order:2}
+.feat-row:nth-child(even){
+  grid-template-columns:.8fr 1.2fr;
+  grid-template-areas:"intro vis" "detail vis";
+}
 .feat-row:hover{border-color:var(--ink)}
-.feat-row__vis{background:var(--paper);border-right:1px solid var(--line);padding:1.4rem;min-height:420px;position:relative;overflow:hidden}
+.feat-row__vis{grid-area:vis;background:var(--paper);border-right:1px solid var(--line);padding:1.4rem;min-height:420px;position:relative;overflow:hidden}
 .feat-row:nth-child(even) .feat-row__vis{border-right:0;border-left:1px solid var(--line)}
-.feat-row__body{padding:clamp(1.6rem,3vw,2.5rem);display:flex;flex-direction:column;justify-content:center}
+.feat-intro{grid-area:intro;padding:clamp(1.6rem,3vw,2.4rem) clamp(1.6rem,3vw,2.4rem) 0}
+.feat-detail{grid-area:detail;padding:0 clamp(1.6rem,3vw,2.4rem) clamp(1.6rem,3vw,2.4rem);display:flex;flex-direction:column;justify-content:flex-end}
 .feat-tag{
-  display:inline-block;width:fit-content;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  display:inline-block;width:fit-content;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   color:var(--teal);border:1px solid rgba(19,127,139,.35);padding:.32rem .7rem;border-radius:999px;margin-bottom:1rem;
 }
 .feat-row__body h3{font-weight:700;font-size:clamp(1.55rem,2.4vw,2rem);letter-spacing:-.03em}
 .feat-prob{margin-top:.6rem;font-size:1.08rem;line-height:1.55;color:var(--body-c);max-width:34rem;text-wrap:pretty}
-.feat-blocks{margin-top:1.35rem;display:grid;gap:1rem}
-.feat-block dt{font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.feat-blocks{margin-top:1.25rem;display:grid;gap:1rem}
+.feat-block dt{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
 .feat-block dd{margin:.25rem 0 0;font-size:.98rem;line-height:1.55;color:var(--body-c)}
 .feat-block dd b{color:var(--ink);font-weight:600}
 .feat-meta{
@@ -382,7 +386,7 @@ img{display:block;max-width:100%}
 .gal__glyph{width:2.9rem;height:2.9rem;flex-shrink:0;border:1px solid var(--line);border-radius:var(--r);display:grid;place-items:center;color:var(--ink);background:var(--paper)}
 .gal__glyph svg{width:1.4rem;height:1.4rem;stroke:currentColor;fill:none;stroke-width:1.6}
 .gal b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.12rem;letter-spacing:-.02em;color:var(--ink)}
-.gal small{display:block;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.2rem}
+.gal small{display:block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.2rem}
 .gal p{margin-top:.35rem;font-size:.95rem;line-height:1.55;color:var(--muted)}
 
 /* ============ PROCESS ============ */
@@ -411,15 +415,15 @@ img{display:block;max-width:100%}
 .way{border:1px solid var(--line);background:#fff;border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s}
 .way:hover{border-color:var(--ink)}
 .way--dark{background:var(--ink);border-color:var(--ink)}
-.way__vis{height:130px;border-bottom:1px solid var(--line);background:var(--paper);padding:1rem;display:flex;align-items:center;justify-content:center}
+.way__vis{height:150px;border-bottom:1px solid var(--line);background:var(--paper);padding:1rem;display:flex;align-items:center;justify-content:center}
 .way--dark .way__vis{background:rgba(255,255,255,.05);border-bottom-color:var(--line-dark)}
 .way__body{padding:1.5rem 1.6rem 1.7rem;display:flex;flex-direction:column;flex:1}
-.way small.k{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.way small.k{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
 .way--dark small.k{color:var(--teal-bright)}
 .way h3{margin-top:.55rem;font-weight:700;font-size:1.5rem;letter-spacing:-.03em}
 .way--dark h3{color:#fff}
 .way__rows{margin-top:1.15rem;display:grid;gap:.9rem;font-size:.98rem;line-height:1.55}
-.way__rows dt{font-weight:600;color:var(--faint);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.way__rows dt{font-weight:600;color:var(--faint);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
 .way__rows dd{margin:.2rem 0 0;color:var(--body-c)}
 .way--dark .way__rows dd{color:rgba(255,255,255,.75)}
 .way .btn{margin-top:1.6rem;width:100%;font-size:.98rem}
@@ -492,44 +496,146 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
 }
 
 /* ============ RESPONSIVE ============ */
-@media (max-width:1080px){
-  .pos{grid-template-columns:1fr}
-  .cap{grid-template-columns:1fr}
-  .feat-row,.feat-row:nth-child(even){grid-template-columns:1fr}
-  .feat-row:nth-child(even) .feat-row__vis{order:0;border-left:0}
-  .feat-row__vis{border-right:0;border-bottom:1px solid var(--line);min-height:340px}
-  .proc{grid-template-columns:1fr;gap:0}
-  .proc::before{top:0;bottom:0;left:1.6rem;right:auto;width:2px;height:auto;background:linear-gradient(180deg,var(--teal-bright),rgba(47,179,191,.15))}
-  .proc__step{display:grid;grid-template-columns:auto 1fr;gap:0 1.5rem;padding-bottom:2.25rem}
-  .proc__step h3{margin-top:.4rem;grid-column:2}
-  .proc__step p{grid-column:2}
-  .proc__num{grid-row:1/3}
-  .ways{grid-template-columns:1fr}
-  .cred__grid{grid-template-columns:1fr 1fr;gap:1.5rem 2rem}
-  .cred__item{border-left:0;padding-left:0}
-  .abt{grid-template-columns:1fr}
-  .abt__card{position:static;max-width:420px}
-  .secondary__inner{grid-template-columns:1fr;gap:2rem}
+/* Large desktop ≥1440: default styles already apply */
+
+/* Desktop 1024–1439 */
+@media (max-width:1439px){
+  .sysmap{max-width:600px}
 }
-@media (max-width:880px){
+
+/* Tablet 768–1023 */
+@media (max-width:1023px){
+  .pos{grid-template-columns:1fr;gap:2.5rem}
+  .sysmap{max-width:640px}
+  .feat-row,.feat-row:nth-child(even){
+    grid-template-columns:1fr;grid-template-rows:auto auto auto;
+    grid-template-areas:"intro" "vis" "detail";
+  }
+  .feat-row__vis,.feat-row:nth-child(even) .feat-row__vis{
+    border-right:0;border-left:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    min-height:360px;
+  }
+  .feat-intro{padding:1.75rem 1.75rem 1.5rem}
+  .feat-detail{padding:1.5rem 1.75rem 1.75rem;justify-content:flex-start}
+  .feat-blocks{margin-top:0}
+  .ways{grid-template-columns:1fr;gap:1.5rem}
+  .way .btn{width:100%}
+  .abt{grid-template-columns:1fr;gap:2.5rem}
+  .abt__card{position:static;max-width:440px}
+  .secondary__inner{grid-template-columns:1fr;gap:2.25rem}
+  .cred__grid{grid-template-columns:1fr 1fr;gap:1.5rem 2rem;padding:1.9rem 0 2.1rem}
+  .cred__item{border-left:0;padding-left:0}
+  .cap{grid-template-columns:1fr 1fr;gap:1.1rem}
+  .cap-vis{height:250px}
+  .proc{gap:1rem}
+  .proc__step p{font-size:.94rem}
+}
+
+/* Below 900: capabilities single column */
+@media (max-width:899px){
+  .cap{grid-template-columns:1fr}
+  .cap-panel{display:flex;flex-direction:column}
+  .cap-body{order:0;padding:1.5rem 1.5rem 1.1rem}
+  .cap-vis{order:1;height:270px;border-bottom:0;border-top:1px solid var(--line)}
+}
+
+/* Mobile nav below 768 */
+@media (max-width:767px){
+  :root{--header-h:64px}
   .hdr__nav{display:none}
   .hdr__burger{display:grid}
+  .hdr__brand img{width:28px;height:28px}
+  .hdr__brand span{font-size:1rem}
+  .hero{padding-top:calc(var(--header-h) + 48px);min-height:min(88vh,760px)}
+  .hero__title{font-size:clamp(2.6rem,11.5vw,3.25rem);max-width:340px}
+  .hero__sub{font-size:1.06rem;line-height:1.55}
+  .sec{padding:76px 0}
+  .head{margin-bottom:36px}
+  .h2{font-size:clamp(2.1rem,8.5vw,2.75rem)}
+  .lead{font-size:1.06rem}
+  /* process becomes vertical stepper */
+  .proc{grid-template-columns:1fr;gap:0}
+  .proc::before{top:0;bottom:0;left:1.6rem;right:auto;width:2px;height:auto;background:linear-gradient(180deg,var(--teal-bright),rgba(47,179,191,.15))}
+  .proc__step{display:grid;grid-template-columns:auto 1fr;gap:.2rem 1.4rem;padding-bottom:1.75rem}
+  .proc__step:last-child{padding-bottom:0}
+  .proc__step h3{margin-top:.55rem;grid-column:2;font-size:1.3rem}
+  .proc__step p{grid-column:2;font-size:1rem}
+  .proc__num{grid-row:1/3}
+  .proc-closer{font-size:1.45rem}
+  /* systems map: interactive list */
+  .sysmap{display:none}
+  .sysmap-list{display:grid}
 }
-@media (max-width:640px){
-  body{font-size:17px}
-  .abt__portrait{width:112px;height:112px}
-  .abt__proofs{grid-template-columns:1fr;gap:1.2rem}
-  .cred__grid{grid-template-columns:1fr;gap:1.25rem;padding:1.75rem 0}
+
+/* Tablet keeps horizontal process but roomier */
+@media (min-width:768px) and (max-width:1023px){
+  .proc{grid-template-columns:repeat(5,1fr)}
+  .proc::before{left:2.5rem;right:2.5rem}
+}
+
+/* Small mobile below 600 */
+@media (max-width:599px){
+  body{font-size:16.5px}
+  .wrap{width:calc(100% - 3rem)}
+  .hero__actions{flex-direction:column;align-items:stretch}
+  .hero__actions .btn{width:100%}
+  .cred__grid{grid-template-columns:1fr;gap:0;padding:.4rem 0}
+  .cred__item{padding:1.05rem 0;border-bottom:1px solid var(--line-dark)}
+  .cred__item:last-child{border-bottom:0}
+  .cred__item b{font-size:1.12rem}
+  .cred__item span{font-size:.95rem}
   .rev__chain{grid-template-columns:repeat(4,1fr)}
+  .rev__lower{grid-template-columns:1fr}
+  .rev__fc{min-height:90px}
   .crm{grid-template-columns:1fr}
   .vc,.qa{grid-template-columns:1fr}
-  .hero{padding-top:calc(var(--header-h) + 44px)}
-  .sysmap{display:none}
-  .sysmap-list{display:grid !important}
+  .vc__side{flex-direction:row;flex-wrap:wrap}
+  .vc__check{flex:1 1 100%}
+  .vc__handoff,.vc__stats{flex:1 1 45%}
+  .feat-row__vis{min-height:0;padding:1.1rem}
+  .ecc{grid-template-columns:1fr 1fr}
+  .ecc__kpi:nth-child(3){display:none}
+  .feat-meta{flex-direction:column;gap:.45rem}
+  .abt__portrait{width:120px;height:120px}
+  .abt__proofs{grid-template-columns:1fr;gap:1.2rem}
+  .abt__cta .btn{width:100%}
+  .way__body{padding:1.6rem 1.5rem 1.7rem}
+  .secondary p.list{line-height:2}
+  #contact .btn{width:100%}
+  #contact .hero__actions{flex-direction:column;align-items:stretch}
+  .footer__inner{flex-direction:column;gap:.5rem}
+  .cap-vis{height:auto;min-height:250px}
+  .wf{min-height:250px}
+  .layers{min-height:240px}
+  .eom{min-height:0}
+  .wf__node{white-space:normal;max-width:44%}
+  .eom{grid-template-columns:1fr}
+  .eom__right{flex-direction:row;flex-wrap:wrap}
+  .eom__cell{flex:1 1 45%}
 }
+
+/* Very small screens */
+@media (max-width:379px){
+  .wrap{width:calc(100% - 2.5rem)}
+  .hero__title{font-size:2.55rem}
+  .rev__chain span{font-size:.66rem}
+  .cap-vis{height:230px}
+}
+
+/* Focus visibility */
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outline-offset:3px;border-radius:2px}
+.sec--dark a:focus-visible,.sec--dark button:focus-visible,.hdr a:focus-visible,.hdr button:focus-visible{outline-color:#fff}
+
+/* Mobile systems-map list */
 .sysmap-list{display:none;grid-template-columns:1fr;gap:.6rem}
-.sysmap-list .sys-node{position:static;transform:none;min-width:0}
+.sysmap-list .sys-node{position:static;transform:none;min-width:0;cursor:pointer;width:100%;text-align:left;font-family:inherit;padding:.85rem 1rem}
+.sysmap-list .sys-node b{font-size:1.02rem}
+.sysmap-list .sys-node span{font-size:.92rem}
 .sysmap-list .sys-center{position:static;transform:none;margin-bottom:.4rem}
+.sysmap-list .sys-node span{display:none;margin-top:.3rem}
+.sysmap-list .sys-node.open span{display:block}
+.sysmap-list .sys-node::after{content:'+';float:right;color:var(--teal);font-weight:600;font-size:1.05rem;line-height:1.2}
+.sysmap-list .sys-node.open::after{content:'−'}
 </style>
 </head>
 <body>
@@ -610,23 +716,23 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
           <line class="hot" x1="50" y1="50" x2="12" y2="24"/>
         </svg>
         <div class="sys-node" style="left:50%;top:8%"><b>Revenue</b><span>Economics · pricing · pipeline · retention</span></div>
-        <div class="sys-node" style="left:88%;top:24%"><b>Enterprise Sales</b><span>Positioning · enablement · conversion</span></div>
-        <div class="sys-node" style="left:93%;top:62%"><b>Marketing</b><span>Demand · acquisition · lifecycle · brand</span></div>
+        <div class="sys-node" style="left:86%;top:24%"><b>Enterprise Sales</b><span>Positioning · enablement · conversion</span></div>
+        <div class="sys-node" style="left:88%;top:62%"><b>Marketing</b><span>Demand · acquisition · lifecycle · brand</span></div>
         <div class="sys-node" style="left:72%;top:92%"><b>Product</b><span>Experience · adoption · roadmap</span></div>
         <div class="sys-node" style="left:28%;top:92%"><b>AI</b><span>Automation · agents · intelligence</span></div>
-        <div class="sys-node" style="left:7%;top:62%"><b>Software</b><span>Applications · portals · integrations</span></div>
-        <div class="sys-node" style="left:12%;top:24%"><b>Operations</b><span>Workflow · reporting · accountability</span></div>
+        <div class="sys-node" style="left:12%;top:62%"><b>Software</b><span>Applications · portals · integrations</span></div>
+        <div class="sys-node" style="left:14%;top:24%"><b>Operations</b><span>Workflow · reporting · accountability</span></div>
         <div class="sys-center"><b>BUSINESS GROWTH</b><span>one connected system</span></div>
       </div>
-      <div class="sysmap-list" aria-hidden="true">
+      <div class="sysmap-list">
         <div class="sys-center"><b>BUSINESS GROWTH</b><span>one connected system</span></div>
-        <div class="sys-node"><b>Revenue</b><span>Economics · pricing · pipeline · retention</span></div>
-        <div class="sys-node"><b>Enterprise Sales</b><span>Positioning · enablement · conversion</span></div>
-        <div class="sys-node"><b>Marketing</b><span>Demand · acquisition · lifecycle · brand</span></div>
-        <div class="sys-node"><b>Product</b><span>Experience · adoption · roadmap</span></div>
-        <div class="sys-node"><b>AI</b><span>Automation · agents · intelligence</span></div>
-        <div class="sys-node"><b>Software</b><span>Applications · portals · integrations</span></div>
-        <div class="sys-node"><b>Operations</b><span>Workflow · reporting · accountability</span></div>
+        <button type="button" class="sys-node"><b>Revenue</b><span>Economics, pricing, pipeline, and retention.</span></button>
+        <button type="button" class="sys-node"><b>Enterprise Sales</b><span>Positioning, enablement, partnerships, and conversion.</span></button>
+        <button type="button" class="sys-node"><b>Marketing</b><span>Demand, acquisition, lifecycle, and brand.</span></button>
+        <button type="button" class="sys-node"><b>Product</b><span>Experience, adoption, expansion, and roadmap.</span></button>
+        <button type="button" class="sys-node"><b>AI</b><span>Automation, agents, knowledge, and intelligence.</span></button>
+        <button type="button" class="sys-node"><b>Software</b><span>Applications, portals, integrations, and systems.</span></button>
+        <button type="button" class="sys-node"><b>Operations</b><span>Workflow, reporting, execution, and accountability.</span></button>
       </div>
     </div>
   </div>
@@ -763,6 +869,11 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
     <div class="feat">
 
       <article class="feat-row reveal">
+        <div class="feat-intro">
+          <span class="feat-tag">Client system</span>
+          <h3>AI-Enabled CRM</h3>
+          <p class="feat-prob">Sales data lived in five tools with no single view of pipeline risk.</p>
+        </div>
         <div class="feat-row__vis" aria-hidden="true">
           <div class="crm">
             <div class="crm__col">
@@ -782,10 +893,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
             </div>
           </div>
         </div>
-        <div class="feat-row__body">
-          <span class="feat-tag">Client system</span>
-          <h3>AI-Enabled CRM</h3>
-          <p class="feat-prob">Sales data lived in five tools with no single view of pipeline risk.</p>
+        <div class="feat-detail">
           <dl class="feat-blocks">
             <div class="feat-block"><dt>Challenge</dt><dd>Reps and leadership worked from different numbers, and risk surfaced too late to act.</dd></div>
             <div class="feat-block"><dt>What was built</dt><dd>A sales workspace with account intelligence, AI call summaries, suggested next actions, and quote status.</dd></div>
@@ -800,6 +908,11 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
       </article>
 
       <article class="feat-row reveal">
+        <div class="feat-intro">
+          <span class="feat-tag">Product concept</span>
+          <h3>AI Voice Call Center</h3>
+          <p class="feat-prob">Phone-heavy businesses miss revenue after hours and during peak load.</p>
+        </div>
         <div class="feat-row__vis" aria-hidden="true">
           <div class="vc">
             <div class="vc__main">
@@ -830,10 +943,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
             </div>
           </div>
         </div>
-        <div class="feat-row__body">
-          <span class="feat-tag">Product concept</span>
-          <h3>AI Voice Call Center</h3>
-          <p class="feat-prob">Phone-heavy businesses miss revenue after hours and during peak load.</p>
+        <div class="feat-detail">
           <dl class="feat-blocks">
             <div class="feat-block"><dt>Challenge</dt><dd>Every missed call is a missed job, and staffing for peaks is expensive.</dd></div>
             <div class="feat-block"><dt>What was built</dt><dd>A voice agent with live transcription, qualification, scheduling, objection handling, and human transfer.</dd></div>
@@ -848,6 +958,11 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
       </article>
 
       <article class="feat-row reveal">
+        <div class="feat-intro">
+          <span class="feat-tag">Client system</span>
+          <h3>Executive Operating Dashboard</h3>
+          <p class="feat-prob">Leadership ran the business on stale spreadsheets assembled by hand.</p>
+        </div>
         <div class="feat-row__vis" aria-hidden="true">
           <div class="ecc">
             <div class="ecc__kpi"><small>Revenue</small><b>$4.2M</b><span>+8% QoQ</span></div>
@@ -876,10 +991,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
             </div>
           </div>
         </div>
-        <div class="feat-row__body">
-          <span class="feat-tag">Client system</span>
-          <h3>Executive Operating Dashboard</h3>
-          <p class="feat-prob">Leadership ran the business on stale spreadsheets assembled by hand.</p>
+        <div class="feat-detail">
           <dl class="feat-blocks">
             <div class="feat-block"><dt>Challenge</dt><dd>Numbers arrived weeks late, and decisions slipped with them.</dd></div>
             <div class="feat-block"><dt>What was built</dt><dd>A command center for revenue, margin, pipeline, customer health, priorities, alerts, and decisions.</dd></div>
@@ -894,6 +1006,11 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
       </article>
 
       <article class="feat-row reveal">
+        <div class="feat-intro">
+          <span class="feat-tag">Working prototype</span>
+          <h3>Sales and Quote Agent</h3>
+          <p class="feat-prob">Reps spent hours on account research and quote assembly before every call.</p>
+        </div>
         <div class="feat-row__vis" aria-hidden="true">
           <div class="qa">
             <div class="qa__chat">
@@ -912,10 +1029,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
             </div>
           </div>
         </div>
-        <div class="feat-row__body">
-          <span class="feat-tag">Working prototype</span>
-          <h3>Sales and Quote Agent</h3>
-          <p class="feat-prob">Reps spent hours on account research and quote assembly before every call.</p>
+        <div class="feat-detail">
           <dl class="feat-blocks">
             <div class="feat-block"><dt>Challenge</dt><dd>Research, pricing logic, and follow-up lived in different tools and different heads.</dd></div>
             <div class="feat-block"><dt>What was built</dt><dd>A conversational workspace that researches accounts, applies pricing logic, generates quotes, and drafts follow-up.</dd></div>
@@ -1005,8 +1119,8 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
       <div class="way reveal">
         <div class="way__vis" aria-hidden="true">
           <div class="adv-map">
-            <small style="left:-.2rem;top:-1.2rem">Impact</small>
-            <small style="right:-.2rem;bottom:-1.3rem">Effort</small>
+            <small style="left:.3rem;top:.15rem">Impact</small>
+            <small style="right:.3rem;bottom:.2rem">Effort</small>
             <i style="left:18%;top:60%"></i>
             <i style="left:38%;top:38%"></i>
             <i class="on" style="left:22%;top:14%"></i>
@@ -1099,11 +1213,11 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
   <div class="wrap secondary__inner">
     <div class="reveal">
       <h3>Experience across complex businesses.</h3>
-      <p class="list">Healthcare<b>·</b>Technology<b>·</b>SaaS<b>·</b>Professional Services<b>·</b>Financial Services<b>·</b>Manufacturing<b>·</b>Home Services<b>·</b>Consumer Products<b>·</b>Private Equity<b>·</b>Nonprofit</p>
+      <p class="list">Healthcare <b>·</b> Technology <b>·</b> SaaS <b>·</b> Professional Services <b>·</b> Financial Services <b>·</b> Manufacturing <b>·</b> Home Services <b>·</b> Consumer Products <b>·</b> Private Equity <b>·</b> Nonprofit</p>
     </div>
     <div class="reveal">
       <h3>Built with a modern AI and software stack.</h3>
-      <p class="list">OpenAI<b>·</b>Anthropic<b>·</b>Cursor<b>·</b>GitHub<b>·</b>Vercel<b>·</b>Railway<b>·</b>Supabase<b>·</b>n8n</p>
+      <p class="list">OpenAI <b>·</b> Anthropic <b>·</b> Cursor <b>·</b> GitHub <b>·</b> Vercel <b>·</b> Railway <b>·</b> Supabase <b>·</b> n8n</p>
     </div>
   </div>
 </div>
@@ -1150,6 +1264,8 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
     mnav.setAttribute('aria-hidden', 'false');
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    const firstLink = mnav.querySelector('a, button');
+    if (firstLink) firstLink.focus();
   });
   const closeMenu = () => {
     mnav.classList.remove('open');
@@ -1159,6 +1275,21 @@ footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:1.5re
   };
   document.getElementById('mnavClose').addEventListener('click', closeMenu);
   mnav.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (!mnav.classList.contains('open')) return;
+    if (e.key === 'Escape') { closeMenu(); burger.focus(); return; }
+    if (e.key === 'Tab') {
+      const focusables = mnav.querySelectorAll('a, button');
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  // Mobile systems-map expanders
+  document.querySelectorAll('.sysmap-list .sys-node').forEach((node) => {
+    node.addEventListener('click', () => node.classList.toggle('open'));
+  });
 
   // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
