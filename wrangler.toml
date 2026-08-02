@@ -1,0 +1,8 @@
+# Cloudflare Pages — static site
+# Dashboard fallback (if not reading this file):
+#   Production branch: main
+#   Build command: exit 0
+#   Build output directory: /
+name = "solutionstudio"
+compatibility_date = "2026-08-02"
+pages_build_output_dir = "."

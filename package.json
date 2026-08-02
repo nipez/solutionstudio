@@ -1,0 +1,10 @@
+{
+  "name": "solutionstudio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Solution Studio — static site for Cloudflare Pages",
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "preview": "npx --yes wrangler pages dev ."
+  }
+}
