@@ -321,6 +321,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1023px){
+  :root{--header-h:64px}
+  .hdr__nav{display:none}
+  .hdr__burger{display:grid}
+  .hdr__brand img{width:28px;height:28px}
+  .hdr__brand span{font-size:1rem}
   .pos{grid-template-columns:1fr;gap:2.5rem}
   .ways{grid-template-columns:1fr;gap:1.5rem}
   .abt{grid-template-columns:1fr;gap:2.5rem}
@@ -335,11 +340,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
   .cap{grid-template-columns:1fr}
 }
 @media (max-width:767px){
-  :root{--header-h:64px}
-  .hdr__nav{display:none}
-  .hdr__burger{display:grid}
-  .hdr__brand img{width:28px;height:28px}
-  .hdr__brand span{font-size:1rem}
   .hero{padding-top:calc(var(--header-h) + 48px);min-height:min(88vh,760px)}
   .hero__title{font-size:clamp(2.6rem,11.5vw,3.25rem);max-width:340px}
   .hero__sub{font-size:1.06rem;line-height:1.55}
@@ -606,6 +606,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
   .iq__actions .btn{width:100%}
   .cv__kv{gap:1.4rem}
   .fx__cta{width:100%}
+  .g2{grid-template-columns:1fr}
+  .g2__viz{min-height:140px}
+  .pmx__box{padding:1.35rem 1.15rem 1.5rem;border-radius:10px;max-height:92vh}
+  .pmx__top{gap:1rem}
+  .ways .btn{width:100%}
+  .cap-panel .btn,.fx__foot .btn{width:100%}
+  .mnav__links a{font-size:1.35rem;padding:.9rem 0}
+  .vv__top{gap:.65rem;padding:.8rem 1rem}
+  .pv__bar{padding:.75rem 1rem}
 }
 </style>
 </head>
