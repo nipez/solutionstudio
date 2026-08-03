@@ -1095,7 +1095,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
           <div><dt>Typical work</dt><dd>GTM strategy, growth planning, AI strategy, positioning, pricing, and revenue analysis.</dd></div>
           <div><dt>Outcome</dt><dd>A clear decision, roadmap, and execution plan.</dd></div>
         </dl>
-        <a class="btn btn-line" href="mailto:hello@solutionstud.io?subject=Advisory%20need">Discuss an advisory need</a>
+        <a class="btn btn-line" href="#contact" data-engagement="Strategic advisory">Discuss an advisory need</a>
       </div>
 
       <div class="way way--featured reveal">
@@ -1106,7 +1106,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
           <div><dt>Typical work</dt><dd>AI applications, custom software, CRM systems, portals, dashboards, workflow automation, and MVP development.</dd></div>
           <div><dt>Outcome</dt><dd>A working product or system, not a presentation.</dd></div>
         </dl>
-        <a class="btn btn-white" href="mailto:hello@solutionstud.io?subject=Build%20engagement">Discuss a build</a>
+        <a class="btn btn-white" href="#contact" data-engagement="AI or software build">Discuss a build</a>
       </div>
 
       <div class="way reveal">
@@ -1117,7 +1117,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
           <div><dt>Typical work</dt><dd>Head of Growth, fractional CMO, GTM leadership, product marketing, sales enablement, revenue operations, and AI strategy.</dd></div>
           <div><dt>Outcome</dt><dd>Executive direction combined with hands-on implementation.</dd></div>
         </dl>
-        <a class="btn btn-line" href="mailto:hello@solutionstud.io?subject=Fractional%20leadership">Discuss fractional leadership</a>
+        <a class="btn btn-line" href="#contact" data-engagement="Fractional leadership">Discuss fractional leadership</a>
       </div>
 
     </div>
@@ -1194,7 +1194,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
       </div>
       <div class="iq__actions">
         <button class="btn btn-white" type="submit" id="iqSubmit">Discuss a project</button>
-        <a class="btn btn-ghost" href="mailto:hello@solutionstud.io">Email Nick directly</a>
+        <a class="btn btn-ghost" href="mailto:hello@solutionstud.io">Email Nick</a>
       </div>
       <p class="iq__status" id="iqStatus" role="status" aria-live="polite"></p>
     </form>
@@ -1329,8 +1329,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     if (e.key === 'Escape') document.querySelectorAll('.pmx.open').forEach(closeM);
   });
 
+  // Engagement CTAs → contact form (pre-select engagement type when provided)
+  document.querySelectorAll('[data-engagement]').forEach((a) => {
+    a.addEventListener('click', () => {
+      const type = a.getAttribute('data-engagement');
+      const select = document.getElementById('iqType');
+      if (type && select) select.value = type;
+    });
+  });
+
   // Inquiry form → Google Sheet via Apps Script (see forms/inquiry-to-sheet.gs)
-  // Paste the Web App URL from Deploy → New deployment after one-time setup.
   const INQUIRY_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyCRsSHLftFMXiwH725m5XkxZIIso3j1AFaV7pfpHtcEr_bja5zXrxVSsA86o8ihF1jJg/exec';
 
   const iqForm = document.getElementById('iqForm');
