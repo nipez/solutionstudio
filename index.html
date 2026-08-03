@@ -584,6 +584,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
 .iq input:focus,.iq select:focus,.iq textarea:focus{outline:2px solid var(--teal-bright);outline-offset:1px}
 .iq textarea{resize:vertical}
 .iq__actions{display:flex;gap:.85rem;flex-wrap:wrap;margin-top:.4rem}
+.iq__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.iq__status{margin-top:.25rem;font-size:.98rem;line-height:1.5;min-height:1.5em}
+.iq__status[data-state="ok"]{color:#8FE3C2}
+.iq__status[data-state="err"]{color:#FFB4A8}
+.iq__status[data-state="pending"]{color:rgba(255,255,255,.7)}
+.iq.is-sent .iq__fields{display:none}
+.iq.is-sent .iq__actions{display:none}
 
 @media (max-width:1023px){
   .fx__foot{grid-template-columns:1fr;gap:1.1rem}
@@ -1167,21 +1174,28 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     <div class="kick reveal">Contact</div>
     <h2 class="h2 reveal">Bring me the business problem.</h2>
     <p class="lead reveal">The answer may be a stronger go-to-market motion, an AI application, custom software, or fractional leadership. I will help identify what needs to be built and turn it into action.</p>
-    <form class="iq reveal" id="iqForm">
-      <div class="iq__row">
-        <div><label for="iqName">Name</label><input id="iqName" name="name" autocomplete="name" required></div>
-        <div><label for="iqCo">Company</label><input id="iqCo" name="company" autocomplete="organization"></div>
+    <form class="iq reveal" id="iqForm" novalidate>
+      <div class="iq__fields">
+        <div class="iq__row">
+          <div><label for="iqName">Name</label><input id="iqName" name="name" autocomplete="name" required></div>
+          <div><label for="iqCo">Company</label><input id="iqCo" name="company" autocomplete="organization"></div>
+        </div>
+        <div class="iq__row">
+          <div><label for="iqEmail">Email</label><input id="iqEmail" name="email" type="email" autocomplete="email" required></div>
+          <div><label for="iqWhen">Approximate timing</label><select id="iqWhen" name="timing"><option>Ready now</option><option>Next 1–3 months</option><option>Later this year</option><option>Just exploring</option></select></div>
+        </div>
+        <div><label for="iqType">Type of engagement</label><select id="iqType" name="engagement"><option>Strategic advisory</option><option>AI or software build</option><option>Fractional leadership</option><option>Not sure yet</option></select></div>
+        <div><label for="iqMsg">What are you trying to build or improve?</label><textarea id="iqMsg" name="message" rows="4"></textarea></div>
+        <div class="iq__hp" aria-hidden="true">
+          <label for="iqWebsite">Website</label>
+          <input id="iqWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
       </div>
-      <div class="iq__row">
-        <div><label for="iqEmail">Email</label><input id="iqEmail" name="email" type="email" autocomplete="email" required></div>
-        <div><label for="iqWhen">Approximate timing</label><select id="iqWhen" name="timing"><option>Ready now</option><option>Next 1–3 months</option><option>Later this year</option><option>Just exploring</option></select></div>
-      </div>
-      <div><label for="iqType">Type of engagement</label><select id="iqType" name="engagement"><option>Strategic advisory</option><option>AI or software build</option><option>Fractional leadership</option><option>Not sure yet</option></select></div>
-      <div><label for="iqMsg">What are you trying to build or improve?</label><textarea id="iqMsg" name="message" rows="4"></textarea></div>
       <div class="iq__actions">
-        <button class="btn btn-white" type="submit">Discuss a project</button>
+        <button class="btn btn-white" type="submit" id="iqSubmit">Discuss a project</button>
         <a class="btn btn-ghost" href="mailto:hello@solutionstud.io">Email Nick directly</a>
       </div>
+      <p class="iq__status" id="iqStatus" role="status" aria-live="polite"></p>
     </form>
     <p class="cta-note reveal">I accept a limited number of advisory, build, and fractional engagements at a time so I can remain directly involved.</p>
   </div>
@@ -1314,13 +1328,70 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     if (e.key === 'Escape') document.querySelectorAll('.pmx.open').forEach(closeM);
   });
 
-  // Inquiry form -> pre-filled email draft (swap for a form endpoint before launch)
-  document.getElementById('iqForm').addEventListener('submit', (e) => {
+  // Inquiry form → Google Sheet via Apps Script (see forms/inquiry-to-sheet.gs)
+  // Paste the Web App URL from Deploy → New deployment after one-time setup.
+  const INQUIRY_ENDPOINT = '';
+
+  const iqForm = document.getElementById('iqForm');
+  const iqStatus = document.getElementById('iqStatus');
+  const iqSubmit = document.getElementById('iqSubmit');
+  const setIqStatus = (msg, state) => {
+    iqStatus.textContent = msg;
+    if (state) iqStatus.dataset.state = state;
+    else delete iqStatus.dataset.state;
+  };
+
+  iqForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const g = (id) => document.getElementById(id).value;
-    const body = 'Name: ' + g('iqName') + '\nCompany: ' + g('iqCo') + '\nEmail: ' + g('iqEmail') + '\nEngagement: ' + g('iqType') + '\nTiming: ' + g('iqWhen') + '\n\n' + g('iqMsg');
-    const subj = 'Project inquiry — ' + (g('iqCo') || g('iqName'));
-    location.href = 'mailto:hello@solutionstud.io?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+    const g = (id) => document.getElementById(id).value.trim();
+    const payload = {
+      name: g('iqName'),
+      company: g('iqCo'),
+      email: g('iqEmail'),
+      timing: g('iqWhen'),
+      engagement: g('iqType'),
+      message: g('iqMsg'),
+      website: g('iqWebsite'),
+      page: location.href,
+      userAgent: navigator.userAgent
+    };
+
+    if (!payload.name || !payload.email) {
+      setIqStatus('Please add your name and email.', 'err');
+      return;
+    }
+
+    // Until the Google Apps Script URL is configured, fall back to mailto.
+    if (!INQUIRY_ENDPOINT) {
+      const body = 'Name: ' + payload.name + '\nCompany: ' + payload.company + '\nEmail: ' + payload.email + '\nEngagement: ' + payload.engagement + '\nTiming: ' + payload.timing + '\n\n' + payload.message;
+      const subj = 'Project inquiry — ' + (payload.company || payload.name);
+      setIqStatus('Opening your email app to send this to Nick…', 'pending');
+      location.href = 'mailto:hello@solutionstud.io?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+      return;
+    }
+
+    iqSubmit.disabled = true;
+    setIqStatus('Sending…', 'pending');
+    try {
+      const res = await fetch(INQUIRY_ENDPOINT, {
+        method: 'POST',
+        // text/plain avoids a CORS preflight against Google Apps Script
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+        redirect: 'follow'
+      });
+      let data = null;
+      try { data = await res.json(); } catch (_) {}
+      if (!res.ok || (data && data.ok === false)) {
+        throw new Error((data && data.error) || 'Request failed');
+      }
+      iqForm.classList.add('is-sent');
+      setIqStatus('Thanks — your note is in. I\'ll follow up by email.', 'ok');
+      iqForm.reset();
+    } catch (err) {
+      setIqStatus('Something went wrong sending the form. Email hello@solutionstud.io and I\'ll pick it up.', 'err');
+      iqSubmit.disabled = false;
+    }
   });
 
     // Mobile systems-map expanders
