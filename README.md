@@ -7,6 +7,7 @@ Static site for [solutionstud.io](https://solutionstud.io), deployed on **Cloudf
 | `/` | Main site |
 | `/ai/` | Practical AI for small business |
 | `/serviceai/` | AI for service businesses & skilled trades |
+| `/serviceai/garage-door/` | AI for garage door companies |
 | `/nonprofitai/` | Practical AI for nonprofits |
 | `/privacy/` | Privacy policy |
 
