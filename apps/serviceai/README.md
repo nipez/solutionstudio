@@ -51,7 +51,7 @@ npm test
 | Job types like `gas_smell`, CO, or “talk to a person” | **Escalate** to on-call dispatcher |
 | Unknown phone + routine without name/address | **Needs follow-up** |
 
-Demo clock defaults to `2026-01-15T21:48:00-05:00` (Wed 9:48 PM ET) via `DEFAULT_DEMO_NOW_ISO` / optional `DEMO_NOW` in `.env`.
+Demo clock defaults to `2026-01-15T21:48:00-05:00` (Thu 9:48 PM ET) via `DEFAULT_DEMO_NOW_ISO` / optional `DEMO_NOW` in `.env`.
 
 Seed customer for the hero path: **Maria Delgado** `+15550120001` @ 1847 Oak Ridge Dr.
 
