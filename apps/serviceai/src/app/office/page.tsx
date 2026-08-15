@@ -1,5 +1,5 @@
-import { OfficeBoard } from "@/components/OfficeBoard";
+import { redirect } from "next/navigation";
 
-export default function OfficePage() {
-  return <OfficeBoard />;
+export default function OfficeRedirect() {
+  redirect("/command");
 }

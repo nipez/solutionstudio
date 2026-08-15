@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { AppNav } from "@/components/AppNav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Service AI — After-hours booking",
+  title: "Service AI",
   description:
-    "First working slice: after-hours voice booking for trades. Simulated call UI + office job board.",
+    "Hatch-like AI platform for trades — voice, messaging, journeys, knowledge, command center.",
 };
 
 export default function RootLayout({
@@ -25,16 +25,7 @@ export default function RootLayout({
       </head>
       <body>
         <div className="app-shell">
-          <header className="topnav">
-            <div className="brand">
-              <strong>Service AI</strong>
-              <span>After-hours booking · Summit Comfort HVAC demo</span>
-            </div>
-            <nav className="nav-links">
-              <Link href="/">Simulated call</Link>
-              <Link href="/office">Office</Link>
-            </nav>
-          </header>
+          <AppNav />
           {children}
         </div>
       </body>

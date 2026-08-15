@@ -121,6 +121,15 @@ export function shouldEscalate(
       reason: `Job type "${ctx.jobType}" requires a human dispatcher`,
     };
   }
+  const catalogHit = shop.jobTypes?.find(
+    (j) => j.id === normalizedType || j.label.toLowerCase() === ctx.jobType.trim().toLowerCase(),
+  );
+  if (catalogHit?.alwaysEscalate) {
+    return {
+      escalate: true,
+      reason: `Job type "${catalogHit.label}" requires a human dispatcher`,
+    };
+  }
   const hit = matchesEscalateKeyword(shop, `${ctx.jobType} ${ctx.problemSummary}`);
   if (hit) {
     return {
@@ -372,6 +381,7 @@ export function applyBooking(
   const job: JobRecord = {
     id: jobId,
     callId: input.callId,
+    conversationId: input.conversationId,
     createdAtIso: new Date().toISOString(),
     status: "booked",
     shopId: state.shop.shopId,
@@ -381,6 +391,7 @@ export function applyBooking(
     problemSummary: input.problemSummary,
     fromPhone: normalizePhone(input.fromPhone),
     calledAtIso: input.calledAtIso,
+    channel: input.channel ?? "voice",
     customerId: resolved.customer?.id,
     customerName: resolved.customerName,
     propertyId: resolved.property?.id,
@@ -411,8 +422,23 @@ export function applyBooking(
     ),
     jobs: [job, ...state.jobs],
     calls: state.calls.map((c) =>
-      c.id === input.callId ? { ...c, status: "booked", jobId } : c,
+      c.id === input.callId
+        ? { ...c, status: "booked", jobId, conversationId: input.conversationId }
+        : c,
     ),
+    conversations: input.conversationId
+      ? state.conversations.map((conv) =>
+          conv.id === input.conversationId
+            ? {
+                ...conv,
+                status: "booked" as const,
+                jobId,
+                customerId: resolved.customer?.id,
+                updatedAtIso: new Date().toISOString(),
+              }
+            : conv,
+        )
+      : state.conversations,
   };
 
   return { state: next, job };
@@ -438,6 +464,7 @@ export function applyEscalation(
   const job: JobRecord = {
     id: jobId,
     callId: input.callId,
+    conversationId: input.conversationId,
     createdAtIso: new Date().toISOString(),
     status: "escalated",
     shopId: state.shop.shopId,
@@ -447,6 +474,7 @@ export function applyEscalation(
     problemSummary: input.problemSummary,
     fromPhone: normalizePhone(input.fromPhone),
     calledAtIso: input.calledAtIso,
+    channel: input.channel ?? "voice",
     customerId: resolved.customer?.id,
     customerName: resolved.customerName,
     propertyId: resolved.property?.id,
@@ -471,8 +499,23 @@ export function applyEscalation(
       : state.properties,
     jobs: [job, ...state.jobs],
     calls: state.calls.map((c) =>
-      c.id === input.callId ? { ...c, status: "escalated", jobId } : c,
+      c.id === input.callId
+        ? { ...c, status: "escalated", jobId, conversationId: input.conversationId }
+        : c,
     ),
+    conversations: input.conversationId
+      ? state.conversations.map((conv) =>
+          conv.id === input.conversationId
+            ? {
+                ...conv,
+                status: "escalated" as const,
+                jobId,
+                customerId: resolved.customer?.id,
+                updatedAtIso: new Date().toISOString(),
+              }
+            : conv,
+        )
+      : state.conversations,
   };
 
   return { state: next, job };
@@ -492,6 +535,7 @@ export function applyNeedsFollowUp(
   const job: JobRecord = {
     id: jobId,
     callId: input.callId,
+    conversationId: input.conversationId,
     createdAtIso: new Date().toISOString(),
     status: "needs_follow_up",
     shopId: state.shop.shopId,
@@ -501,6 +545,7 @@ export function applyNeedsFollowUp(
     problemSummary: input.problemSummary,
     fromPhone: normalizePhone(input.fromPhone),
     calledAtIso: input.calledAtIso,
+    channel: input.channel ?? "voice",
     customerId: resolved.customer?.id,
     customerName: resolved.customerName,
     propertyId: resolved.property?.id,
@@ -519,8 +564,28 @@ export function applyNeedsFollowUp(
       : state.properties,
     jobs: [job, ...state.jobs],
     calls: state.calls.map((c) =>
-      c.id === input.callId ? { ...c, status: "needs_follow_up", jobId } : c,
+      c.id === input.callId
+        ? {
+            ...c,
+            status: "needs_follow_up",
+            jobId,
+            conversationId: input.conversationId,
+          }
+        : c,
     ),
+    conversations: input.conversationId
+      ? state.conversations.map((conv) =>
+          conv.id === input.conversationId
+            ? {
+                ...conv,
+                status: "needs_follow_up" as const,
+                jobId,
+                customerId: resolved.customer?.id,
+                updatedAtIso: new Date().toISOString(),
+              }
+            : conv,
+        )
+      : state.conversations,
   };
 
   return { state: next, job };

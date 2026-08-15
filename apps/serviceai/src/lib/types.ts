@@ -1,4 +1,4 @@
-/** Domain types for the after-hours booking loop. */
+/** Domain types for the Service AI platform (Hatch-like surfaces on one booking core). */
 
 export type Trade = "hvac" | "plumbing" | "electrical" | "garage_door" | "roofing";
 
@@ -6,7 +6,9 @@ export type Urgency = "emergency" | "same_day" | "routine";
 
 export type CallOutcome = "booked" | "escalated" | "needs_follow_up";
 
-export type JobStatus = CallOutcome;
+export type JobStatus = CallOutcome | "in_progress";
+
+export type Channel = "voice" | "sms" | "email" | "form";
 
 export type Weekday =
   | "monday"
@@ -22,22 +24,37 @@ export interface BusinessHoursWindow {
   close: string;
 }
 
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+export interface JobTypeDef {
+  id: string;
+  label: string;
+  defaultUrgency: Urgency;
+  alwaysEscalate?: boolean;
+}
+
 export interface ShopRules {
   shopId: string;
   name: string;
   trade: Trade;
   timezone: string;
   businessHours: Record<Weekday, BusinessHoursWindow | null>;
-  /** After this local hour, emergency overnight slots are closed; offer next-morning emergency. */
+  /** At/after this local hour, emergency overnight slots close → morning emergency. */
   emergencyCutoffHour: number;
-  /** Job types that always escalate to a human. */
   alwaysEscalateJobTypes: string[];
-  /** Keywords / phrases that force human escalation. */
   escalateKeywords: string[];
-  /** Minutes reserved for a routine appointment. */
   routineSlotMinutes: number;
-  /** Minutes reserved for an emergency appointment. */
   emergencySlotMinutes: number;
+  /** Knowledge Engine additions */
+  brandVoice: string;
+  afterHoursGreeting: string;
+  serviceArea: { cities: string[]; postalPrefixes: string[] };
+  faqs: FaqItem[];
+  jobTypes: JobTypeDef[];
 }
 
 export interface Property {
@@ -52,7 +69,7 @@ export interface Property {
 export interface Customer {
   id: string;
   name: string;
-  phone: string; // E.164-ish, digits ok
+  phone: string;
   email?: string;
   propertyIds: string[];
   notes?: string;
@@ -62,7 +79,6 @@ export interface Technician {
   id: string;
   name: string;
   trades: Trade[];
-  /** Can take after-hours / on-call emergencies. */
   onCall: boolean;
   active: boolean;
 }
@@ -77,20 +93,15 @@ export interface CalendarSlot {
 }
 
 export interface IncomingCallContext {
-  /** Caller ID as received from the voice provider / sim UI. */
   fromPhone: string;
-  /** Wall clock for the call (demo can freeze at 9:48 PM). */
   calledAtIso: string;
-  /** Free-text description of the problem. */
   problemSummary: string;
-  /** Caller-stated or inferred job type. */
   jobType: string;
   urgency: Urgency;
-  /** Optional new-caller details when phone is unknown. */
   newCallerName?: string;
   newCallerAddress?: string;
-  /** Caller explicitly asks for a person. */
   requestHuman?: boolean;
+  channel?: Channel;
 }
 
 export interface IdentifiedCaller {
@@ -145,6 +156,8 @@ export interface ConfirmBookingInput {
   calledAtIso: string;
   newCallerName?: string;
   newCallerAddress?: string;
+  conversationId?: string;
+  channel?: Channel;
 }
 
 export interface EscalateInput {
@@ -158,11 +171,14 @@ export interface EscalateInput {
   newCallerName?: string;
   newCallerAddress?: string;
   requestHuman?: boolean;
+  conversationId?: string;
+  channel?: Channel;
 }
 
 export interface JobRecord {
   id: string;
   callId: string;
+  conversationId?: string;
   createdAtIso: string;
   status: JobStatus;
   shopId: string;
@@ -172,6 +188,7 @@ export interface JobRecord {
   problemSummary: string;
   fromPhone: string;
   calledAtIso: string;
+  channel?: Channel;
   customerId?: string;
   customerName: string;
   propertyId?: string;
@@ -184,16 +201,108 @@ export interface JobRecord {
   escalationReason?: string;
   escalateTo?: "on_call_dispatcher" | "morning_office";
   notes: string[];
+  crmRecordId?: string;
 }
 
 export interface CallRecord {
   id: string;
   startedAtIso: string;
   fromPhone: string;
-  channel: "sim" | "voice_webhook";
+  channel: "sim" | "voice_webhook" | "sms" | "email";
   status: JobStatus | "in_progress";
   jobId?: string;
+  conversationId?: string;
   transcript: { role: "assistant" | "caller" | "system"; text: string; atIso: string }[];
+}
+
+export type MessageRole = "customer" | "ai" | "human" | "system";
+
+export interface ConversationMessage {
+  id: string;
+  role: MessageRole;
+  channel: Channel;
+  body: string;
+  atIso: string;
+  meta?: Record<string, string>;
+}
+
+export interface Conversation {
+  id: string;
+  channel: Channel;
+  fromPhone: string;
+  fromEmail?: string;
+  fromName?: string;
+  subject?: string;
+  status: JobStatus | "in_progress";
+  jobId?: string;
+  customerId?: string;
+  humanTakeover: boolean;
+  createdAtIso: string;
+  updatedAtIso: string;
+  messages: ConversationMessage[];
+  journeyRunId?: string;
+}
+
+export type JourneyChannel = "voice" | "sms" | "email" | "system";
+
+export interface JourneyStep {
+  id: string;
+  channel: JourneyChannel;
+  /** Template with {{customerName}}, {{appointment}}, {{technician}} */
+  template: string;
+  delayMinutes: number;
+  action?: "sms_confirm" | "sms_reminder" | "email_followup" | "offer_or_book" | "noop";
+}
+
+export interface JourneyDefinition {
+  id: string;
+  name: string;
+  description: string;
+  trigger:
+    | "after_hours_emergency_booked"
+    | "new_lead_inbound_sms"
+    | "manual";
+  enabled: boolean;
+  steps: JourneyStep[];
+}
+
+export interface JourneyRunLog {
+  atIso: string;
+  stepId: string;
+  detail: string;
+}
+
+export interface JourneyRun {
+  id: string;
+  journeyId: string;
+  conversationId: string;
+  jobId?: string;
+  status: "running" | "completed" | "stopped";
+  stepIndex: number;
+  startedAtIso: string;
+  nextStepAtIso?: string;
+  log: JourneyRunLog[];
+}
+
+/** In-app CRM stub records (Data Bridge). */
+export interface CrmRecord {
+  id: string;
+  externalSystem: "in_app_stub";
+  customerId: string;
+  customerName: string;
+  phone: string;
+  email?: string;
+  propertyId?: string;
+  propertyAddress?: string;
+  jobId: string;
+  jobType: string;
+  urgency: Urgency;
+  status: JobStatus;
+  appointmentStartIso?: string;
+  appointmentEndIso?: string;
+  technicianName?: string;
+  writtenAtIso: string;
+  notes: string[];
 }
 
 export interface ShopState {
@@ -204,4 +313,8 @@ export interface ShopState {
   slots: CalendarSlot[];
   jobs: JobRecord[];
   calls: CallRecord[];
+  conversations: Conversation[];
+  journeys: JourneyDefinition[];
+  journeyRuns: JourneyRun[];
+  crmRecords: CrmRecord[];
 }

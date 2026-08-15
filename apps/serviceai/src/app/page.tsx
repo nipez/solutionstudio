@@ -1,5 +1,5 @@
-import { SimCall } from "@/components/SimCall";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  return <SimCall />;
+  redirect("/command");
 }

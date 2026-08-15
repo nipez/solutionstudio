@@ -1,15 +1,14 @@
 import { NextResponse } from "next/server";
+import { BRIDGE_PROVIDER_NOTES } from "@/lib/bridge/crm";
 import { loadState } from "@/lib/store";
 
 export const runtime = "nodejs";
 
-/** @deprecated Prefer /api/command — kept for the first-slice office view. */
 export async function GET() {
   const state = loadState();
   return NextResponse.json({
-    jobs: state.jobs,
-    calls: state.calls,
-    conversations: state.conversations,
-    crmRecords: state.crmRecords,
+    adapter: "in_app_stub",
+    notes: BRIDGE_PROVIDER_NOTES,
+    records: state.crmRecords,
   });
 }

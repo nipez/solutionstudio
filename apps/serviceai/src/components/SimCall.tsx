@@ -80,6 +80,7 @@ export function SimCall() {
     scenario.newCallerAddress ?? "",
   );
   const [callId, setCallId] = useState<string | null>(null);
+  const [conversationId, setConversationId] = useState<string | null>(null);
   const [calledAtIso, setCalledAtIso] = useState(scenario.calledAtIso);
   const [decision, setDecision] = useState<BookingDecision | null>(null);
   const [job, setJob] = useState<JobRecord | null>(null);
@@ -97,6 +98,7 @@ export function SimCall() {
     setNewCallerAddress(next.newCallerAddress ?? "");
     setCalledAtIso(next.calledAtIso);
     setCallId(null);
+    setConversationId(null);
     setDecision(null);
     setJob(null);
     setTranscript([]);
@@ -113,6 +115,7 @@ export function SimCall() {
         body: JSON.stringify({ action: "reset" }),
       });
       setCallId(null);
+      setConversationId(null);
       setDecision(null);
       setJob(null);
       setTranscript([{ role: "system", text: "Shop data reset to seed." }]);
@@ -137,6 +140,7 @@ export function SimCall() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Start failed");
       setCallId(data.call.id);
+      setConversationId(data.conversationId ?? data.call.conversationId ?? null);
       setCalledAtIso(data.calledAtIso);
       setTranscript(
         data.call.transcript.map((t: TranscriptLine) => ({
@@ -161,6 +165,7 @@ export function SimCall() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           callId,
+          conversationId: conversationId ?? undefined,
           fromPhone,
           calledAtIso,
           problemSummary,
@@ -202,6 +207,7 @@ export function SimCall() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           callId,
+          conversationId: conversationId ?? undefined,
           slotId,
           fromPhone,
           calledAtIso,
@@ -219,7 +225,7 @@ export function SimCall() {
         ...prev,
         {
           role: "assistant",
-          text: `Booked with ${data.job.technicianName}. Office has the complete job record.`,
+          text: `Booked with ${data.job.technicianName}. CRM ${data.crmId ?? "written"}. Office has the complete job record.`,
         },
       ]);
     } catch (e) {
@@ -239,6 +245,7 @@ export function SimCall() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           callId,
+          conversationId: conversationId ?? undefined,
           fromPhone,
           calledAtIso,
           problemSummary,
@@ -289,7 +296,9 @@ export function SimCall() {
       const startData = await startRes.json();
       if (!startRes.ok) throw new Error(startData.error ?? "Start failed");
       const id = startData.call.id as string;
+      const convId = (startData.conversationId ?? startData.call.conversationId) as string;
       setCallId(id);
+      setConversationId(convId);
       setCalledAtIso(startData.calledAtIso);
 
       const evalRes = await fetch("/api/demo/call?step=evaluate", {
@@ -297,6 +306,7 @@ export function SimCall() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           callId: id,
+          conversationId: convId,
           fromPhone,
           calledAtIso: startData.calledAtIso,
           problemSummary,
@@ -325,6 +335,7 @@ export function SimCall() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             callId: id,
+            conversationId: convId,
             slotId,
             fromPhone,
             calledAtIso: startData.calledAtIso,
@@ -340,7 +351,7 @@ export function SimCall() {
         setJob(bookData.job);
         lines.push({
           role: "assistant",
-          text: `Recognized ${evalData.decision.caller.displayName}. ${evalData.decision.reason}. Booked with ${bookData.job.technicianName}.`,
+          text: `Recognized ${evalData.decision.caller.displayName}. ${evalData.decision.reason}. Booked with ${bookData.job.technicianName}. CRM ${bookData.crmId}.`,
         });
       } else if (evalData.decision.action === "escalate") {
         const escRes = await fetch("/api/demo/call?step=escalate", {
@@ -348,6 +359,7 @@ export function SimCall() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             callId: id,
+            conversationId: convId,
             fromPhone,
             calledAtIso: startData.calledAtIso,
             problemSummary,
@@ -371,6 +383,7 @@ export function SimCall() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             callId: id,
+            conversationId: convId,
             fromPhone,
             calledAtIso: startData.calledAtIso,
             problemSummary,
@@ -606,8 +619,8 @@ export function SimCall() {
               )}
               {job.escalationReason && <p>{job.escalationReason}</p>}
               <p>
-                Open the <a href="/office">office board</a> to see the complete
-                record.
+                Open the <a href="/command">Command Center</a> for the full
+                thread and CRM write.
               </p>
             </div>
           )}

@@ -4,8 +4,14 @@ import {
   applyEscalation,
   evaluateCall,
   getDemoNow,
+  identifyCaller,
   normalizePhone,
 } from "@/lib/booking/engine";
+import {
+  appendConversationMessage,
+  createConversation,
+} from "@/lib/conversations";
+import { afterEscalationCommitted, afterJobCommitted } from "@/lib/orchestrate";
 import {
   appendTranscript,
   loadState,
@@ -21,11 +27,6 @@ import {
 
 export const runtime = "nodejs";
 
-/**
- * Stub voice webhook.
- * POST JSON shaped like our VoiceWebhookEvent, or Twilio/Vapi-like bodies
- * with `?provider=twilio|vapi`. No provider keys required for the demo.
- */
 export async function POST(request: Request) {
   const url = new URL(request.url);
   const providerHint = url.searchParams.get("provider") ?? "stub";
@@ -45,34 +46,60 @@ export async function POST(request: Request) {
 
   const calledAtIso = event.calledAtIso ?? getDemoNow().toISOString();
   let state = loadState();
+  const phone = normalizePhone(event.fromPhone);
+  const identified = identifyCaller(state, phone);
+
+  const conv = createConversation(state, {
+    channel: "voice",
+    fromPhone: phone,
+    fromName: identified.displayName,
+    atIso: calledAtIso,
+    customerId: identified.customer?.id,
+    openingMessage: {
+      role: "ai",
+      body: state.shop.afterHoursGreeting,
+      channel: "voice",
+    },
+  });
+  state = conv.state;
 
   let callId = event.callId;
   if (!callId || event.event === "call.started") {
     const started = startCall(
       state,
-      normalizePhone(event.fromPhone),
+      phone,
       "voice_webhook",
       calledAtIso,
+      conv.conversation.id,
     );
     state = started.state;
     callId = started.call.id;
-    saveState(state);
   }
 
   if (event.speechText) {
     state = appendTranscript(state, callId, "caller", event.speechText);
-    saveState(state);
+    state = appendConversationMessage(
+      state,
+      conv.conversation.id,
+      "customer",
+      event.speechText,
+      "voice",
+      calledAtIso,
+    );
   }
 
   const ctx = toIncomingCallContext(event, calledAtIso);
   if (!ctx) {
+    saveState(state);
     return NextResponse.json({
       ok: true,
       callId,
+      conversationId: conv.conversation.id,
       message: "Event accepted; waiting for structured intent",
     });
   }
 
+  ctx.channel = "voice";
   const decision = evaluateCall(state, ctx);
 
   if (decision.action === "escalate") {
@@ -87,29 +114,36 @@ export async function POST(request: Request) {
       newCallerName: ctx.newCallerName,
       newCallerAddress: ctx.newCallerAddress,
       requestHuman: ctx.requestHuman,
+      conversationId: conv.conversation.id,
+      channel: "voice",
     });
-    saveState(next);
+    const orch = afterEscalationCommitted(next, job);
+    saveState(orch.state);
     return NextResponse.json({
       ok: true,
       callId,
+      conversationId: conv.conversation.id,
       decision,
-      job,
+      job: orch.job,
+      crmId: orch.crmId,
       say: `I need to connect you with a dispatcher. ${decision.reason}`,
     });
   }
 
   if (decision.action === "needs_follow_up") {
+    saveState(state);
     return NextResponse.json({
       ok: true,
       callId,
+      conversationId: conv.conversation.id,
       decision,
       say: decision.reason,
     });
   }
 
-  // Auto-book first offer for webhook path (voice can confirm in a later slice)
   const slotId = decision.offers[0]?.slotId;
   if (!slotId) {
+    saveState(state);
     return NextResponse.json({
       ok: true,
       callId,
@@ -128,14 +162,23 @@ export async function POST(request: Request) {
     urgency: ctx.urgency,
     newCallerName: ctx.newCallerName,
     newCallerAddress: ctx.newCallerAddress,
+    conversationId: conv.conversation.id,
+    channel: "voice",
   });
-  saveState(next);
+  const orch = afterJobCommitted(next, job, {
+    nowIso: calledAtIso,
+    runImmediateJourneySteps: true,
+  });
+  saveState(orch.state);
 
   return NextResponse.json({
     ok: true,
     callId,
+    conversationId: conv.conversation.id,
     decision,
-    job,
+    job: orch.job,
+    crmId: orch.crmId,
+    journeyRun: orch.journeyRun,
     say: `Booked ${job.appointmentStartIso} with ${job.technicianName}.`,
   });
 }
@@ -144,17 +187,6 @@ export async function GET() {
   return NextResponse.json({
     endpoint: "/api/voice/webhook",
     providers: ["stub", "twilio", "vapi"],
-    note: "No API keys required. POST a stub intent payload to exercise the same booking engine as the sim UI.",
-    example: {
-      provider: "stub",
-      event: "call.intent",
-      fromPhone: "+15550120001",
-      calledAtIso: "2026-01-15T21:48:00-05:00",
-      intent: {
-        jobType: "no_heat",
-        urgency: "emergency",
-        problemSummary: "Furnace blowing cold air, house at 58°F",
-      },
-    },
+    note: "No API keys required. Same booking engine + CRM stub + journeys as the Voice UI.",
   });
 }

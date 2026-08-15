@@ -6,8 +6,14 @@ import {
   applyNeedsFollowUp,
   evaluateCall,
   getDemoNow,
+  identifyCaller,
   normalizePhone,
 } from "@/lib/booking/engine";
+import {
+  appendConversationMessage,
+  createConversation,
+} from "@/lib/conversations";
+import { afterEscalationCommitted, afterJobCommitted } from "@/lib/orchestrate";
 import { appendTranscript, loadState, saveState, startCall } from "@/lib/store";
 
 export const runtime = "nodejs";
@@ -19,6 +25,7 @@ const StartSchema = z.object({
 
 const EvaluateSchema = z.object({
   callId: z.string(),
+  conversationId: z.string().optional(),
   fromPhone: z.string().min(7),
   calledAtIso: z.string().optional(),
   problemSummary: z.string().min(3),
@@ -31,6 +38,7 @@ const EvaluateSchema = z.object({
 
 const BookSchema = z.object({
   callId: z.string(),
+  conversationId: z.string().optional(),
   slotId: z.string(),
   fromPhone: z.string().min(7),
   calledAtIso: z.string().optional(),
@@ -43,6 +51,7 @@ const BookSchema = z.object({
 
 const EscalateSchema = z.object({
   callId: z.string(),
+  conversationId: z.string().optional(),
   fromPhone: z.string().min(7),
   calledAtIso: z.string().optional(),
   problemSummary: z.string().min(3),
@@ -64,20 +73,34 @@ export async function POST(request: Request) {
     const input = StartSchema.parse(body);
     const calledAtIso = input.calledAtIso ?? getDemoNow().toISOString();
     let state = loadState();
-    const started = startCall(
-      state,
-      normalizePhone(input.fromPhone),
-      "sim",
-      calledAtIso,
-    );
+    const phone = normalizePhone(input.fromPhone);
+    const identified = identifyCaller(state, phone);
+    const greeting = state.shop.afterHoursGreeting;
+
+    const conv = createConversation(state, {
+      channel: "voice",
+      fromPhone: phone,
+      fromName: identified.displayName,
+      atIso: calledAtIso,
+      customerId: identified.customer?.id,
+      openingMessage: { role: "ai", body: greeting, channel: "voice" },
+    });
+    state = conv.state;
+
+    const started = startCall(state, phone, "sim", calledAtIso, conv.conversation.id);
     state = appendTranscript(
       started.state,
       started.call.id,
       "assistant",
-      "Thanks for calling Summit Comfort HVAC. You've reached our after-hours line.",
+      greeting,
     );
     saveState(state);
-    return NextResponse.json({ call: started.call, calledAtIso });
+    return NextResponse.json({
+      call: { ...started.call, conversationId: conv.conversation.id },
+      conversationId: conv.conversation.id,
+      calledAtIso,
+      identified,
+    });
   }
 
   if (step === "evaluate") {
@@ -90,6 +113,16 @@ export async function POST(request: Request) {
       "caller",
       `${input.jobType}: ${input.problemSummary}`,
     );
+    if (input.conversationId) {
+      state = appendConversationMessage(
+        state,
+        input.conversationId,
+        "customer",
+        `${input.jobType}: ${input.problemSummary}`,
+        "voice",
+        calledAtIso,
+      );
+    }
     const decision = evaluateCall(state, {
       fromPhone: input.fromPhone,
       calledAtIso,
@@ -99,6 +132,7 @@ export async function POST(request: Request) {
       newCallerName: input.newCallerName,
       newCallerAddress: input.newCallerAddress,
       requestHuman: input.requestHuman,
+      channel: "voice",
     });
     const reply =
       decision.action === "offer_slots"
@@ -107,6 +141,16 @@ export async function POST(request: Request) {
           ? `I need to connect you with a person. ${decision.reason}.`
           : `We'll need a quick office follow-up. ${decision.reason}.`;
     state = appendTranscript(state, input.callId, "assistant", reply);
+    if (input.conversationId) {
+      state = appendConversationMessage(
+        state,
+        input.conversationId,
+        "ai",
+        reply,
+        "voice",
+        calledAtIso,
+      );
+    }
     saveState(state);
     return NextResponse.json({ decision, calledAtIso });
   }
@@ -115,15 +159,35 @@ export async function POST(request: Request) {
     const input = BookSchema.parse(body);
     const calledAtIso = input.calledAtIso ?? getDemoNow().toISOString();
     let state = loadState();
-    const result = applyBooking(state, { ...input, calledAtIso });
-    state = appendTranscript(
-      result.state,
-      input.callId,
-      "assistant",
-      `You're booked with ${result.job.technicianName} at ${result.job.appointmentStartIso}. The office has the complete job record.`,
-    );
+    const result = applyBooking(state, {
+      ...input,
+      calledAtIso,
+      conversationId: input.conversationId,
+      channel: "voice",
+    });
+    const orch = afterJobCommitted(result.state, result.job, {
+      nowIso: calledAtIso,
+      runImmediateJourneySteps: true,
+    });
+    state = orch.state;
+    const convId = input.conversationId ?? orch.job.conversationId;
+    if (convId) {
+      state = appendConversationMessage(
+        state,
+        convId,
+        "ai",
+        `You're booked with ${orch.job.technicianName}. The office and CRM have the complete job record.`,
+        "voice",
+        calledAtIso,
+      );
+    }
     saveState(state);
-    return NextResponse.json({ job: result.job });
+    return NextResponse.json({
+      job: orch.job,
+      crmId: orch.crmId,
+      journeyRun: orch.journeyRun,
+      conversationId: convId,
+    });
   }
 
   if (step === "escalate") {
@@ -131,18 +195,35 @@ export async function POST(request: Request) {
     const calledAtIso = input.calledAtIso ?? getDemoNow().toISOString();
     let state = loadState();
     const result = input.asFollowUp
-      ? applyNeedsFollowUp(state, { ...input, calledAtIso })
-      : applyEscalation(state, { ...input, calledAtIso });
-    state = appendTranscript(
-      result.state,
-      input.callId,
-      "assistant",
-      input.asFollowUp
-        ? "I've flagged this for office follow-up at open."
-        : "Connecting you to a person now. Your details are on the job record.",
-    );
+      ? applyNeedsFollowUp(state, {
+          ...input,
+          calledAtIso,
+          conversationId: input.conversationId,
+          channel: "voice",
+        })
+      : applyEscalation(state, {
+          ...input,
+          calledAtIso,
+          conversationId: input.conversationId,
+          channel: "voice",
+        });
+    const orch = afterEscalationCommitted(result.state, result.job);
+    if (input.conversationId) {
+      state = appendConversationMessage(
+        orch.state,
+        input.conversationId,
+        "ai",
+        input.asFollowUp
+          ? "I've flagged this for office follow-up at open."
+          : "Connecting you to a person now. Your details are on the job record.",
+        "voice",
+        calledAtIso,
+      );
+    } else {
+      state = orch.state;
+    }
     saveState(state);
-    return NextResponse.json({ job: result.job });
+    return NextResponse.json({ job: orch.job, crmId: orch.crmId });
   }
 
   return NextResponse.json({ error: "Unknown step" }, { status: 400 });
