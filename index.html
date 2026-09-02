@@ -29,6 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site-chrome.css">
 <style>
 :root{
   --white:#FFFFFF;
@@ -629,43 +630,41 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
 </head>
 <body>
 
-<header class="hdr" id="hdr">
-  <div class="hdr__inner">
-    <a class="hdr__brand" href="/"><img id="navLogo" alt=""><span>Solution Studio</span></a>
-    <ul class="hdr__nav">
-      <li><a href="#build">What we build</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#engage">Engage</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="/ai/">AI</a></li>
-      <li><a href="/serviceai/">Trades</a></li>
-      <li><a href="/nonprofitai/">Nonprofits</a></li>
-      <li><a class="hdr__cta" href="#contact">Let's Build Together</a></li>
+<!-- SITE_NAV_START -->
+<header class="site-hdr site-hdr--over-hero" id="siteHdr">
+  <div class="site-hdr__inner">
+    <a class="site-hdr__brand" href="/"><img src="assets/logo.png" alt=""><span>Solution Studio</span></a>
+    <ul class="site-hdr__nav">
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/ai/">For business</a></li>
+      <li><a href="/serviceai/">For trades</a></li>
+      <li><a href="/nonprofitai/">For nonprofits</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a class="site-hdr__cta" href="#contact">Let's Build Together</a></li>
     </ul>
-    <button class="hdr__burger" id="burger" aria-label="Open menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <button class="site-hdr__burger" id="siteBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteMnav">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
   </div>
 </header>
 
-<div class="mnav" id="mnav" aria-hidden="true">
-  <div class="mnav__top">
-    <span class="mnav__brand"><img id="mnavLogo" alt=""><span>Solution Studio</span></span>
-    <button class="mnav__close" id="mnavClose" aria-label="Close menu">
-      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+<div class="site-mnav" id="siteMnav" aria-hidden="true">
+  <div class="site-mnav__top">
+    <a class="site-mnav__brand" href="/"><img src="assets/logo.png" alt=""><span>Solution Studio</span></a>
+    <button class="site-mnav__close" id="siteMnavClose" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
-  <ul class="mnav__links">
-    <li><a href="#build">What we build</a></li>
-    <li><a href="#work">Selected work</a></li>
-    <li><a href="#how">How we work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="/ai/">AI for business</a></li>
-    <li><a href="/serviceai/">AI for the trades</a></li>
-    <li><a href="/nonprofitai/">AI for nonprofits</a></li>
+  <ul class="site-mnav__links">
+    <li><a href="/#work">Work</a></li>
+    <li><a href="/ai/">For business</a></li>
+    <li><a href="/serviceai/">For trades</a></li>
+    <li><a href="/nonprofitai/">For nonprofits</a></li>
+    <li><a href="/#about">About</a></li>
   </ul>
-  <a class="btn btn-white mnav__cta" href="#contact">Let's Build Together</a>
+  <a class="site-mnav__cta" href="#contact">Let's Build Together</a>
 </div>
+<!-- SITE_NAV_END -->
 
 <section class="hero">
   <div class="hero__media" id="heroImg" role="img" aria-label="Aerial view of Lake Michigan shoreline"></div>
@@ -1280,45 +1279,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
 <script>
   document.getElementById('heroImg').style.backgroundImage = 'url(assets/hero.jpg)';
   document.getElementById('aboutImg').style.backgroundImage = 'url(assets/portrait.jpg)';
-  const logoData = 'assets/logo.png';
-  document.getElementById('navLogo').src = logoData;
-  document.getElementById('mnavLogo').src = logoData;
-
-  // Sticky header state
-  const hdr = document.getElementById('hdr');
-  const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 40);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Mobile menu
-  const mnav = document.getElementById('mnav');
-  const burger = document.getElementById('burger');
-  burger.addEventListener('click', () => {
-    mnav.classList.add('open');
-    mnav.setAttribute('aria-hidden', 'false');
-    burger.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-    const firstLink = mnav.querySelector('a, button');
-    if (firstLink) firstLink.focus();
-  });
-  const closeMenu = () => {
-    mnav.classList.remove('open');
-    mnav.setAttribute('aria-hidden', 'true');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  };
-  document.getElementById('mnavClose').addEventListener('click', closeMenu);
-  mnav.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', (e) => {
-    if (!mnav.classList.contains('open')) return;
-    if (e.key === 'Escape') { closeMenu(); burger.focus(); return; }
-    if (e.key === 'Tab') {
-      const focusables = mnav.querySelectorAll('a, button');
-      const first = focusables[0], last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
 
   // Product detail modals
   const openM = (m) => { m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; m.querySelector('.pmx__close').focus(); };
@@ -1427,5 +1387,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal-bright);outlin
     io.observe(el);
   });
 </script>
+<script src="assets/site-chrome.js"></script>
 </body>
 </html>

@@ -1475,7 +1475,7 @@
       letter-spacing: 0.08em;
       color: var(--gray);
     }
-    /* Featured row "From $199" formatting on mobile */
+    /* Featured comparison row formatting on mobile */
     .compare-featured .compare-cell.compare-cost {
       flex-direction: column;
       align-items: flex-start;
@@ -2152,53 +2152,45 @@
   }
 
 </style>
+  <link rel="stylesheet" href="/assets/site-chrome.css">
 </head>
 <body>
 
-<nav id="nav">
-  <div class="container nav-inner">
-    <a href="/" class="logo">
-      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAHaAdoDASIAAhEBAxEB/8QAHQABAAMBAQEBAQEAAAAAAAAAAAYHCAQFAwECCf/EAEsQAAEABQULCgQEBgEEAgMAAAABAgMEBQZVlNHSBwgWFxhUVnN0krERFBU1NjdTk7KzNHWhwxIhcpETMUFRUqJhIjJxlSPCM0KB/8QAGwEBAAIDAQEAAAAAAAAAAAAAAAEGAgMEBwX/xAA3EQABAQMHCAkFAQEAAAAAAAAAAQIDBBESFRZScaEFBjEzUVOR0RMUMjRBYrHB4SE1YYHwciL/2gAMAwEAAhEDEQA/ALQlA8vCI9EEIbtUIQ9NUIQhdP8Amk4edPOcNt9J0yh6/iO1NfWk4T0Z0ykxn6eB5C/ba6Vr6+Kn15085w230jnTznDbfSfIGyamw1T2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9I5085w230nyAmpsE9rafXnTznDbfSOdPOcNt9J8gJqbBPa2n15085w230jnTznDbfSfICamwT2tp9edPOcNt9JJnNu3S5sUpbNP8A8av/AOyf7EUJO5fBsNWrwOWKZSRPodsE01OX6njSh6/iO1NfWk4TulD1/Edqa+tJwm91q2bkOV/rWr1P7d2LV4eGbuwUSu1aLIUUVR/NKUp5EIPZwRlJNDx9Kzmkp2ohW2MvWgvs+VlTKTyDbZZYRFl2n3ci5HdZQdtNNtKki+EhRuCMpJoePpWMEZSTQ8fSsvIHy6wP7KY8z7VVIa21hyKNwRlJNDx9KxgjKSaHj6Vl5AVgf2Ux5iqkNbaw5FG4Iykmh4+lYwRlJNDx9Ky8gKwP7KY8xVSGttYcijcEZSTQ8fSsYIykmh4+lZeQFYH9lMeYqpDW2sORRuCMpJoePpWMEZSTQ8fSsvICsD+y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" alt="Solution Studio">
-      <div class="logo-text">
-        <div class="logo-name">Solution Studio</div>
-        <div class="logo-meta">Est. 2012</div>
-      </div>
-    </a>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/ai/">For business</a>
-      <a href="#examples">What we build</a>
-      <a href="#how">How it works</a>
-      <a href="#comparison">The math</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#start" class="btn">Free assessment <span class="arrow">&rarr;</span></a>
-    </div>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteMnav">
+<!-- SITE_NAV_START -->
+<header class="site-hdr" id="siteHdr">
+  <div class="site-hdr__inner">
+    <a class="site-hdr__brand" href="/"><img src="/assets/logo.png" alt=""><span>Solution Studio</span></a>
+    <ul class="site-hdr__nav">
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/ai/">For business</a></li>
+      <li><a href="/serviceai/">For trades</a></li>
+      <li><a href="/nonprofitai/">For nonprofits</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a class="site-hdr__cta" href="#start">Let's Build Together</a></li>
+    </ul>
+    <button class="site-hdr__burger" id="siteBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteMnav">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
   </div>
-</nav>
+</header>
 
 <div class="site-mnav" id="siteMnav" aria-hidden="true">
   <div class="site-mnav__top">
-    <a class="site-mnav__brand" href="/">
-      <img src="/assets/logo.png" alt="">
-      <span>Solution Studio</span>
-    </a>
+    <a class="site-mnav__brand" href="/"><img src="/assets/logo.png" alt=""><span>Solution Studio</span></a>
     <button class="site-mnav__close" id="siteMnavClose" type="button" aria-label="Close menu">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
   <ul class="site-mnav__links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/ai/">AI for business</a></li>
-      <li><a href="#examples">What we build</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#comparison">The math</a></li>
-      <li><a href="#pricing">Engagement options</a></li>
+    <li><a href="/#work">Work</a></li>
+    <li><a href="/ai/">For business</a></li>
+    <li><a href="/serviceai/">For trades</a></li>
+    <li><a href="/nonprofitai/">For nonprofits</a></li>
+    <li><a href="/#about">About</a></li>
   </ul>
-  <a class="btn site-mnav__cta" href="#start">Free assessment <span class="arrow">&rarr;</span></a>
+  <a class="site-mnav__cta" href="#start">Let's Build Together</a>
 </div>
+<!-- SITE_NAV_END -->
 
 <!-- HERO -->
 <header class="hero">
@@ -2219,7 +2211,7 @@
         </p>
         <div class="hero-cta">
           <a href="#start" class="btn">Book a free needs assessment <span class="arrow">&rarr;</span></a>
-          <a href="#pricing" class="btn btn-outline">See engagement options</a>
+          <a href="#pricing" class="btn btn-outline">See how we work</a>
         </div>
         <div class="hero-meta">
           No software to install &middot; No long contract &middot; Sponsored options available
@@ -2596,7 +2588,7 @@
     <div class="compare-table">
       <div class="compare-row compare-header">
         <div class="compare-cell compare-name">Option</div>
-        <div class="compare-cell compare-cost">Annual cost</div>
+        <div class="compare-cell compare-cost">Typical market cost</div>
         <div class="compare-cell compare-what">What you get</div>
       </div>
 
@@ -2606,7 +2598,7 @@
           <span class="compare-sub">FT operations manager</span>
         </div>
         <div class="compare-cell compare-cost">
-          <span class="compare-amount">$80&ndash;120k</span>
+          <span class="compare-amount">$80&ndash;120k / yr</span>
         </div>
         <div class="compare-cell compare-what">
           Salary, benefits, taxes. Hard to recruit at nonprofit pay. Burnout-prone. Wears five hats and ships none of them well.
@@ -2619,7 +2611,7 @@
           <span class="compare-sub">Raiser&apos;s Edge, Salesforce NPSP, etc.</span>
         </div>
         <div class="compare-cell compare-cost">
-          <span class="compare-amount">$15&ndash;50k</span>
+          <span class="compare-amount">$15&ndash;50k / yr</span>
         </div>
         <div class="compare-cell compare-what">
           Built for orgs 10&times; your size. 80% of features you&apos;ll never use. Long implementation. Still needs someone to wire it up.
@@ -2629,10 +2621,10 @@
       <div class="compare-row">
         <div class="compare-cell compare-name">
           <strong>AI / tech consultant</strong>
-          <span class="compare-sub">$200&ndash;400/hr</span>
+          <span class="compare-sub">Hourly advisory</span>
         </div>
         <div class="compare-cell compare-cost">
-          <span class="compare-amount">$20&ndash;60k</span>
+          <span class="compare-amount">$200&ndash;400 / hr</span>
         </div>
         <div class="compare-cell compare-what">
           A deck and a strategy. You still have to build it. Or pay them again to build it. No continuity, no accountability to outcomes.
@@ -2641,26 +2633,26 @@
 
       <div class="compare-row compare-featured">
         <div class="compare-cell compare-name">
-          <strong>Solution Studio CAIO</strong>
+          <strong>Solution Studio</strong>
           <span class="compare-sub">Fractional Chief AI Officer</span>
         </div>
         <div class="compare-cell compare-cost">
-          <span class="compare-amount">From $5k</span>
-          <span class="compare-sub" style="margin-top: 4px;">launch &middot; $1,500/mo retainer &middot; sponsored available</span>
+          <span class="compare-amount">Scoped with you</span>
+          <span class="compare-sub" style="margin-top: 4px;">start &middot; first build &middot; stay &middot; sponsored available</span>
         </div>
         <div class="compare-cell compare-what">
-          A real fractional Chief AI Officer for your nonprofit. Launch to prove it, retainer to keep building. Grant-funded engagements available through capacity-builders.
+          A real fractional partner for your nonprofit. Launch to prove it, stay to keep building. Grant-funded engagements available through capacity-builders.
         </div>
       </div>
     </div>
 
     <div class="compare-footnote">
-      Built for nonprofit budgets &mdash; with grant-funded paths when the budget isn&apos;t there at all.
+      Built for nonprofit budgets &mdash; with grant-funded paths when the budget isn&apos;t there at all. We talk first; pricing follows the work.
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- HOW WE WORK / ENGAGEMENT -->
 <section id="pricing" class="pricing reveal">
   <div class="container">
     <div class="section-label">
@@ -2672,63 +2664,58 @@
     </h2>
     <p class="pricing-intro">
       Built for nonprofit reality. Every engagement starts with a free needs assessment and a written roadmap &mdash;
-      yours to keep whether you continue or not.
+      yours to keep whether you continue or not. No public studio price menu.
     </p>
 
     <div class="tiers">
       <div class="tier">
-        <div class="tier-name">Launch</div>
+        <div class="tier-name">Start</div>
         <div class="tier-price">
-          <span class="amount">From $5k</span>
-          <span class="period">one-time</span>
+          <span class="amount" style="font-size:1.35rem;">Needs assessment</span>
         </div>
-        <div class="price-detail">One automation, built end-to-end</div>
-        <p class="tier-desc">A single high-impact workflow. Scoped, built, documented, deployed. Launch the workflow eating the most staff hours and prove the model on your first build.</p>
+        <div class="price-detail">Understand the constraint first</div>
+        <p class="tier-desc">A free assessment and written roadmap. Prove where AI helps &mdash; and where it doesn&apos;t &mdash; before any build.</p>
         <ul>
-          <li>One automation, ~4&ndash;6 weeks</li>
-          <li>Loom walkthroughs + documentation</li>
-          <li>30 days of post-launch tweaks</li>
-          <li>Training for your team</li>
-          <li>Hosted &amp; monitored during launch</li>
+          <li>Free needs assessment call</li>
+          <li>Written roadmap ranked by impact</li>
+          <li>Yours to keep either way</li>
+          <li>Honest scope for a first build</li>
         </ul>
-        <a href="#start" class="btn">Start a Launch</a>
+        <a href="#start" class="btn">Book a free assessment</a>
       </div>
 
       <div class="tier featured">
-        <div class="tier-badge">Most popular</div>
-        <div class="tier-name">Fractional CAIO</div>
+        <div class="tier-badge">Most common</div>
+        <div class="tier-name">First build</div>
         <div class="tier-price">
-          <span class="amount">$1,500</span>
-          <span class="period">/ month</span>
+          <span class="amount" style="font-size:1.35rem;">Launch</span>
         </div>
-        <div class="price-detail">Your nonprofit&apos;s Chief AI Officer, on retainer</div>
-        <p class="tier-desc">A real fractional Chief AI Officer in your corner. New builds, hosted infrastructure, ongoing maintenance, and strategic guidance &mdash; without the six-figure salary.</p>
+        <div class="price-detail">One automation, built end-to-end</div>
+        <p class="tier-desc">A single high-impact workflow. Scoped, built, documented, deployed &mdash; priced after we understand the work.</p>
         <ul>
-          <li>One new automation built per month</li>
-          <li>Hosting, monitoring &amp; maintenance of all builds</li>
-          <li>Monthly strategy call (your CAIO time)</li>
-          <li>Priority Slack &amp; email support</li>
-          <li>Quarterly impact review</li>
+          <li>One automation, typically 4&ndash;6 weeks</li>
+          <li>Loom walkthroughs + documentation</li>
+          <li>Post-launch tweaks</li>
+          <li>Training for your team</li>
         </ul>
-        <a href="#start" class="btn">Start with CAIO</a>
+        <a href="#start" class="btn">Talk about a launch</a>
       </div>
 
       <div class="tier">
-        <div class="tier-name">Sponsored</div>
+        <div class="tier-name">Stay / Sponsored</div>
         <div class="tier-price">
-          <span class="amount">$0</span>
-          <span class="period">to your org</span>
+          <span class="amount" style="font-size:1.35rem;">Ongoing or funded</span>
         </div>
-        <div class="price-detail">Grant-funded capacity-building</div>
-        <p class="tier-desc">When a capacity-builder, foundation, or donor underwrites the work. A fractional CAIO for your org &mdash; paid for by someone investing in nonprofit infrastructure.</p>
+        <div class="price-detail">Retainer &mdash; or grant-funded capacity-building</div>
+        <p class="tier-desc">Keep a fractional CAIO in your corner, or ask a capacity-builder / foundation to underwrite the work for your org.</p>
         <ul>
-          <li>Launch or CAIO retainer, fully funded</li>
+          <li>Ongoing builds &amp; maintenance</li>
+          <li>Monthly strategy cadence</li>
           <li>Open to capacity-building intermediaries</li>
           <li>Cohort engagements for funder networks</li>
-          <li>Same delivery, same quality</li>
-          <li>Reporting back to the funder included</li>
+          <li>Funder reporting included when sponsored</li>
         </ul>
-        <a href="#start" class="btn">Explore sponsored</a>
+        <a href="#start" class="btn">Explore stay or sponsored</a>
       </div>
     </div>
   </div>
@@ -2897,7 +2884,9 @@
       </p>
     </div>
 
-    <form id="audit-form" class="audit-form" action="https://script.google.com/macros/s/AKfycbxcHPdyCCxHK2-uiCaCG8Jzr04-5mDF9up8rgcu2xH3KLq4Njl7Yu-7xTEezi9Fm_jY/exec" method="POST">
+    <p class="form-status" id="audit-status" role="status" aria-live="polite" style="min-height:1.25em;margin:0 0 1rem;color:var(--ink-soft, #666);"></p>
+    <form id="audit-form" class="audit-form" data-page="nonprofitai" action="https://script.google.com/macros/s/AKfycbyCRsSHLftFMXiwH725m5XkxZIIso3j1AFaV7pfpHtcEr_bja5zXrxVSsA86o8ihF1jJg/exec" method="POST">
+      <input type="text" name="company_url" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
       <input type="hidden" name="_subject" value="New Nonprofit Needs Assessment Request - Solution Studio">
       <input type="hidden" name="_replyto_field" value="email">
       <input type="hidden" name="source_page" value="nonprofitai">
@@ -3028,7 +3017,7 @@
         </svg>
       </div>
       <h3>Got it &mdash; thanks.</h3>
-      <p>We&apos;ll be in touch within 2 business days from <strong>nick@solutionstud.io</strong> to schedule your free needs assessment call.</p>
+      <p>We&apos;ll be in touch within 2 business days from <strong>hello@solutionstud.io</strong> to schedule your free needs assessment call.</p>
       <p style="margin-top: 18px; font-size: 15px; opacity: 0.75;">If you don&apos;t hear from us, check your spam folder &mdash; or just reply to this confirmation and we&apos;ll re-send.</p>
     </div>
   </div>
@@ -3084,16 +3073,6 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Nav scroll behavior
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
-
   // FAQ toggle
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -3104,70 +3083,109 @@
     });
   });
 
-  // Form submission - uses Formspree AJAX to keep user on page
+
+  // Inquiry form → shared Google Apps Script endpoint (same as homepage / serviceai)
+  const INQUIRY_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyCRsSHLftFMXiwH725m5XkxZIIso3j1AFaV7pfpHtcEr_bja5zXrxVSsA86o8ihF1jJg/exec';
   const form = document.getElementById('audit-form');
   const successDiv = document.getElementById('audit-success');
+  const formStatus = document.getElementById('audit-status');
 
   if (form) {
-    console.log('[SolutionStudio] Form handler attached');
-
     form.addEventListener('submit', async function(e) {
-      // CRITICAL: prevent default browser submission
       e.preventDefault();
       e.stopPropagation();
-
-      console.log('[SolutionStudio] Form submit intercepted');
 
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = 'Sending...';
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.6';
+      if (formStatus) {
+        formStatus.textContent = 'Sending…';
+        formStatus.dataset.state = 'pending';
+      }
+
+      const fd = new FormData(form);
+      const tools = fd.getAll('tools').join(', ');
+      const company = (fd.get('business') || fd.get('organization') || '').toString().trim();
+      const describe = (fd.get('describe') || '').toString().trim();
+      const pain = (fd.get('pain') || fd.get('challenge') || fd.get('notes') || '').toString().trim();
+      const team = (fd.get('team') || fd.get('staff') || '').toString().trim();
+      const revenue = (fd.get('revenue') || fd.get('budget') || '').toString().trim();
+      const websiteField = (fd.get('website') || '').toString().trim();
+      // Honeypot: bots fill company_url; real site field is optional context in message
+      const honeypot = (fd.get('company_url') || fd.get('website_hp') || '').toString().trim();
+
+      const messageParts = [];
+      if (describe) messageParts.push('About: ' + describe);
+      if (pain) messageParts.push('Challenge: ' + pain);
+      if (team) messageParts.push('Team: ' + team);
+      if (revenue) messageParts.push('Scale: ' + revenue);
+      if (tools) messageParts.push('Tools: ' + tools);
+      if (websiteField) messageParts.push('Website: ' + websiteField);
+      const extra = (fd.get('message') || fd.get('anything') || '').toString().trim();
+      if (extra) messageParts.push(extra);
+
+      const payload = {
+        name: (fd.get('name') || '').toString().trim(),
+        company: company,
+        email: (fd.get('email') || '').toString().trim(),
+        timing: (fd.get('timing') || fd.get('when') || '').toString().trim(),
+        engagement: (fd.get('engagement') || fd.get('source_page') || form.dataset.page || '').toString().trim(),
+        message: messageParts.join('\n'),
+        website: honeypot, // Apps Script honeypot
+        page: location.href,
+        userAgent: navigator.userAgent
+      };
+
+      if (!payload.name || !payload.email) {
+        if (formStatus) {
+          formStatus.textContent = 'Please add your name and email.';
+          formStatus.dataset.state = 'err';
+        }
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        return;
+      }
 
       try {
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
+        const response = await fetch(INQUIRY_ENDPOINT, {
           method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+          redirect: 'follow'
         });
-
-        console.log('[SolutionStudio] Formspree response:', response.status);
-
-        if (response.ok) {
-          // Apps Script returns HTTP 200 even on internal errors,
-          // so check the body. If it's not JSON or has no 'ok' field, assume success.
-          const data = await response.json().catch(() => ({ ok: true }));
-          if (data.ok === false) {
-            console.error('[SolutionStudio] Script returned error:', data);
-            throw new Error(data.error || 'Submission failed on server');
-          }
-          // Hide the form, show success
-          form.style.display = 'none';
+        let data = null;
+        try { data = await response.json(); } catch (_) {}
+        if (!response.ok || (data && data.ok === false)) {
+          throw new Error((data && data.error) || 'Request failed');
+        }
+        form.style.display = 'none';
+        if (successDiv) {
           successDiv.style.display = 'block';
-          // Scroll to success state - use 'start' so the success message is at the top of the viewport
-          setTimeout(() => {
-            successDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
-        } else {
-          const data = await response.json().catch(() => ({}));
-          console.error('[SolutionStudio] Submission error:', data);
-          throw new Error(data.error || 'Submission failed');
+          setTimeout(() => successDiv.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        }
+        if (formStatus) {
+          formStatus.textContent = 'Thanks — your note is in. Solution Studio will follow up by email.';
+          formStatus.dataset.state = 'ok';
         }
       } catch (err) {
-        console.error('[SolutionStudio] Error:', err);
-        alert('Something went wrong submitting the form. Please email us directly at nick@solutionstud.io and we\'ll respond right away.');
+        const msg = 'Something went wrong sending the form. Email hello@solutionstud.io and Solution Studio will pick it up.';
+        if (formStatus) {
+          formStatus.textContent = msg;
+          formStatus.dataset.state = 'err';
+        } else {
+          alert(msg);
+        }
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
       }
-
-      // Defensive: ensure no default behavior happens after async work
       return false;
     });
-  } else {
-    console.warn('[SolutionStudio] Form element not found');
   }
+
 
   // All "free audit" CTA buttons should scroll smoothly to the form
   document.querySelectorAll('a[href="#start"]').forEach(link => {
@@ -3189,34 +3207,9 @@
 
 <script>
 (function () {
-  const burger = document.getElementById('navBurger');
-  const mnav = document.getElementById('siteMnav');
-  const closeBtn = document.getElementById('siteMnavClose');
-  if (!burger || !mnav || !closeBtn) return;
-  const open = () => {
-    mnav.classList.add('open');
-    mnav.setAttribute('aria-hidden', 'false');
-    burger.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
-  };
-  const close = () => {
-    mnav.classList.remove('open');
-    mnav.setAttribute('aria-hidden', 'true');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  };
-  burger.addEventListener('click', open);
-  closeBtn.addEventListener('click', close);
-  mnav.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mnav.classList.contains('open')) {
-      close();
-      burger.focus();
-    }
-  });
 })();
 </script>
 
+  <script src="/assets/site-chrome.js"></script>
 </body>
 </html>

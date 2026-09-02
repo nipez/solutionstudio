@@ -1,0 +1,38 @@
+<!--
+  Shared site nav — single source of truth.
+  Apply with: node scripts/apply-site-chrome.mjs
+  Placeholders: {{CTA_HREF}} (page contact anchor), {{LOGO_SRC}}
+-->
+<header class="site-hdr" id="siteHdr">
+  <div class="site-hdr__inner">
+    <a class="site-hdr__brand" href="/"><img src="{{LOGO_SRC}}" alt=""><span>Solution Studio</span></a>
+    <ul class="site-hdr__nav">
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/ai/">For business</a></li>
+      <li><a href="/serviceai/">For trades</a></li>
+      <li><a href="/nonprofitai/">For nonprofits</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a class="site-hdr__cta" href="{{CTA_HREF}}">Let's Build Together</a></li>
+    </ul>
+    <button class="site-hdr__burger" id="siteBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteMnav">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="site-mnav" id="siteMnav" aria-hidden="true">
+  <div class="site-mnav__top">
+    <a class="site-mnav__brand" href="/"><img src="{{LOGO_SRC}}" alt=""><span>Solution Studio</span></a>
+    <button class="site-mnav__close" id="siteMnavClose" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <ul class="site-mnav__links">
+    <li><a href="/#work">Work</a></li>
+    <li><a href="/ai/">For business</a></li>
+    <li><a href="/serviceai/">For trades</a></li>
+    <li><a href="/nonprofitai/">For nonprofits</a></li>
+    <li><a href="/#about">About</a></li>
+  </ul>
+  <a class="site-mnav__cta" href="{{CTA_HREF}}">Let's Build Together</a>
+</div>
