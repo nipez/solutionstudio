@@ -5,6 +5,7 @@
   "description": "Solution Studio — static site for Cloudflare Pages",
   "scripts": {
     "dev": "npx --yes serve . -l 3000",
-    "preview": "npx --yes wrangler pages dev ."
+    "preview": "npx --yes wrangler pages dev .",
+    "apply-chrome": "node scripts/apply-site-chrome.mjs"
   }
 }
